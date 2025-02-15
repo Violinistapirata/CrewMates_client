@@ -12,12 +12,16 @@ import GroupPage from './pages/GroupPage';
 import UserSettingsPage from './pages/UserSettingsPage';
 import GroupSettingsPage from './pages/GroupSettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Navbar />
+
       <Routes>
         <Route 
           path="/" 
@@ -41,6 +45,8 @@ function App() {
           path="*" 
           element={<NotFoundPage/>} />  
       </Routes>
+
+      <Footer />
     </>
   )
 }

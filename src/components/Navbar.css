@@ -1,0 +1,11 @@
+.navbar {
+    height: 4em;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+}
+
+.navbar__links {
+    display:flex;
+    justify-content: space-between;
+}
