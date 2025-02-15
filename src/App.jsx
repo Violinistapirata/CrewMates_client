@@ -4,6 +4,15 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {Routes, Route} from 'react-router-dom';
 
+//pages
+import LandingPage from './pages/LandingPage';
+import SignUpPage from './pages/SignUpPage';
+import UserPage from './pages/UserPage';
+import GroupPage from './pages/GroupPage';
+import UserSettingsPage from './pages/UserSettingsPage';
+import GroupSettingsPage from './pages/GroupSettingsPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 function App() {
   const [count, setCount] = useState(0)
 
