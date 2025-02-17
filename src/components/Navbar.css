@@ -5,8 +5,9 @@ ul, li, a {
 }
 
 .navbar {
-    height: 4em;
+    height: 3em;
     background-color: rgb(17, 137, 218);
+    margin-bottom: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
