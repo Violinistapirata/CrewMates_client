@@ -3,10 +3,10 @@ import "./SignUpPage.css";
 
 function SignUpPage() {
     return(
-        <>
+        <div className="container">
             <h2 className="title">Sign Up Page</h2>
             <SignUpForm />
-        </>
+        </div>
     )
 }
 

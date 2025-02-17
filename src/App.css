@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 h1 {
   font-size: 1.5rem;
 }
