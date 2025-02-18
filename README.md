@@ -1,8 +1,13 @@
-# React + Vite
+# Client Routes / Endpoints
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Pages
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| Page              | URL                         | Action                        |
+| ----------------- | --------------------------- | ----------------------------- |
+| LandingPage       | "/"                         | Shows the Landing Page        |
+| SignUpPage        | "/sign-up"                  | Shows the Sign Up Page        |
+| UserPage          | "/users/:userId"            | Shows the User Page           |
+| GroupPage         | "/groups/:groupId"          | Shows the Group Page          |
+| UserSettingsPage  | "/settings/users/:userId"   | Shows the User Settings Page  |
+| GroupSettingsPage | "/settings/groups/:groupId" | Shows the Group Settings Page |
+| NotFoundPage      | "\*"                        | Shows the Not Found Page      |
