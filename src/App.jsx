@@ -11,6 +11,7 @@ import GroupSettingsPage from './pages/GroupSettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import AboutUsPage from './pages/AboutUsPage';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
         <Route 
           path="/" 
           element={<LandingPage/>} />
+        <Route 
+          path="/about-us" 
+          element={<AboutUsPage/>} />
         <Route 
           path="/sign-up" 
           element={<SignUpPage/>} />

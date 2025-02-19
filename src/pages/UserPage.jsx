@@ -4,7 +4,7 @@ const user = "Andrea";
 function UserPage() {
     return(
         <>
-            <h1> Welcome to user {user}</h1>
+            <h2> Welcome to user {user}</h2>
         </>
     )
 }

@@ -3,7 +3,7 @@ import "./UserSettingsPage.css";
 function UserSettingsPage() {
     return(
         <>
-            <h1> Welcome to Settings for the User </h1>
+            <h2> Welcome to Settings for the User </h2>
         </>
     )
 }

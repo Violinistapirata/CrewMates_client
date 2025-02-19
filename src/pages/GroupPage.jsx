@@ -4,7 +4,7 @@ const group = "WebDev";
 function GroupPage() {
     return(
         <>
-            <h1> Welcome to {group} </h1>
+            <h2> Welcome to {group} </h2>
         </>
     )
 }

@@ -1,6 +1,13 @@
 .footer {
-    height: 4em;
-    background-color: rgb(255, 0, 0);
+    /* height: 4em; */
+    padding: 1vh;
+    background-color: rgb(101, 156, 155);
     display: flex;
+    justify-content: space-around;
     align-items: center;
+}
+
+.active {
+    text-decoration: underline;
+    opacity: 60%;
 }
