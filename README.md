@@ -2,12 +2,12 @@
 
 ## Pages
 
-| Page              | URL                         | Action                        |
-| ----------------- | --------------------------- | ----------------------------- |
-| LandingPage       | "/"                         | Shows the Landing Page        |
-| SignUpPage        | "/sign-up"                  | Shows the Sign Up Page        |
-| UserPage          | "/users/:userId"            | Shows the User Page           |
-| GroupPage         | "/groups/:groupId"          | Shows the Group Page          |
-| UserSettingsPage  | "/settings/users/:userId"   | Shows the User Settings Page  |
-| GroupSettingsPage | "/settings/groups/:groupId" | Shows the Group Settings Page |
-| NotFoundPage      | "\*"                        | Shows the Not Found Page      |
+| Page              | URL                         | Content                                                  |
+| ----------------- | --------------------------- | -------------------------------------------------------- |
+| LandingPage       | "/"                         | Home page with app documentation                         |
+| SignUpPage        | "/sign-up"                  | Sign Up Page                                             |
+| UserPage          | "/users/:userId"            | User profile with the assigned tasks of the current week |
+| GroupPage         | "/groups/:groupId"          | Group Info with all tasks and assignees                  |
+| UserSettingsPage  | "/settings/users/:userId"   | User Settings Page                                       |
+| GroupSettingsPage | "/settings/groups/:groupId" | Group Settings Page                                      |
+| NotFoundPage      | "\*"                        | Not Found Page                                           |
