@@ -18,28 +18,26 @@ function LoginForm(){
 
     function handleSubmit(e) {
       e.preventDefault();
-      console.log("Login form submitted");
       
       fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      }).then((response) => {
-          localStorage.setItem("authToken", response.data.authToken);
-          console.log(response);
+      }).then(response => response.json())
+      .then((response) => {
+          localStorage.setItem("authToken", response.authToken);
           setFormData({
             email: "",
             password: "",
           });
-        })
-        .catch((error) => {
+          //redirect user to homepage
+        }).catch((error) => {
           console.error(error);
         });
     }
 
     function handleOnChange(e) {
       setFormData({ ...formData, [e.target.name]: e.target.value });
-      console.log(e.target.name);
     }
    
    return (
