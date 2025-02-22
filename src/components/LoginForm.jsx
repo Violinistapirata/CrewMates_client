@@ -61,7 +61,7 @@ function LoginForm(){
          value={formData.password}
        />
 
-       <button type="submit"> Create new user </button>
+       <button type="submit"> Log in </button>
      </form>
    );
 }
