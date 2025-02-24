@@ -1,10 +1,10 @@
-import "./UserPage.css";
+import "./DashboardPage.css";
 const user = "Andrea";
 
 function UserPage() {
     return(
         <>
-            <h2> Welcome to user {user}</h2>
+            <h2> Welcome to your dashboard {user}</h2>
         </>
     )
 }

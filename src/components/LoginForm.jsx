@@ -1,20 +1,21 @@
 import "./LoginForm.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from '../context/auth.context.jsx'
+import { useNavigate } from "react-router-dom";
 
-//import useContext
-//import { useNavigate } from "react-router-dom";
-//import auth context
 const API_URL = import.meta.env.VITE_API_URL;
-
 function LoginForm(){
-    const [formData, setFormData] = useState({
-      email: "",
-      password: "",
-    });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  
+  const { group, authenticateUser } = useContext(AuthContext);
+  //const {user} = useContext(AuthContext);
 
-    //const [errorMessaage, setErrorMessage] = useState("");
+  //const [errorMessaage, setErrorMessage] = useState("");
     //const { storeToken, authenticateUser } = useContext(AuthContext);
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function handleSubmit(e) {
       e.preventDefault();
@@ -31,7 +32,12 @@ function LoginForm(){
             password: "",
           });
           //redirect user to homepage
-        }).catch((error) => {
+        })
+        .then(() => {
+          authenticateUser();
+           navigate("/dashboard");
+        })
+        .catch((error) => {
           console.error(error);
         });
     }
