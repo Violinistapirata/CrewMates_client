@@ -15,7 +15,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [errorMessaage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -24,22 +24,35 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
+    let responseStatus;
+
     fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        responseStatus = response.status;
+        response.json()
+      })
       .then((response) => { 
-        localStorage.setItem("authToken", response.authToken)})
+        if (responseStatus === 200){
+          localStorage.setItem("authToken", response.authToken);
+        }
+      })
       .then(() => {
         //redirect user to the dashboard
         authenticateUser();
-        navigate("/dashboard");
+
+        if (responseStatus === 200) {
+          navigate("/dashboard");
+        } else if (responseStatus === 401) {
+          setErrorMessage("Invalid username password combination");
+        }
       })
       .catch((error) => {
         console.error(error);
-        setErrorMessage("Invalid username password combination")
+        setErrorMessage("There was an error. Try again later.");
       });
     }
     
@@ -48,25 +61,31 @@ function LoginForm() {
     }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="form">
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        onChange={handleOnChange}
-        value={formData.email}
-      />
-
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        onChange={handleOnChange}
-        value={formData.password}
-      />
-
-      <button type="submit"> Log in </button>
-    </form>
+    <>
+      {errorMessage && <p>{errorMessage}</p>}
+      
+  
+      {!errorMessage &&  <form onSubmit={handleSubmit} className="form">
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          onChange={handleOnChange}
+          value={formData.email}
+        />
+  
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          onChange={handleOnChange}
+          value={formData.password}
+        />
+        <button type="submit"> Log in </button>
+      </form>
+      }
+    </>
+   
   );
 }
 
