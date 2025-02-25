@@ -6,14 +6,11 @@ const AuthContext = createContext();
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const [group, setGroup] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
 
-  const storeToken = (token) => {
-    localStorage.setItem("authToken", token);
-  };
 
-  //Get the sotred token from the local storage and send a request to the API
+
+  //Get the stored token from the local storage and send a request to the API
   function authenticateUser () {
     const storedToken = localStorage.getItem("authToken");
 
@@ -29,33 +26,31 @@ function AuthProviderWrapper(props) {
         .then((data) => {
           //Handling the response from the API
           setIsLoggedIn(true);
-          setUser(data);
-          setGroup(data.group);
+          setUserInfo(data);
           setIsLoading(false);
         })
         .catch((error) => {
           //Handling the error
           console.error("Error:", error);
           setIsLoggedIn(false);
-          setUser(null);
-          setGroup(null);
+          setUserInfo(null);
           setIsLoading(false);
         });
     } else {
       setIsLoggedIn(false);
-      setUser(null);
-      setGroup(null);
+      setUserInfo(null);
       setIsLoading(false);
     }
   };
+
   //upon logout remove the token from the local storage and set the user to null
   const logOutUser = () => {
     localStorage.removeItem("authToken");
     authenticateUser();
     setIsLoggedIn(false);
-    setUser(null);
+    setUserInfo(null);
   };
-  //To be updated in the next step
+ 
   useEffect(() => {
     authenticateUser();
   }, []);
@@ -65,11 +60,9 @@ function AuthProviderWrapper(props) {
       value={{
         isLoggedIn,
         isLoading,
-        user,
+        userInfo,
         logOutUser,
-        storeToken,
-        authenticateUser,
-        group
+        authenticateUser
       }}
     >
       {props.children}
