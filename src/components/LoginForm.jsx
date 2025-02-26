@@ -33,22 +33,16 @@ function LoginForm() {
     })
       .then((response) => {
         responseStatus = response.status;
-        response.json()
+        return response.json()
       })
       .then((response) => { 
         if (responseStatus === 200){
           localStorage.setItem("authToken", response.authToken);
-        }
-      })
-      .then(() => {
-        //redirect user to the dashboard
-        authenticateUser();
-
-        if (responseStatus === 200) {
+          authenticateUser();
           navigate("/dashboard");
         } else if (responseStatus === 401) {
-          setErrorMessage("Invalid username password combination");
-        }
+            setErrorMessage("Invalid username password combination");
+          }
       })
       .catch((error) => {
         console.error(error);
@@ -62,10 +56,7 @@ function LoginForm() {
 
   return (
     <>
-      {errorMessage && <p>{errorMessage}</p>}
-      
-  
-      {!errorMessage &&  <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit} className="form">
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -83,9 +74,9 @@ function LoginForm() {
         />
         <button type="submit"> Log in </button>
       </form>
-      }
+
+      {errorMessage && <p>{errorMessage}</p>}
     </>
-   
   );
 }
 
