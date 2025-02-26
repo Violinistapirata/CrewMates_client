@@ -14,3 +14,34 @@
 h1 {
   font-size: 1.5rem;
 }
+
+:root {
+
+  /** COLORS **/
+  --primary-color: #034563; /* Secondary CTA enabled  */
+  --primary-color-lighter: #39BCF9; /* Secondary CTA hover  */
+  --primary-color-darker: #022231; /* Secondary CTA clicked  */
+  --primary-color-inactive:#0345635f; /* Secondary CTA disabled */
+  
+  --accent-color: #02C0CA; /* Main CTA enabled  */
+  --accent-color-lighter: #68F6FD; /* Main CTA hover */
+  --accent-color-darker: #016065; /* Main CTA clicked */
+  --accent-color-inactive: #02c0ca62; /* Main CTA disabled */
+
+  --almost-white: #FFF8F4; /* background or text on dark background*/
+  --almost-black: #011B28; /* text onn light background*/
+  --almost-black-disabled: #011b2881; /* text on disabled CTA*/
+
+  --dark-grey: #4A585E; /*borders and secondary text - e.g. a note*/
+  --light-grey: #81949C; /*borders*/
+
+  --error-bright: #F63513;
+  --error-dull: #FCBCB0;
+
+  --warning-bright: #FF8239;
+  --warning-dull: #FFD1B6;
+
+  --success-bright: #04F167;
+  --success-dull: #A8FECC;
+
+}
