@@ -1,13 +1,3 @@
 
-.form {
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
 
-input {
-    text-align: center;
-    width: 30%;
-}

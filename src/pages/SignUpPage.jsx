@@ -4,26 +4,61 @@ import LoginForm from "../components/LoginForm";
 import "./SignUpPage.css";
 
 function SignUpPage() {
-    const [signUpOrLogin, setSignUpOrLogin] = useState("login");
-    return (
-      <>
-        <h1>Log in or Sign up</h1>
-        <div>
-          <button onClick={()=>setSignUpOrLogin("login")}>Log in</button>
-          <button onClick={()=>setSignUpOrLogin("signup")}>Sign up</button>
-        </div>
-        {(signUpOrLogin === "login") && (
-          <div className="container">
+  const [signUpOrLogin, setSignUpOrLogin] = useState("login");
+  return (
+    <>
+      {/*Login*/}
+
+      {signUpOrLogin === "login" && (
+        <>
+          <div className="SignUpPage__options">
+            <a
+              className={"SignUpPage__options login active-option"}
+              onClick={() => setSignUpOrLogin("login")}
+            >
+              {" "}
+              Log in{" "}
+            </a>
+            <a
+              className={"SignUpPage__options signup"}
+              onClick={() => setSignUpOrLogin("signup")}
+            >
+              Sign up
+            </a>
+          </div>
+          <h1 className="SignUpPage__title">Access crewmates</h1>
+          <div className="SignUpPage__form">
             <LoginForm />
           </div>
-        )}
-        {(signUpOrLogin === "signup") && (
-          <div className="container">
+        </>
+      )}
+
+      {/*Signup*/}
+
+      {signUpOrLogin === "signup" && (
+        <>
+          <div className="SignUpPage__options">
+            <a
+              className={"SignUpPage__options login"}
+              onClick={() => setSignUpOrLogin("login")}
+            >
+              {" "}
+              Log in{" "}
+            </a>
+            <a
+              className={"SignUpPage__options signup active-option"}
+              onClick={() => setSignUpOrLogin("signup")}
+            >
+              Sign up
+            </a>
+          </div>
+          <h1 className="SignUpPage__title">Access crewmates</h1>
+          <div className="SignUpPage__form">
             <SignUpForm />
           </div>
-        )}
-      </>
-    );
-}
+        </>
+      )}
+    </>
+  );}
 
 export default SignUpPage;
