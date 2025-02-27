@@ -46,7 +46,7 @@ function LoginForm() {
       })
       .catch((error) => {
         console.error(error);
-        setErrorMessage("There was an error. Try again later.");
+        setErrorMessage("There was an error. Please try again later.");
       });
     }
 

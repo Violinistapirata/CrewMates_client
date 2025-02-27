@@ -40,7 +40,8 @@ function SignUpForm() {
           setSuccessMessage(null);
         }
       }).catch ((error) => {
-      console.error(error);
+        setSuccessMessage("There was an error. Please try again later.");
+        console.error(error);
       })
   }
   
