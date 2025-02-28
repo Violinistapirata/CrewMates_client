@@ -41,7 +41,7 @@ function LoginForm() {
           authenticateUser();
           navigate("/dashboard");
         } else if (responseStatus === 401) {
-            setErrorMessage("Invalid username/password combination");
+            setErrorMessage(response.message);
           }
       })
       .catch((error) => {

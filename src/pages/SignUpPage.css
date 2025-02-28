@@ -63,7 +63,7 @@
     color: var(--almost-black);
     font-size: 1rem;
     padding-left: 0.25rem;
-    background-color: var(--almost-white);
+    background-color: white;
 }
 
 

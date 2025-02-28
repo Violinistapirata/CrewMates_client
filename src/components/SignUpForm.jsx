@@ -9,8 +9,8 @@ function SignUpForm() {
     password: "",
   });
 
-  const[errorMessage, setErrorMessage] = useState(null);
-  const[successMessage, setSuccessMessage] = useState(null);
+  const[errorMessage, setErrorMessage] = useState(false);
+  const[successMessage, setSuccessMessage] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,9 +31,7 @@ function SignUpForm() {
             email: "",
             password: "",
           });
-          setSuccessMessage(
-            `Your signup was successful. You can now log in.`
-          );
+          setSuccessMessage(true);
           setErrorMessage(null);
         } else if (responseStatus === 400) {
           setErrorMessage(response.message);
@@ -77,8 +75,8 @@ function SignUpForm() {
         />
 
         <button type="submit"> Create new user </button>
-      {successMessage && <p className="success">✅ {successMessage}</p>}
-      {errorMessage && <p className="error">❌ {errorMessage}</p>}
+        {successMessage && ( <p className="success">✅ Your signup was successful.<br />You can now log in. </p> )}
+        {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>
     </>
   );
