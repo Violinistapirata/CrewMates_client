@@ -4,8 +4,7 @@ import {Routes, Route} from 'react-router-dom';
 //pages
 import LandingPage from './pages/LandingPage';
 import SignUpPage from './pages/SignUpPage';
-import UserPage from './pages/UserPage';
-import GroupPage from './pages/GroupPage';
+import DashboardPage from './pages/DashboardPage';
 import UserSettingsPage from './pages/UserSettingsPage';
 import GroupSettingsPage from './pages/GroupSettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -30,11 +29,8 @@ function App() {
           path="/sign-up" 
           element={<SignUpPage/>} />
         <Route 
-          path="/users/:userId" 
-          element={<UserPage/>} />
-        <Route 
-          path="/groups/:groupId" 
-          element={<GroupPage/>} />
+          path="/dashboard" 
+          element={<DashboardPage/>} />
         <Route 
           path="/settings/users/:userId" 
           element={<UserSettingsPage/>} />

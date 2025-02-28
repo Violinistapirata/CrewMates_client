@@ -1,19 +1,19 @@
-import "./UserPage.css";
+import "./DashboardPage.css";
 import { useState } from "react";
 const API_URL = import.meta.env.VITE_API_URL;
 
-function UserPage() {
+function DashboardPage() {
     const [groupCode, setGroupCode] = useState("");
     const [requestIsSent, setRequestIsSent] = useState(false)
-    function handleOnChange(e) {
+    /* function handleOnChange(e) {
         setGroupCode(e.target.value);
-    }
+    } */
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log("Join group form submitted");
         setRequestIsSent(true);
-        fetch(`${API_URL}/group/${groupCode}`, {method: "PUT", headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(members: userId)})
+        fetch(`${API_URL}/group/${groupCode}`, {method: "PUT", headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({members: userId})})
         .then((response) => response.json())
         .catch((error) => {
             console.error("Error while updating the group ->", error);
@@ -32,14 +32,14 @@ function UserPage() {
                 <input 
                     type="text"
                     name="group-code"
-                    onChange = {handleOnChange}
+                    /*onChange = {handleOnChange}*/
                     value = {groupCode}
                      />
                 <button type = "submit">Request to join group</button>
-                {!requestIsSent ? <button type = "submit">Request to join group</button> : <button type = "submit">Request to join group</button>}
+                {!requestIsSent ? <button type = "submit">Request to join group</button> : <button type = "submit">Request sent</button>}
             </form>
         </>
     )
 }
 
-export default UserPage;
+export default DashboardPage;
