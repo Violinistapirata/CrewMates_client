@@ -1,20 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-#root {
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-h1 {
-  font-size: 1.5rem;
-}
-
 :root {
 
   /** COLORS **/
@@ -43,5 +26,31 @@ h1 {
 
   --success-bright: #04F167;
   --success-dull: #A8FECC;
+  
+}
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--almost-black)
+}
+
+main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+  background-color: var(--almost-white);
+}
+
+h1 {
+  font-size: 1.5rem;
 }
