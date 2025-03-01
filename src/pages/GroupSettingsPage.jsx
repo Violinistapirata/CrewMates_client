@@ -7,11 +7,12 @@ const API_URL = import.meta.env.VITE_API_URL;
 function GroupSettingsPage() {
   const { userInfo } = useContext(AuthContext);
   const [userGroupInfo, setUserGroupInfo] = useState({
-    name: "",
-    members: [],
-    recurringTasks: [],
+    name: null,
+    members: null,
+    recurringTasks: null,
   });
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [formData, setFormData] = useState()
   console.log("USER INFO:", userInfo);
   if (userInfo) {
     console.log("THIS IS userInfo.group: ", userInfo.group);
@@ -39,7 +40,7 @@ function GroupSettingsPage() {
   useEffect(() => {
     userInfo && getUserGroupInfo();
   }, [userInfo]);
-
+  
   userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
   const { name, members, recurringTasks } = userGroupInfo;
 
@@ -47,7 +48,7 @@ function GroupSettingsPage() {
     console.log("data from userGroupInfo: ", name, members, recurringTasks);
 
   return (
-    <>
+    <div className="flex-container">
       <h2 className="title"> Group settings</h2>
 
       <section className="section">
@@ -76,7 +77,7 @@ function GroupSettingsPage() {
             }) : <p>No recurring tasks in this group</p>}
         </ul>
       </section>
-    </>
+    </div>
   );
   // })
 }

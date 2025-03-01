@@ -1,0 +1,15 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.section{
+    background-color: var(--almost-white);
+}
+
+.section__title {
+
+margin-bottom: .5em;
+}
