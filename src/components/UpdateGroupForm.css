@@ -1,0 +1,27 @@
+.list-item {
+    max-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-item__container {
+    display: flex;
+    align-items: center;
+    margin: .2em 0;
+    gap: 1em;
+}
+
+.list-item__user-image {
+    padding: .3em .5em;
+    background-color: var(--primary-color);
+    color: var(--almost-white);
+    border: 3px solid var(--primary-color-lighter);
+    border-radius: 20px;
+}
+
+.list-item__delete-btn {
+    height: min-content;
+    padding: .2em .3em;
+    border-radius: 20px;
+}

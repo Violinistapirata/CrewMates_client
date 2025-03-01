@@ -52,7 +52,7 @@ function GroupSettingsPage() {
     <div className="flex-container">
       <h2 className="title"> Group settings</h2>
       {isEditing ? (
-        <UpdateGroupForm />
+        <UpdateGroupForm setIsEditing={setIsEditing} userGroupInfo={userGroupInfo} setUserGroupInfo={setUserGroupInfo}/>
       ) : (
         <>
           <section className="section">
