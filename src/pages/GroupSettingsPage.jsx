@@ -6,7 +6,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupSettingsPage() {
   const { userInfo } = useContext(AuthContext);
-  const [userGroupInfo, setUserGroupInfo] = useState({name: "", members:[], recurringTasks: []});
+  const [userGroupInfo, setUserGroupInfo] = useState({
+    name: "",
+    members: [],
+    recurringTasks: [],
+  });
 
   console.log(userInfo);
   if (userInfo.group) {
@@ -31,6 +35,7 @@ function GroupSettingsPage() {
         });
     }
   }
+  
   useEffect(() => {
     getUserGroupInfo();
   }, []);
@@ -43,25 +48,31 @@ function GroupSettingsPage() {
 
   return (
     <>
-      <h2> Group settings</h2>
-
-      <h3>Group name</h3>
-      <p>{name ? name : "You don't have a group yet :( "}</p>
-      <h3>My crewmates</h3>
-      <ul>
-        {members &&
-          members.map((member, index) => {
-            return <li key={members[index]}>{member}</li>;
-          })}
-      </ul>
-
-      <h3>Recurring tasks</h3>
-      <ul>
-        {recurringTasks &&
-          recurringTasks.map((task, index) => {
-            return <li key={recurringTasks[index]}>{task}</li>;
-          })}
-      </ul>
+      <h2 className="title"> Group settings</h2>
+      <section className="section">
+        <h3 className="section__title">Group name</h3>
+        <p className="section__text">
+          {name ? name : "You don't have a group yet :( "}
+        </p>
+      </section>
+      <section className="section">
+        <h3 className="section__title">My crewmates</h3>
+        <ul className="section__list">
+          {members &&
+            members.map((member, index) => {
+              return <li key={members[index]}>{member}</li>;
+            })}
+        </ul>
+      </section>
+      <section className="section">
+        <h3 className="section__title">Recurring tasks</h3>
+        <ul className="section__list">
+          {recurringTasks &&
+            recurringTasks.map((task, index) => {
+              return <li key={recurringTasks[index]}>{task}</li>;
+            })}
+        </ul>
+      </section>
     </>
   );
   // })
