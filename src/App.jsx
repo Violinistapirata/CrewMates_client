@@ -18,6 +18,7 @@ function App() {
       <Navbar />
 
       <main>
+      <div className="main-container">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
@@ -33,6 +34,7 @@ function App() {
           />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+      </div>
       </main>
 
       <Footer />
