@@ -12,8 +12,8 @@ function GroupSettingsPage() {
     recurringTasks: [],
   });
 
-  console.log(userInfo);
-  if (userInfo.group) {
+  console.log("USER INFO:", userInfo);
+  if (userInfo) {
     console.log("THIS IS userInfo.group: ", userInfo.group);
   }
   function getUserGroupInfo() {
@@ -37,8 +37,8 @@ function GroupSettingsPage() {
   }
   
   useEffect(() => {
-    getUserGroupInfo();
-  }, []);
+    userInfo && getUserGroupInfo();
+  }, [userInfo]);
 
   userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
   const { name, members, recurringTasks } = userGroupInfo;
@@ -49,28 +49,31 @@ function GroupSettingsPage() {
   return (
     <>
       <h2 className="title"> Group settings</h2>
+
       <section className="section">
         <h3 className="section__title">Group name</h3>
         <p className="section__text">
           {name ? name : "You don't have a group yet :( "}
         </p>
       </section>
+
       <section className="section">
         <h3 className="section__title">My crewmates</h3>
         <ul className="section__list">
-          {members &&
-            members.map((member, index) => {
-              return <li key={members[index]}>{member}</li>;
-            })}
+          {members ?
+            members.map((member) => {
+              return <li key={member._id}>{member.name}</li>;
+            }) : <p>No members in this group</p>}
         </ul>
       </section>
+
       <section className="section">
         <h3 className="section__title">Recurring tasks</h3>
         <ul className="section__list">
-          {recurringTasks &&
+          {recurringTasks ?
             recurringTasks.map((task, index) => {
               return <li key={recurringTasks[index]}>{task}</li>;
-            })}
+            }) : <p>No recurring tasks in this group</p>}
         </ul>
       </section>
     </>
