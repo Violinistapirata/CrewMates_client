@@ -1,5 +1,5 @@
 import "./LoginForm.css";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function LoginForm() {
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,22 +41,18 @@ function LoginForm() {
           authenticateUser();
           navigate("/dashboard");
         } else if (responseStatus === 401) {
-            setErrorMessage("Invalid username password combination");
+            setErrorMessage(response.message);
           }
       })
       .catch((error) => {
         console.error(error);
-        setErrorMessage("There was an error. Try again later.");
+        setErrorMessage("There was an error. Please try again later.");
       });
     }
-    
-    useEffect(() => {
-      authenticateUser();
-    }, []);
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="form">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -73,9 +69,8 @@ function LoginForm() {
           value={formData.password}
         />
         <button type="submit"> Log in </button>
+        {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>
-
-      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
 }
