@@ -1,5 +1,7 @@
 import "./GroupAssignment.css";
 import { useState, useContext } from "react";
+
+import Button from "./Button.jsx";
 import { AuthContext } from "../context/auth.context.jsx";
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,13 +47,13 @@ function GroupAssignment() {
   }
 
   return (
-    <>
-      <h3> Join an existing group </h3>
+    <div className="DashboardPage__section">
+      <h2 className="DashboardPage__section-title"> Join an existing group </h2>
       <p>
         If there is an existing group, ask one of the members for the group
         code. They can find it in the group settings.
       </p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="GroupAssignment__form">
         <label htmlFor="group-code">Enter group code:</label>
         <input
           type="text"
@@ -60,15 +62,13 @@ function GroupAssignment() {
           value={groupCode}
         />
         {!requestIsSent ? (
-          <button type="submit">Join group</button>
+          <Button>Join group</Button>
         ) : (
-          <button type="submit" disabled>
-            Request sent
-          </button>
+          <Button>Request sent</Button>
         )}
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
-    </>
+      {errorMessage && <p>❌ {errorMessage}</p>}
+    </div>
   );
 }
 
