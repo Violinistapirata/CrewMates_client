@@ -10,7 +10,7 @@ import WeekTasks from "../components/WeekTasks.jsx";
 //React
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
@@ -19,14 +19,16 @@ import { getCurrentDate } from "../utils/helperFunctions.js";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function DashboardPage() {
+  const navigate = useNavigate(); 
   const storedToken = localStorage.getItem("authToken");
   const { userInfo } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
   const [filter, setFilter] = useState({
-    label: "the crew",
+    label: "the whole crew",
     id: "all",
   });
   /* const [hasActiveWeek, setHasActiveWeek] = useState(false); */
@@ -80,6 +82,14 @@ function DashboardPage() {
 
   return (
     <>
+      {!isLoggedIn && (
+        <p>
+          {" "}
+          🚫You're currently not logged in. <br />
+          Please {" "}
+          <Link to={`/sign-up`}>log in</Link> to view this page.{" "}
+        </p>
+      )}
       {isLoading && (
         <>
           <p>
@@ -92,7 +102,7 @@ function DashboardPage() {
         </>
       )}
 
-      {!isLoading && !group && (
+      {isLoggedIn && !isLoading && !group && (
         <>
           <h1>Welcome to crewmates!</h1>
           <p>Let's get started</p>
@@ -101,7 +111,7 @@ function DashboardPage() {
         </>
       )}
 
-      {!isLoading && group && tasks && (
+      {isLoggedIn && !isLoading && group && tasks && (
         <>
           <h1>Welcome on board</h1>
           <GroupMembers groupId={group} setFilter={setFilter} />
@@ -109,7 +119,7 @@ function DashboardPage() {
         </>
       )}
 
-      {!isLoading && group && !tasks && hasRecurringTasks && (
+      {isLoggedIn && !isLoading && group && !tasks && hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
           <GroupMembers groupId={group} />
@@ -117,7 +127,7 @@ function DashboardPage() {
         </>
       )}
 
-      {!isLoading && group && !tasks && !hasRecurringTasks && (
+      {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
           <GroupMembers groupId={group} />

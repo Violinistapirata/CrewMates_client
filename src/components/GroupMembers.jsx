@@ -35,7 +35,10 @@ function GroupMembers({ groupId, setFilter }) {
     members && (
       <>
         <h2>Your crewmates</h2>
-        <div className="GroupMembers-icon">All</div>
+        <div 
+            className="GroupMembers-icon" 
+            onClick={()=>setFilter({label: "the whole crew", id: "all"})}
+        >Crew</div>
         {members.map((member) => {
           return (
             <>

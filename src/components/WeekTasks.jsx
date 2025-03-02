@@ -7,7 +7,7 @@ function WeekTasks({ tasks, filter }) {
     tasks && (
       <>
         <h2>
-          Showing the tasks for <b>{filter.label}</b>
+          Showing the tasks for <b className="DashboardPage__filter-active">{filter.label}</b>
         </h2>
         {tasks.map((task) => {
           return (
