@@ -4,6 +4,9 @@ import "./UserSettingsPage.css";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 import UpdateUserForm from "../components/UpdateUserForm.jsx";
+import NotLoggedIn from "../components/NotLoggedIn.jsx";
+
+
 //API URL
 const API_URL = import.meta.env.VITE_API_URL;
 

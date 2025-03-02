@@ -29,37 +29,37 @@ function UpdateUserForm({setIsEditing}) {
 
     // fetch to update the user info
 
-//      fetch(`${API_URL}/api/users/${userInfo.id}`, {
-//        method: "PUT",
-//        headers: {
-//          "Content-Type": "application/json",
-//          Authorization: `Bearer ${storedToken}`,
-//       },
-//        body: JSON.stringify(formData),
-//      })
-//        .then((response) => {
-//          if (!response.ok) {
-//            throw new Error(`Error ${response.status}: ${response.statusText}`);
-//          }
-//          return response.json();
-//        })
-//        .then((data) => {
-//         setSuccessMessage("User updated successfully!");
-//          setErrorMessage(null);
-//          authenticateUser(); 
+      fetch(`${API_URL}/api/users/${userInfo.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
+       },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Error ${response.status}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+         setSuccessMessage("User updated successfully!");
+          setErrorMessage(null);
+          authenticateUser(); 
 
 //          // Use data to update the user info 
 
-//          setFormData({
-//            email: data.email,
-//            userName: data.name,
-//            group: data.group,
-//          });
-//        })
-//        .catch((error) => {
-//          setErrorMessage(`Error updating user: ${error.message}`);
-//          setSuccessMessage(null);
-//        });
+          setFormData({
+            email: data.email,
+            userName: data.name,
+            group: data.group,
+          });
+        })
+        .catch((error) => {
+          setErrorMessage(`Error updating user: ${error.message}`);
+          setSuccessMessage(null);
+        });
    }
   // useEffect to update the form data when the user info changes
 
