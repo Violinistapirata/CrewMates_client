@@ -6,9 +6,9 @@ function WeekTasks({ tasks, filter }) {
     return (
     tasks && (
       <>
-        <p>
+        <h2>
           Showing the tasks for <b>{filter.label}</b>
-        </p>
+        </h2>
         {tasks.map((task) => {
           return (
             <>

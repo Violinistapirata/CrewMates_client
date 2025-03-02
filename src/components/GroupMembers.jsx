@@ -34,6 +34,7 @@ function GroupMembers({ groupId, setFilter }) {
   return (
     members && (
       <>
+        <h2>Your crewmates</h2>
         <div className="GroupMembers-icon">All</div>
         {members.map((member) => {
           return (
