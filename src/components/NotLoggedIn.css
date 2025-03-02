@@ -1,0 +1,16 @@
+.NotLoggedIn{
+    margin-top: 4rem;
+    padding: 2rem;
+    
+    border: 1.5px solid var(--error-bright);
+    border-radius: 15px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.NotLoggedIn__icon{
+    font-size: 5rem;
+}
+.NotLoggedIn__message{
+    font-size: 1.25rem;
+}

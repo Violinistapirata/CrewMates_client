@@ -1,4 +1,5 @@
 import "./SignUpForm.css";
+import Button from "./Button"
 import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -74,7 +75,7 @@ function SignUpForm() {
           value={formData.password}
         />
 
-        <button type="submit"> Create new user </button>
+        <Button>Create new user</Button>
         {successMessage && ( <p className="success">✅ Your signup was successful.<br />You can now log in. </p> )}
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>
