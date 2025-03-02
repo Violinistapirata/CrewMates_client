@@ -26,12 +26,13 @@ function AuthProviderWrapper(props) {
       })
         .then((response) => {
           responseStatus = response.status;
-          response.json()
+          return response.json()
         })
         .then((data) => {
           //Handling the response from the API
           if (responseStatus === 200){
             setIsLoggedIn(true);
+            console.log(data);
             setUserInfo(data);
             setIsLoading(false);
           }
