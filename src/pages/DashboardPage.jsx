@@ -1,18 +1,21 @@
+//CSS
 import "./DashboardPage.css";
-import "../components/GroupAssignment.jsx";
-import "../components/GroupCreation.jsx";
-import "../components/GroupMembers.jsx";
-import "../components/WeekTasks.jsx";
 
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../context/auth.context.jsx";
-import { Link } from "react-router-dom";
+//Components
 import GroupAssignment from "../components/GroupAssignment.jsx";
 import GroupCreation from "../components/GroupCreation.jsx";
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
 
+//React
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../context/auth.context.jsx";
+import { Link } from "react-router-dom";
+
+//Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+
+//Variables
 const API_URL = import.meta.env.VITE_API_URL;
 
 function DashboardPage() {
@@ -21,52 +24,55 @@ function DashboardPage() {
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
-  const [hasActiveWeek, setHasActiveWeek] = useState(false);
-  const [members, setMembers] = useState(null);
+  const [filter, setFilter] = useState(null);
+  /* const [hasActiveWeek, setHasActiveWeek] = useState(false); */
+  //Remove from here and from backend response?
+ 
 
   useEffect(() => {
-    userInfo && //with this we can recover the Context information. The Context is lost as soon as the page is refreshed.
-      fetch(`${API_URL}/api/users/${userInfo._id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${storedToken}`,
-        },
+    //Get user info to check which is their group, if any
+    //The Context is lost as soon as the page is refreshed.
+    //With this we can recover the Context information through the token.
+    userInfo &&  fetch(`${API_URL}/api/users/${userInfo._id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storedToken}`,
+      },
+    })
+      .then((response) => {
+        return response.json();
       })
-        .then((response) => {
-          return response.json();
-        })
-        .then((userInfo) => {
-          setGroup(userInfo.group);
-          return userInfo.group;
-        })
-        .then((groupId) => {
-            console.log("groupId", groupId)
+      .then((userInfo) => {
+        setGroup(userInfo.group);
+        return userInfo.group;
+      })
+      .then((groupId) => {
+        console.log("groupId", groupId);
         const currentDate = getCurrentDate();
-          {
-            groupId &&
-              fetch(`${API_URL}/api/week/${groupId}/${currentDate}`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${storedToken}`,
-                },
+        {
+          groupId &&
+            fetch(`${API_URL}/api/week/${groupId}/${currentDate}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${storedToken}`,
+              },
+            })
+              .then((response) => {
+                return response.json();
               })
-                .then((response) => {
-                  return response.json();
-                })
-                .then((weekStatus)=> {
-                    setHasRecurringTasks(weekStatus.hasRecurringTasks);
-                    setHasActiveWeek(weekStatus.hasActiveWeek);
-                    setTasks(weekStatus.tasks);
-                    console.log("data", weekStatus);
-                });
-
-          }
-        })
-        .catch((error) => {
-          console.error("Error while checking the group ->", error);
-        });
+              .then((weekStatus) => {
+                setHasRecurringTasks(weekStatus.hasRecurringTasks);
+                //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
+                setTasks(weekStatus.tasks);
+                console.log("data", weekStatus.tasks);
+              });
+        }
+      })
+      .catch((error) => {
+        console.error("Error while checking the group ->", error);
+      });
   }, [userInfo]);
 
   return (
@@ -83,15 +89,15 @@ function DashboardPage() {
       {group && tasks && (
         <>
           <h1>Welcome on board</h1>
-          <GroupMembers />
-          <WeekTasks />
+          <GroupMembers groupId={group} setFilter={setFilter} />
+          <WeekTasks filter={filter}/>
         </>
       )}
 
       {group && !tasks && hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
-          <GroupMembers />
+          <GroupMembers groupId={group} />
           <button>Create new week</button>
         </>
       )}
@@ -99,7 +105,7 @@ function DashboardPage() {
       {group && !tasks && !hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
-          <GroupMembers />
+          <GroupMembers groupId={group} />
           <p>
             {" "}
             Your group has no template to generate your tasks for the week.{" "}
