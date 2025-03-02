@@ -2,11 +2,11 @@ import "./GroupSettingsPage.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import UpdateGroupForm from "../components/UpdateGroupForm";
-
+import NotLoggedIn from "../components/NotLoggedIn"
 const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupSettingsPage() {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo, isLoggedIn } = useContext(AuthContext);
   const [userGroupInfo, setUserGroupInfo] = useState({
     name: null,
     members: null,
@@ -53,6 +53,9 @@ function GroupSettingsPage() {
     console.log("data from userGroupInfo: ", name, members, recurringTasks);
 
   return (
+    <>
+
+    {isLoggedIn && (
     <div className="flex-container">
       <h2 className="title"> Group settings</h2>
       {isEditing ? (
@@ -100,8 +103,11 @@ function GroupSettingsPage() {
         </>
       )}
     </div>
+    )}  
+    {!isLoggedIn && <NotLoggedIn/>} 
+    </>
   );
-  // })
+  
 }
 
 export default GroupSettingsPage;
