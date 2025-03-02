@@ -119,7 +119,7 @@ function addNewTask() {
                 formData.recurringTasks.map((task, index) => {
                   return <li key={formData.recurringTasks[index]} className="list-item">
                   <label htmlFor="recurringTasks"></label>
-                  <input className="list-item__name" type="text"
+                  <input className="list-item__name" type="text" autoFocus
           name="recurringTasks"
           onChange={(e) => handleOnChangeForTasks(e, index)}
           value={task}></input>
@@ -157,6 +157,7 @@ function addNewTask() {
             );
             setFormData(userGroupInfoCopy);
             setDeletedMembers([]);
+            setIsEditing(false);
           }}
         >
           Cancel changes
