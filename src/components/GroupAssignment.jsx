@@ -5,8 +5,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupAssignment() {
   const [groupCode, setGroupCode] = useState("");
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo, setUserInfo } = useContext(AuthContext);
   const [requestIsSent, setRequestIsSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   function handleOnChange(e) {
     setGroupCode(e.target.value);
@@ -16,14 +17,20 @@ function GroupAssignment() {
     e.preventDefault();
     console.log("Join group form submitted");
     setRequestIsSent(true);
-    fetch(`${API_URL}/group/${groupCode}`, {
+    fetch(`${API_URL}/groups/join/${groupCode}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ members: userInfo._id }),
+      body: JSON.stringify({ member: userInfo._id }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          setUserInfo({ ...userInfo, group: groupCode });
+          setErrorMessage(null);
+        }
+      })
       .catch((error) => {
         console.error("Error while updating the group ->", error);
+        setErrorMessage("Something went wrong. Please try again later.");
       });
   }
 
@@ -45,9 +52,10 @@ function GroupAssignment() {
         {!requestIsSent ? (
           <button type="submit">Join group</button>
         ) : (
-          <button type="submit">Request sent</button>
+          <button type="submit" disabled>Request sent</button>
         )}
       </form>
+      {errorMessage && <p>{errorMessage}</p>}
     </>
   );
 }
