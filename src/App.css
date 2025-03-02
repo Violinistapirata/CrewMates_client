@@ -49,8 +49,11 @@ main {
   justify-content: center;
   flex-grow: 1;
   background-color: var(--almost-white);
+  padding: 3rem 2rem 0;
 }
 
-h1 {
-  font-size: 1.5rem;
+@media screen and (max-width: 600px) {
+  main {
+    padding: 3rem 1rem 0;
+  }
 }

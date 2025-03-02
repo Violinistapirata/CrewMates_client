@@ -1,21 +1,35 @@
-ul, li, a {
-    list-style: none;
-    text-decoration: none;
-    color: #333;
-}
-
 .navbar {
-    height: 3em;
-    background-color: rgb(17, 137, 218);
-    margin-bottom: 1em;
+    height: 3rem;
+    background-color: var(--primary-color);
     display: flex;
     justify-content: center;
     align-items: center;
-
+    font-size: 1.125rem;
+    box-shadow: 2px 10px 43px 0px rgba(204, 181, 170, 1);
+    z-index: 10;
+    
+    ul,
+    li,
+    a {
+        list-style: none;
+        text-decoration: none;
+        color: var(--almost-black)
+    }
 }
 
 .navbar__links {
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: space-around;
+
+    a {
+        color: var(--almost-white);
+        text-decoration: none;
+    }
+
+    .active {
+        color: var(--almost-white);
+        text-decoration: underline;
+        font-weight: bold;
+    }
 }

@@ -2,6 +2,7 @@ import "./LoginForm.css";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 import { useNavigate } from "react-router-dom";
+import Button from "./Button.jsx";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -60,7 +61,7 @@ function LoginForm() {
           onChange={handleOnChange}
           value={formData.email}
         />
-  
+
         <label htmlFor="password">Password</label>
         <input
           type="password"
@@ -68,7 +69,7 @@ function LoginForm() {
           onChange={handleOnChange}
           value={formData.password}
         />
-        <button type="submit"> Log in </button>
+        <Button>Log in</Button>
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>
     </>
