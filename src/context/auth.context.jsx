@@ -35,7 +35,6 @@ function AuthProviderWrapper(props) {
         })
         .catch((error) => {
           //Handling the error
-          console.log("Hooooooooola");
           console.error("Error:", error);
           setIsLoggedIn(false);
           setUserInfo(null);
