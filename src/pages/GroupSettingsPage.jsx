@@ -43,9 +43,9 @@ function GroupSettingsPage() {
   }, [userInfo]);
 
   userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
-  const { name, members, recurringTasks } = userGroupInfo;
+  const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
 
-  userGroupInfo &&
+  userGroupInfo &&  
     console.log("data from userGroupInfo: ", name, members, recurringTasks);
 
   return (
@@ -73,6 +73,11 @@ function GroupSettingsPage() {
                 <p>No members in this group</p>
               )}
             </ul>
+            <div className="cta">
+            <h4 className="cta__title">Embarking Code</h4>
+            <p className="cta__text">Send this code to your crew mates to invite them to join your crew!</p>
+            <p className="cta__code">{groupId}</p>
+          </div>
           </section>
 
           <section className="section">
