@@ -16,18 +16,26 @@ function AuthProviderWrapper(props) {
 
     //If the token exists in the localStorage we send a request to the API
     if (storedToken) {
+      let responseStatus;
+
       fetch(`${API_URL}/auth/verify`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          responseStatus = response.status;
+          return response.json()
+        })
         .then((data) => {
           //Handling the response from the API
-          setIsLoggedIn(true);
-          setUserInfo(data);
-          setIsLoading(false);
+          if (responseStatus === 200){
+            setIsLoggedIn(true);
+            console.log(data);
+            setUserInfo(data);
+            setIsLoading(false);
+          }
         })
         .catch((error) => {
           //Handling the error

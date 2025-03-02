@@ -1,13 +1,18 @@
-.footer {
-    /* height: 4em; */
+.Footer {
+    height: 3rem;
     padding: 1vh;
-    background-color: rgb(101, 156, 155);
+    background-color: var(--accent-color-lighter);
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
+    font-size: 1.125 rem;
+    
+    .active {
+        text-decoration: underline;
+        font-weight: bold;
+    }
 
-.active {
-    text-decoration: underline;
-    opacity: 60%;
+    img {
+    vertical-align:sub
+    }
 }
