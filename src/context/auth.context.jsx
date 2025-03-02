@@ -16,6 +16,8 @@ function AuthProviderWrapper(props) {
 
     //If the token exists in the localStorage we send a request to the API
     if (storedToken) {
+      let responseStatus;
+
       fetch(`${API_URL}/auth/verify`, {
         method: "GET",
         headers: {
@@ -25,12 +27,15 @@ function AuthProviderWrapper(props) {
         .then((response) => response.json())
         .then((data) => {
           //Handling the response from the API
-          setIsLoggedIn(true);
-          setUserInfo(data);
-          setIsLoading(false);
+          if (responseStatus === 200){
+            setIsLoggedIn(true);
+            setUserInfo(data);
+            setIsLoading(false);
+          }
         })
         .catch((error) => {
           //Handling the error
+          console.log("Hooooooooola");
           console.error("Error:", error);
           setIsLoggedIn(false);
           setUserInfo(null);
