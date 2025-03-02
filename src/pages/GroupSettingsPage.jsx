@@ -71,10 +71,17 @@ function GroupSettingsPage() {
 
           <section className="section">
             <h3 className="section__title">My crewmates</h3>
-            <ul className="section__list">
+            <ul className="section__list section__list--row">
               {members ? (
                 members.map((member) => {
-                  return <li key={member._id}>{member.name}</li>;
+                  return <li key={member._id} className="list-item ">
+                  <div className="list-item__container list-item__container--column">
+                        <div className="list-item__user-image">
+                          {member.name[0]}
+                        </div>
+                        <p className="list-item__name">{member.name}</p>
+                      </div>
+                  </li>;
                 })
               ) : (
                 <p>No members in this group</p>
