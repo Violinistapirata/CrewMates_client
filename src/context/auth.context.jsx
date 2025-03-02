@@ -24,7 +24,10 @@ function AuthProviderWrapper(props) {
           Authorization: `Bearer ${storedToken}`,
         },
       })
-        .then((response) => response.json())
+        .then((response) => {
+          responseStatus = response.status;
+          response.json()
+        })
         .then((data) => {
           //Handling the response from the API
           if (responseStatus === 200){
