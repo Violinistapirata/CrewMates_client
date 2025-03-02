@@ -8,6 +8,7 @@ function GroupAssignment() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [requestIsSent, setRequestIsSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const storedToken = localStorage.getItem("authToken");
 
   function handleOnChange(e) {
     setGroupCode(e.target.value);
@@ -15,22 +16,26 @@ function GroupAssignment() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Join group form submitted");
     setRequestIsSent(true);
-    fetch(`${API_URL}/groups/join/${groupCode}`, {
+    fetch(`${API_URL}/api/groups/join/${groupCode}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ member: userInfo._id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storedToken}`,
+      },
+      body: JSON.stringify({ newMember: userInfo._id }),
     })
       .then((response) => {
         if (response.status === 200) {
           setUserInfo({ ...userInfo, group: groupCode });
           setErrorMessage(null);
+          response.json();
         }
       })
       .catch((error) => {
         console.error("Error while updating the group ->", error);
         setErrorMessage("Something went wrong. Please try again later.");
+        setRequestIsSent(false);
       });
   }
 
@@ -52,7 +57,9 @@ function GroupAssignment() {
         {!requestIsSent ? (
           <button type="submit">Join group</button>
         ) : (
-          <button type="submit" disabled>Request sent</button>
+          <button type="submit" disabled>
+            Request sent
+          </button>
         )}
       </form>
       {errorMessage && <p>{errorMessage}</p>}
