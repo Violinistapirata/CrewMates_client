@@ -15,6 +15,8 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
   console.log("THIS IS FORM DATA: ", formData);
   const [deletedMembers, setDeletedMembers] = useState([]);
   console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembers);
+  const [deletedRecurringTasks, setDeletedRecurringTasks] = useState([]);
+  console.log("THIS IS THE DELETED RECURRING TASKS ARRAY: ", deletedRecurringTasks);
   const [newRecurringTask, setNewRecurringTask] = useState("")
   console.log("THIS IS THE DELETED MEMBERS ARRAY: ", newRecurringTask);
 
@@ -42,13 +44,22 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     setIsEditing(false);
   }
 
-  function handleDelete(index) {
+  function handleDeleteMember(index) {
     // console.log("THIS IS THE DELETED MEMBER: ", formData.members[index]);
 
     const deletedMember = formData.members.splice(index, 1);
     // console.log("THIS IS deletedMember: ", deletedMember[0]);
     // The splice() method returns an array with one object
     setDeletedMembers([...deletedMembers, deletedMember[0]]);
+}
+
+  function handleDeleteRecurringTask(index) {
+    // console.log("THIS IS THE DELETED MEMBER: ", formData.members[index]);
+
+    const deletedRecurringTask = formData.recurringTasks.splice(index, 1);
+    // console.log("THIS IS deletedRecurringTask: ", deletedRecurringTask[0]);
+    // The splice() method returns an array with one object
+    setDeletedRecurringTasks([...deletedRecurringTasks, deletedRecurringTask[0]]);
 }
 
 function addNewTask() {
@@ -84,7 +95,7 @@ function addNewTask() {
                       <button
                         className="list-item__delete-btn"
                         type="button"
-                        onClick={() => handleDelete(index)}
+                        onClick={() => handleDeleteMember(index)}
                       >
                         X
                       </button>
@@ -105,7 +116,16 @@ function addNewTask() {
             <ul className="section__list">
               {formData.recurringTasks ? (
                 formData.recurringTasks.map((task, index) => {
-                  return <li key={formData.recurringTasks[index]}>{task}</li>;
+                  return <li key={formData.recurringTasks[index]} className="list-item">
+                  <p className="list-item__name">{task}</p>
+                  <button
+                        className="list-item__delete-btn"
+                        type="button"
+                        onClick={() => handleDeleteRecurringTask(index)}
+                      >
+                        X
+                      </button>
+                  </li>;
                 })
               ) : (
                 <p>No recurring tasks in this group</p>
