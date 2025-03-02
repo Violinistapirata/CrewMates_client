@@ -20,13 +20,14 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function DashboardPage() {
   const storedToken = localStorage.getItem("authToken");
-  const {userInfo } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
   const [filter, setFilter] = useState({
     label: "the crew",
-    id: "all"
+    id: "all",
   });
   /* const [hasActiveWeek, setHasActiveWeek] = useState(false); */
   //Remove from here and from backend response?
@@ -36,6 +37,7 @@ function DashboardPage() {
     //The Context is lost as soon as the page is refreshed.
     //With this we can recover the Context information through the token.
     if (userInfo) {
+      setIsLoading(true);
       fetch(`${API_URL}/api/users/${userInfo._id}`, {
         method: "GET",
         headers: {
@@ -51,29 +53,26 @@ function DashboardPage() {
           return userInfo.group;
         })
         .then((groupId) => {
-          console.log("groupId", groupId);
           const currentDate = getCurrentDate();
-          {
-            groupId &&
-              fetch(`${API_URL}/api/week/${groupId}/${currentDate}`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${storedToken}`,
-                },
-              })
-                .then((response) => {
-                  return response.json();
-                })
-                .then((weekStatus) => {
-                  setHasRecurringTasks(weekStatus.hasRecurringTasks);
-                  //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
-                  setTasks(weekStatus.tasks);
-                  console.log("data", weekStatus.tasks);
-                });
-          }
-        })
-        .catch((error) => {
+
+          groupId &&
+            fetch(`${API_URL}/api/week/${groupId}/${currentDate}`, {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${storedToken}`,
+              },
+            }).then((response) => {
+                return response.json();
+            }).then((weekStatus) => {
+                setHasRecurringTasks(weekStatus.hasRecurringTasks);
+                //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
+                setTasks(weekStatus.tasks);
+                console.log("data", weekStatus.tasks);
+            });
+          }).then(() => {
+          setIsLoading(false);
+          }).catch((error) => {
           console.error("Error while checking the group ->", error);
         });
     }
@@ -81,7 +80,19 @@ function DashboardPage() {
 
   return (
     <>
-      {!group && (
+      {isLoading && (
+        <>
+          <p>
+            🦜🦜🦜
+            <br />
+            LOADING....
+            <br />
+            🦜🦜🦜
+          </p>
+        </>
+      )}
+
+      {!isLoading && !group && (
         <>
           <h1>Welcome to crewmates!</h1>
           <p>Let's get started</p>
@@ -90,7 +101,7 @@ function DashboardPage() {
         </>
       )}
 
-      {group && tasks && (
+      {!isLoading && group && tasks && (
         <>
           <h1>Welcome on board</h1>
           <GroupMembers groupId={group} setFilter={setFilter} />
@@ -98,7 +109,7 @@ function DashboardPage() {
         </>
       )}
 
-      {group && !tasks && hasRecurringTasks && (
+      {!isLoading && group && !tasks && hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
           <GroupMembers groupId={group} />
@@ -106,7 +117,7 @@ function DashboardPage() {
         </>
       )}
 
-      {group && !tasks && !hasRecurringTasks && (
+      {!isLoading && group && !tasks && !hasRecurringTasks && (
         <>
           <h1>Welcome on board!</h1>
           <GroupMembers groupId={group} />
