@@ -15,12 +15,18 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
   console.log("THIS IS FORM DATA: ", formData);
   const [deletedMembers, setDeletedMembers] = useState([]);
   console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembers);
+  const [newRecurringTask, setNewRecurringTask] = useState("")
+  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", newRecurringTask);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+  
+  function handleOnChangeForTasks(e) {
+    setNewRecurringTask(e.target.value);
   }
 
   function handleSubmit(e) {
@@ -45,6 +51,10 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     setDeletedMembers([...deletedMembers, deletedMember[0]]);
 }
 
+function addNewTask() {
+    setFormData({...formData, recurringTasks: [...formData.recurringTasks, newRecurringTask]});
+    setNewRecurringTask("")
+}
 
   return (
     <>
@@ -88,13 +98,28 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
           </ul>
         </section>
 
-        <label htmlFor="recurringTasks">Recurring tasks</label>
-        <input
+        
+
+        <section className="section">
+            <h3 className="section__title">Recurring tasks</h3>
+            <ul className="section__list">
+              {formData.recurringTasks ? (
+                formData.recurringTasks.map((task, index) => {
+                  return <li key={formData.recurringTasks[index]}>{task}</li>;
+                })
+              ) : (
+                <p>No recurring tasks in this group</p>
+              )}
+            </ul>
+          </section>
+          <label htmlFor="recurringTasks"></label>
+          <input
           type="text"
           name="recurringTasks"
-          onChange={handleOnChange}
-          value={formData.recurringTasks}
+          onChange={handleOnChangeForTasks}
+          value={newRecurringTask}
         />
+        <button type="button" className="form__button" onClick={() => addNewTask()}>Add New Recurring Task</button>
         <button
           type="button"
           className="form__button--cancel"
