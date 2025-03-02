@@ -12,8 +12,11 @@ function GroupSettingsPage() {
     members: null,
     recurringTasks: null,
   });
+
+  const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
+
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState();
+  
   console.log("USER INFO:", userInfo);
   if (userInfo) {
     console.log("THIS IS userInfo.group: ", userInfo.group);
@@ -23,8 +26,9 @@ function GroupSettingsPage() {
     if (storedToken) {
       fetch(`${API_URL}/api/groups/${userInfo.group}`, {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${storedToken}`,
+        headers: { 
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`
         },
       })
         .then((response) => response.json())
@@ -43,7 +47,7 @@ function GroupSettingsPage() {
   }, [userInfo]);
 
   userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
-  const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
+  
 
   userGroupInfo &&  
     console.log("data from userGroupInfo: ", name, members, recurringTasks);
