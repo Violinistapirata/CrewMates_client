@@ -31,10 +31,15 @@ function GroupAssignment() {
           setErrorMessage(null);
           response.json();
         }
+        if (response.status === 500) {
+          console.error("Error 500 while updating the group");
+          setErrorMessage("Something went wrong. Please try again later.");
+          setRequestIsSent(false);
+        }
       })
       .catch((error) => {
         console.error("Error while updating the group ->", error);
-        setErrorMessage("Something went wrong. Please try again later.");
+        setErrorMessage("Something went wrong! Please try again later.");
         setRequestIsSent(false);
       });
   }
