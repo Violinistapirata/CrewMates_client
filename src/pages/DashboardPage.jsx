@@ -6,11 +6,12 @@ import GroupAssignment from "../components/GroupAssignment.jsx";
 import GroupCreation from "../components/GroupCreation.jsx";
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
+import NotLoggedIn from "../components/NotLoggedIn.jsx"
 
 //React
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
@@ -18,8 +19,7 @@ import { getCurrentDate } from "../utils/helperFunctions.js";
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
 
-function DashboardPage() {
-  const navigate = useNavigate(); 
+function DashboardPage() { 
   const storedToken = localStorage.getItem("authToken");
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
@@ -82,14 +82,7 @@ function DashboardPage() {
 
   return (
     <>
-      {!isLoggedIn && (
-        <p>
-          {" "}
-          🚫You're currently not logged in. <br />
-          Please {" "}
-          <Link to={`/sign-up`}>log in</Link> to view this page.{" "}
-        </p>
-      )}
+      {!isLoggedIn && <NotLoggedIn />}
       {isLoading && (
         <>
           <p>
@@ -105,7 +98,7 @@ function DashboardPage() {
       {isLoggedIn && !isLoading && !group && (
         <>
           <h1>Welcome to crewmates!</h1>
-          <p>Let's get started</p>
+          <p>Let&apos;s get started</p>
           <GroupAssignment />
           <GroupCreation />
         </>
