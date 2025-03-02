@@ -25,10 +25,11 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  }
-  
-  function handleOnChangeForTasks(e) {
-    setNewRecurringTask(e.target.value);
+}
+
+function handleOnChangeForTasks(e, index) {
+    formData.recurringTasks.splice(index, 1, e.target.value)
+    setFormData({ ...formData, recurringTasks: formData.recurringTasks });
   }
 
   function handleSubmit(e) {
@@ -70,7 +71,9 @@ function addNewTask() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Group Name</label>
+
+      <h3 className="section__title">My Ship</h3>
+        <label htmlFor="name"></label>
         <input
           type="text"
           name="name"
@@ -109,15 +112,17 @@ function addNewTask() {
           </ul>
         </section>
 
-        
-
         <section className="section">
             <h3 className="section__title">Recurring tasks</h3>
             <ul className="section__list">
-              {formData.recurringTasks ? (
+              {formData.recurringTasks.length > 0 ? (
                 formData.recurringTasks.map((task, index) => {
                   return <li key={formData.recurringTasks[index]} className="list-item">
-                  <p className="list-item__name">{task}</p>
+                  <label htmlFor="recurringTasks"></label>
+                  <input className="list-item__name" type="text"
+          name="recurringTasks"
+          onChange={(e) => handleOnChangeForTasks(e, index)}
+          value={task}></input>
                   <button
                         className="list-item__delete-btn"
                         type="button"
@@ -136,7 +141,7 @@ function addNewTask() {
           <input
           type="text"
           name="recurringTasks"
-          onChange={handleOnChangeForTasks}
+          onChange={(e) => setNewRecurringTask(e.target.value)}
           value={newRecurringTask}
         />
         <button type="button" className="form__button" onClick={() => addNewTask()}>Add New Recurring Task</button>
