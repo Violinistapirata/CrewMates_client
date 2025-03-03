@@ -1,9 +1,12 @@
 import { useState, useEffect, createContext } from "react";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const AuthContext = createContext();
 
 function AuthProviderWrapper(props) {
+  const navigate= useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
@@ -57,6 +60,8 @@ function AuthProviderWrapper(props) {
     authenticateUser();
     setIsLoggedIn(false);
     setUserInfo(null);
+
+    navigate("/sign-up"); //<Navigate> can not be used here
   };
  
   useEffect(() => {

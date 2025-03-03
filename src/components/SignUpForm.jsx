@@ -87,7 +87,7 @@ if(formData.password !== formData.confirmPassword) {
           value={formData.password}
         />
 
-        <label htmlFor="confirmPassowrd">Confirm password</label>
+        <label htmlFor="confirmPassword">Confirm password</label>
         <input
           type="password"
           name="confirmPassword"
