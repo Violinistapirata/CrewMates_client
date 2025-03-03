@@ -12,7 +12,6 @@ function GroupCreation() {
   const storedToken = localStorage.getItem("authToken");
 
   function createGroup() {
-    console.log("userInfo ---", userInfo);
     setRequestIsSent(true);
 
     fetch(`${API_URL}/api/groups`, {
@@ -26,8 +25,6 @@ function GroupCreation() {
         }),
     })
       .then((response) => {
-        console.log(response.ok);
-        console.log(response.status);
         if (response.status === 200) {
           setErrorMessage(null);
           return response.json();
@@ -39,7 +36,6 @@ function GroupCreation() {
         }
       })
       .then((createdGroup) => {
-        console.log("createdGroup -----", createdGroup);
         setUserInfo({ ...userInfo, group: createdGroup._id });
         setErrorMessage(null);
       })
