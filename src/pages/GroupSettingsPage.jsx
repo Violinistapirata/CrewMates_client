@@ -72,7 +72,7 @@ function GroupSettingsPage() {
           <section className="section">
             <h3 className="section__title">My crewmates</h3>
             <ul className="section__list section__list--row">
-              {members ? (
+              {members.length > 0 ? (
                 members.map((member) => {
                   return <li key={member._id} className="list-item ">
                   <div className="list-item__container list-item__container--column">
@@ -97,7 +97,7 @@ function GroupSettingsPage() {
           <section className="section">
             <h3 className="section__title">Recurring tasks</h3>
             <ul className="section__list">
-              {recurringTasks ? (
+              {recurringTasks.length > 0 ? (
                 recurringTasks.map((task, index) => {
                   return <li key={recurringTasks[index]}>{task}</li>;
                 })
