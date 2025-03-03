@@ -1,9 +1,9 @@
 import "./Button.css";
 
-function Button({ onClick, children }) {
+function Button({ type, onClick, text }) {
   return (
-    <button type="submit" className="Button" onClick={onClick || null}>
-      {children}
+    <button type={type} className={`Button ${type == "submit" && "Button--submit" }`} onClick={onClick || null}>
+      {text}
     </button>
   );
 }

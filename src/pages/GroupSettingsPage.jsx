@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import UpdateGroupForm from "../components/UpdateGroupForm";
 import NotLoggedIn from "../components/NotLoggedIn"
+import Button from "../components/Button";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupSettingsPage() {
@@ -106,7 +108,8 @@ function GroupSettingsPage() {
               )}
             </ul>
           </section>
-          <button onClick={() => setIsEditing(true)}>Edit Group Info</button>
+          <Button type="submit" onClick={() => setIsEditing(true)} text="Edit Group Info"/>
+          {/* <button onClick={() => setIsEditing(true)}>Edit Group Info</button> */}
         </>
       )}
     </div>
