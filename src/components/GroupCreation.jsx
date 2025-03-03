@@ -44,8 +44,8 @@ function GroupCreation() {
   }
 
   return (
-    <div className="DashboardPage__section">
-      <h2 className="DashboardPage__section-title">Create a new group </h2>
+    <div className="GroupCreation">
+      <h2 className="GroupCreation-title">Create a new group </h2>
       <p>
         Once your flatmates sign up, they can join your group using the code
         that you give them.
