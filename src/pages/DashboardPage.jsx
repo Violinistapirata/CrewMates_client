@@ -2,11 +2,11 @@
 import "./DashboardPage.css";
 
 //Components
-import GroupAssignment from "../components/GroupAssignment.jsx";
-import GroupCreation from "../components/GroupCreation.jsx";
+import Loading from "../components/Loading.jsx"
+import NotLoggedIn from "../components/NotLoggedIn.jsx"
+import NewUserDashboard from '../components/NewUserDashboard.jsx';
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
-import NotLoggedIn from "../components/NotLoggedIn.jsx"
 
 //React
 import { useState, useContext, useEffect } from "react";
@@ -83,33 +83,9 @@ function DashboardPage() {
   return (
     <>
       {!isLoggedIn && <NotLoggedIn />}
-      {isLoading && (
-        <div className="DashboardPage__section">
-          <p>
-            🦜🦜🦜
-            <br />
-            LOADING....
-            <br />
-            🦜🦜🦜
-          </p>
-        </div>
-      )}
-
+      {isLoading && <Loading />}
       {isLoggedIn && !isLoading && !group && (
-        <>
-          <div className="title-with-parrot">
-            <div>
-              <h1 className="DashboardPage__title">Welcome to crewmates!</h1>
-              <p className="subtitle">Let&apos;s get you set up! </p>
-            </div>
-            <p className="parrot">🦜</p>
-          </div>
-          <div className="DashboardPage__create-or-join">
-            <GroupAssignment />
-            <p className="DashboardPage__or">OR</p>
-            <GroupCreation />
-          </div>
-        </>
+        <NewUserDashboard/>
       )}
 
       {isLoggedIn && !isLoading && group && tasks && (

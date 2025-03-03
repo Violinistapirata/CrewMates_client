@@ -1,14 +1,34 @@
-.GroupAssignment__form {
+.GroupAssignement {
+    max-width: 65ch;
+    border: 1px solid var(--dark-grey);
+    padding: 1.5rem;
+    border-radius: 15px;
+
+    p {
+        margin: 1rem 0;
+    }
+}
+
+.GroupAssignment_form-field {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.GroupAssignment__form{
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.GroupAssignment__form label {
+    font-size: 1.25rem;
 }
 
 .GroupAssignment__form input {
-    margin-bottom: 1rem;
     border: 1px solid var(--dark-grey);
-    border-radius: 4px;
-    height: 1.6rem;
+    border-radius: 15px 0px 0px 15px;
+    height: 2.1rem;
     max-width: 20rem;
     color: var(--almost-black);
     font-size: 1rem;
@@ -16,6 +36,30 @@
     background-color: white;
 }
 
-.GroupAssignment__form button {
-    flex-grow: 0;
+@media screen and (min-width:1201px) {
+
+    .GroupAssignement-title {
+        font-size: 2rem;
+    }
+
+    .GroupAssignement {
+        max-width: 75ch;
+        border: 1px solid var(--dark-grey);
+        padding: 1.5rem;
+        border-radius: 15px;
+
+        p {
+            margin: 1rem 0;
+        }
+    }
+
+}
+.joint-button{
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--almost-white);
+    padding: 0.5rem 2.5rem;
+    border-radius: 0 15px 15px 0;
+    font-size: 1rem;
+    /**TODO: Fix for devices below 400px**/
 }
