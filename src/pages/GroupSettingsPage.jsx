@@ -10,9 +10,9 @@ const API_URL = import.meta.env.VITE_API_URL;
 function GroupSettingsPage() {
   const { userInfo, isLoggedIn } = useContext(AuthContext);
   const [userGroupInfo, setUserGroupInfo] = useState({
-    name: null,
-    members: null,
-    recurringTasks: null,
+    name: "",
+    members: [],
+    recurringTasks: [],
   });
 
   const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
