@@ -1,0 +1,21 @@
+.GroupAssignment__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.GroupAssignment__form input {
+    margin-bottom: 1rem;
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px;
+    height: 1.6rem;
+    max-width: 20rem;
+    color: var(--almost-black);
+    font-size: 1rem;
+    padding-left: 0.25rem;
+    background-color: white;
+}
+
+.GroupAssignment__form button {
+    flex-grow: 0;
+}

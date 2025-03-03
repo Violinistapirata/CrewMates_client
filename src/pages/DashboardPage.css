@@ -1,0 +1,104 @@
+.DashboardPage__section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 65ch;
+    border: 1px solid var(--dark-grey);
+    padding: 1.5rem;
+    border-radius: 15px;
+
+    p {
+        margin: 1rem 0;
+    }
+}
+
+.DashboardPage__title {
+    font-size: 3rem;
+}
+
+
+.subtitle {
+    font-size: 1.5rem;
+}
+
+
+/*** SMALL SCREENS ***/
+
+/*** MEDIUM SCREENS ***/
+
+/*** LARGE SCREENS ***/
+
+
+.title-with-parrot {
+    display: flex;
+    justify-content: space-between;
+
+    /*** LARGE SCREENS ***/
+    
+
+    .parrot {
+        font-size: 10rem;
+    }
+
+    /*** MEDIUM SCREENS ***/
+    @media screen and (max-width: 600px) {
+
+        .parrot {
+            font-size: 5rem;
+            align-self: flex-end;
+        }
+
+        .subtitle {
+            display: none;
+        }
+
+
+    }
+
+    /*** SMALL SCREENS ***/
+    @media screen and (max-width: 400px) {
+
+        .DashboardPage__create-or-join {
+            margin-top: -2.5rem;
+            background-color: red;
+        }
+
+        .DashboardPage__title {
+            font-size: 2rem;
+        }
+
+        .parrot {
+            font-size: 3rem;
+            align-self: flex-end;
+        }
+    }
+
+}
+
+
+.DashboardPage__section-title {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.DashboardPage__create-or-join {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin-top: -3rem;
+
+    .DashboardPage__or {
+        align-self: center;
+        margin: 0 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .DashboardPage__create-or-join {
+        flex-direction: column;
+    }
+
+    .DashboardPage__or {
+        text-align: center;
+    }
+}

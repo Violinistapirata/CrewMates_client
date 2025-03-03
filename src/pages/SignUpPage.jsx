@@ -14,10 +14,8 @@ function SignUpPage() {
           <div className="SignUpPage__options">
             <a
               className={"SignUpPage__options login active-option"}
-              onClick={() => setSignUpOrLogin("login")}
-            >
-              {" "}
-              Log in{" "}
+              onClick={() => setSignUpOrLogin("login")} >
+              Log in
             </a>
             <a
               className={"SignUpPage__options signup"}
@@ -42,8 +40,7 @@ function SignUpPage() {
               className={"SignUpPage__options login"}
               onClick={() => setSignUpOrLogin("login")}
             >
-              {" "}
-              Log in{" "}
+              Log in
             </a>
             <a
               className={"SignUpPage__options signup active-option"}

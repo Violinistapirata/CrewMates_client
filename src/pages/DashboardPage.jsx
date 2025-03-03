@@ -84,7 +84,7 @@ function DashboardPage() {
     <>
       {!isLoggedIn && <NotLoggedIn />}
       {isLoading && (
-        <>
+        <div className="DashboardPage__section">
           <p>
             🦜🦜🦜
             <br />
@@ -92,37 +92,45 @@ function DashboardPage() {
             <br />
             🦜🦜🦜
           </p>
-        </>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && !group && (
         <>
-          <h1>Welcome to crewmates!</h1>
-          <p>Let&apos;s get started</p>
-          <GroupAssignment />
-          <GroupCreation />
+          <div className="title-with-parrot">
+            <div>
+              <h1 className="DashboardPage__title">Welcome to crewmates!</h1>
+              <p className="subtitle">Let&apos;s get you set up! </p>
+            </div>
+            <p className="parrot">🦜</p>
+          </div>
+          <div className="DashboardPage__create-or-join">
+            <GroupAssignment />
+            <p className="DashboardPage__or">OR</p>
+            <GroupCreation />
+          </div>
         </>
       )}
 
       {isLoggedIn && !isLoading && group && tasks && (
-        <>
-          <h1>Welcome on board</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board</h1>
           <GroupMembers groupId={group} setFilter={setFilter} />
           <WeekTasks tasks={tasks} filter={filter} />
-        </>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && hasRecurringTasks && (
-        <>
-          <h1>Welcome on board!</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <button>Create new week</button>
-        </>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
-        <>
-          <h1>Welcome on board!</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <p>
             {" "}
@@ -132,7 +140,7 @@ function DashboardPage() {
             <Link to={`/settings/groups/${group}`}>Group Settings</Link> to add
             tasks.{" "}
           </p>
-        </>
+        </div>
       )}
     </>
   );
