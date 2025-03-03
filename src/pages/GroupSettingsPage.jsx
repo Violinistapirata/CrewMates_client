@@ -109,7 +109,6 @@ function GroupSettingsPage() {
             </ul>
           </section>
           <Button type="button" onClick={() => setIsEditing(true)} content="Edit Group Info"/>
-          {/* <button onClick={() => setIsEditing(true)}>Edit Group Info</button> */}
         </>
       )}
     </div>

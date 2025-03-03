@@ -1,5 +1,6 @@
 import "./updateGroupForm.css";
 import { useState } from "react";
+import Button from "./Button";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -22,7 +23,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     deletedRecurringTasks
   );
   const [newRecurringTask, setNewRecurringTask] = useState("");
-  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", newRecurringTask);
+  console.log("THIS IS THE NEW RECURRING TASK: ", newRecurringTask);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -66,6 +67,18 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     setIsEditing(false);
   }
 
+  function handleReset() {
+    console.log(
+        "SET FORM DATA -->",
+        formData,
+        "USER GROUP INFO -->",
+        userGroupInfo
+      );
+      setFormData(userGroupInfoCopy);
+      setDeletedMembers([]);
+      setIsEditing(false);
+  }
+
   function handleDeleteMember(index) {
     // console.log("THIS IS THE DELETED MEMBER: ", formData.members[index]);
 
@@ -97,7 +110,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
         <h3 className="section__title">My Ship</h3>
         <label htmlFor="name"></label>
         <input
@@ -171,7 +184,6 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
               <p>No recurring tasks in this group</p>
             )}
           </ul>
-        </section>
         <label htmlFor="recurringTasks"></label>
         <input
           type="text"
@@ -179,33 +191,14 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
           onChange={(e) => setNewRecurringTask(e.target.value)}
           value={newRecurringTask}
         />
-        <button
-          type="button"
-          className="form__button"
-          onClick={() => addNewTask()}
-        >
-          Add New Recurring Task
-        </button>
-        <button
-          type="button"
-          className="form__button--cancel"
-          onClick={() => {
-            console.log(
-              "SET FORM DATA -->",
-              formData,
-              "USER GROUP INFO -->",
-              userGroupInfo
-            );
-            setFormData(userGroupInfoCopy);
-            setDeletedMembers([]);
-            setIsEditing(false);
-          }}
-        >
-          Cancel changes
-        </button>
-        <button className="form__button" type="submit">
-          Update Group
-        </button>
+        <Button onClick={() => addNewTask()} content="Add New Recurring Task"/>
+        </section>
+
+        <div>
+        <Button type="reset" className="Button--cancel" content="Cancel Changes"/>
+        <Button type="submit" className="Button--submit" content="Update Group"/>
+        </div>
+
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
         {successMessage && <p className="success">✅ {successMessage}</p>}
       </form>
