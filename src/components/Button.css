@@ -12,5 +12,9 @@
 }
 
 .Button--submit{
-    background-color: var(green);
+    background-color: rgb(53, 205, 66);
+}
+
+.Button--cancel{
+    background-color: rgb(235, 50, 50);
 }
