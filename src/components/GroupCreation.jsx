@@ -1,10 +1,9 @@
 import "./GroupCreation.css";
 import { useState, useContext } from "react";
 
-import Button from "./Button.jsx"
+import Button from "./Button.jsx";
 import { AuthContext } from "../context/auth.context.jsx";
 const API_URL = import.meta.env.VITE_API_URL;
-
 
 function GroupCreation() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
@@ -13,17 +12,24 @@ function GroupCreation() {
   const storedToken = localStorage.getItem("authToken");
 
   function createGroup() {
+    console.log("userInfo ---", userInfo);
     setRequestIsSent(true);
 
     fetch(`${API_URL}/api/groups`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${storedToken}`,
-      },
+        Authorization: `Bearer ${storedToken}`},
+        body: JSON.stringify({
+          firstMemberId: userInfo._id,
+          firstMemberName: userInfo.name,
+        }),
     })
       .then((response) => {
+        console.log(response.ok);
+        console.log(response.status);
         if (response.status === 200) {
+          setErrorMessage(null);
           return response.json();
         }
         if (response.status === 500) {
@@ -33,6 +39,7 @@ function GroupCreation() {
         }
       })
       .then((createdGroup) => {
+        console.log("createdGroup -----", createdGroup);
         setUserInfo({ ...userInfo, group: createdGroup._id });
         setErrorMessage(null);
       })
