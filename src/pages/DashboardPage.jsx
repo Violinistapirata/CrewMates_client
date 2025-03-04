@@ -103,7 +103,7 @@ function DashboardPage() {
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <button onClick={()=>{createWeek(userInfo.group, setTasks, setErrorMessage, API_URL) }}>Create new week</button>
-        </>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
