@@ -41,6 +41,26 @@
     vertical-align: middle;
 }
 
+.nav-icon__drop-down{
+    position: relative;
+}
+
+.drop-down{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--almost-white);
+    border: 1px solid var(--almost-black);
+    position: absolute;
+}
+
+.drop-down__button{
+    width: 100%;
+    padding: .3em;
+    border: none;
+    text-align: center;
+    color: var(--almost-black);
+}
+
 @media (max-width: 600px) {
     .navbar__links a {
         font-size: 0;
