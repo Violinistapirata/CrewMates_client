@@ -84,11 +84,13 @@ function DashboardPage() {
 
   return (
     <>
+      {errorMessage && <p>{errorMessage}</p>}
       {!isLoggedIn && <NotLoggedIn />}
       {isLoading && <Loading />}
-      {isLoggedIn && !isLoading && !group && (
+      {isLoggedIn && !isLoading && (group===undefined) && (
         <NewUserDashboard/>
-      )}
+      )}{/*The initial value (null), once it's undefined it means we know that the user has no group*/}
+      
 
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
