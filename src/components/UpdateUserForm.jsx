@@ -5,15 +5,16 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 import "./UpdateUserForm.css";
 // API URL
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function UpdateUserForm({setIsEditing}) {
   const { authenticateUser, userInfo } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
-    email: userInfo?.email || "",
-    userName: userInfo?.name || "",
-    group: userInfo?.group || "",
+    email: userInfo.email || "",
+    name: userInfo.name || "",
+    group: userInfo.group || "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -26,10 +27,11 @@ function UpdateUserForm({setIsEditing}) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     setIsEditing(false);
-
+    console.log(userInfo._id);
     // fetch to update the user info
-
-      fetch(`${API_URL}/api/users/${userInfo.id}`, {
+    console.log(formData);
+    
+      fetch(`${API_URL}/api/users/${userInfo._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -48,11 +50,11 @@ function UpdateUserForm({setIsEditing}) {
           setErrorMessage(null);
           authenticateUser(); 
 
-//          // Use data to update the user info 
+          // Use data to update the user info 
 
           setFormData({
             email: data.email,
-            userName: data.name,
+            name: data.name,
             group: data.group,
           });
         })
@@ -67,7 +69,7 @@ function UpdateUserForm({setIsEditing}) {
     if (userInfo) {
       setFormData({
         email: userInfo.email,
-        userName: userInfo.name,
+        name: userInfo.name,
         group: userInfo.group,
       });
     }
@@ -76,12 +78,12 @@ function UpdateUserForm({setIsEditing}) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="userName">User Name</label>
+        <label htmlFor="name">User Name</label>
         <input
           type="text"
-          name="userName"
+          name="name"
           onChange={handleOnChange}
-          value={formData.userName}
+          value={formData.name}
         />
 
         <label htmlFor="email">Email</label>

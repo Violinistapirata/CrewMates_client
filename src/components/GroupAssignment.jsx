@@ -8,6 +8,7 @@ function GroupAssignment() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
   const [requestIsSent, setRequestIsSent] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const storedToken = localStorage.getItem("authToken");
 
   function handleOnChange(e) {
     setGroupCode(e.target.value);
@@ -15,48 +16,63 @@ function GroupAssignment() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Join group form submitted");
     setRequestIsSent(true);
-    fetch(`${API_URL}/groups/join/${groupCode}`, {
+    fetch(`${API_URL}/api/groups/join/${groupCode}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ member: userInfo._id }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storedToken}`,
+      },
+      body: JSON.stringify({ newMember: userInfo._id }),
     })
       .then((response) => {
         if (response.status === 200) {
           setUserInfo({ ...userInfo, group: groupCode });
           setErrorMessage(null);
+          response.json();
+        }
+        if (response.status === 500) {
+          console.error("Error 500 while updating the group");
+          setErrorMessage("Something went wrong. Please try again later.");
+          setRequestIsSent(false);
         }
       })
       .catch((error) => {
         console.error("Error while updating the group ->", error);
-        setErrorMessage("Something went wrong. Please try again later.");
+        setErrorMessage("Something went wrong! Please try again later.");
+        setRequestIsSent(false);
       });
   }
 
   return (
-    <>
-      <h3> Join an existing group </h3>
+    <div className="GroupAssignement">
+      <h2 className="GroupAssignement-title"> Join an existing group </h2>
       <p>
         If there is an existing group, ask one of the members for the group
         code. They can find it in the group settings.
       </p>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="group-code">Enter group code:</label>
-        <input
-          type="text"
-          name="group-code"
-          onChange={handleOnChange}
-          value={groupCode}
-        />
-        {!requestIsSent ? (
-          <button type="submit">Join group</button>
-        ) : (
-          <button type="submit" disabled>Request sent</button>
-        )}
+      <form onSubmit={handleSubmit} className="GroupAssignment__form">
+      <label htmlFor="group-code">Enter group code:</label>
+        <div className="GroupAssignment_form-input-and-button">
+          <input
+            type="text"
+            name="group-code"
+            onChange={handleOnChange}
+            value={groupCode}
+          />
+          {!requestIsSent ? (
+            <button type="submit" className="joint-button">
+              Join
+            </button>
+          ) : (
+            <button type="submit" className="joint-button" disabled>
+              Joining...
+            </button>
+          )}
+        </div>
       </form>
-      {errorMessage && <p>{errorMessage}</p>}
-    </>
+      {errorMessage && <p>❌ {errorMessage}</p>}
+    </div>
   );
 }
 

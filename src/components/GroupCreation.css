@@ -1,0 +1,36 @@
+.GroupCreation {
+    max-width: 65ch;
+    border: 1px solid var(--dark-grey);
+    padding: 1.5rem;
+    border-radius: 15px;
+
+    p {
+        margin: 1rem 0;
+    }
+}
+
+@media screen and (min-width:1201px) {
+
+    .GroupCreation-title {
+        font-size: 2rem;
+    }
+
+    .GroupCreation {
+        display: flex;
+        flex-direction: column;
+        align-items: self-start;
+        justify-content: center;
+    }
+
+    .GroupCreation {
+        max-width: 65ch;
+        border: 1px solid var(--dark-grey);
+        padding: 1.5rem;
+        border-radius: 15px;
+
+        p {
+            margin: 1rem 0;
+        }
+    }
+
+}

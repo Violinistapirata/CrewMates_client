@@ -3,14 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import UpdateGroupForm from "../components/UpdateGroupForm";
 import NotLoggedIn from "../components/NotLoggedIn"
+import Button from "../components/Button";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupSettingsPage() {
   const { userInfo, isLoggedIn } = useContext(AuthContext);
   const [userGroupInfo, setUserGroupInfo] = useState({
-    name: null,
-    members: null,
-    recurringTasks: null,
+    name: "",
+    members: [],
+    recurringTasks: [],
   });
 
   const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
@@ -71,10 +73,17 @@ function GroupSettingsPage() {
 
           <section className="section">
             <h3 className="section__title">My crewmates</h3>
-            <ul className="section__list">
-              {members ? (
+            <ul className="section__list section__list--row">
+              {members.length > 0 ? (
                 members.map((member) => {
-                  return <li key={member._id}>{member.name}</li>;
+                  return <li key={member._id} className="list-item ">
+                  <div className="list-item__container list-item__container--column">
+                        <div className="list-item__user-image">
+                          {member.name[0]}
+                        </div>
+                        <p className="list-item__name">{member.name}</p>
+                      </div>
+                  </li>;
                 })
               ) : (
                 <p>No members in this group</p>
@@ -90,7 +99,7 @@ function GroupSettingsPage() {
           <section className="section">
             <h3 className="section__title">Recurring tasks</h3>
             <ul className="section__list">
-              {recurringTasks ? (
+              {recurringTasks.length > 0 ? (
                 recurringTasks.map((task, index) => {
                   return <li key={recurringTasks[index]}>{task}</li>;
                 })
@@ -99,7 +108,7 @@ function GroupSettingsPage() {
               )}
             </ul>
           </section>
-          <button onClick={() => setIsEditing(true)}>Edit Group Info</button>
+          <Button type="button" onClick={() => setIsEditing(true)} content="Edit Group Info"/>
         </>
       )}
     </div>

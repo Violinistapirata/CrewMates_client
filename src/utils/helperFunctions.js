@@ -9,12 +9,15 @@ function getCurrentDate() {
 }
 
 function createWeek(groupId, setTasks, setErrorMessage, API_URL) {
- 
+  const storedToken = localStorage.getItem("authToken");
   const currentDate = getCurrentDate();
 
   fetch(`${API_URL}/api/week/${groupId}/${currentDate}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${storedToken}`,
+    },
   })
     .then((response) => {
       return response.json();

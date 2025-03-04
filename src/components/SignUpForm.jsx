@@ -8,6 +8,7 @@ function SignUpForm() {
     name: "",
     email: "",
     password: "",
+    confirmPassword:"",
   });
 
   const[errorMessage, setErrorMessage] = useState(false);
@@ -16,12 +17,22 @@ function SignUpForm() {
   function handleSubmit(e) {
     e.preventDefault();
 
+if(formData.password !== formData.confirmPassword) {
+  setErrorMessage("The passwords do not match. Please try again.");
+  setSuccessMessage(null);
+  return;
+}
+
     let responseStatus;
 
     fetch(`${API_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password //we do not send the confirmPassword
+        }),
       }).then((response) => {
         responseStatus = response.status;
         return response.json()
@@ -31,6 +42,7 @@ function SignUpForm() {
             name: "",
             email: "",
             password: "",
+            confirmPassword:"",
           });
           setSuccessMessage(true);
           setErrorMessage(null);
@@ -74,6 +86,15 @@ function SignUpForm() {
           onChange={handleOnChange}
           value={formData.password}
         />
+
+        <label htmlFor="confirmPassword">Confirm password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          onChange={handleOnChange}
+          value= {formData.confirmPassword}
+        />
+       
 
         <Button>Create new user</Button>
         {successMessage && ( <p className="success">✅ Your signup was successful.<br />You can now log in. </p> )}
