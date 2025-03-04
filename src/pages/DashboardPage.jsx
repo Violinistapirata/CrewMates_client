@@ -7,7 +7,6 @@ import GroupCreation from "../components/GroupCreation.jsx";
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
 import NotLoggedIn from "../components/NotLoggedIn.jsx"
-
 //React
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
@@ -15,6 +14,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,6 +24,7 @@ function DashboardPage() {
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
@@ -116,7 +117,7 @@ function DashboardPage() {
         <>
           <h1>Welcome on board!</h1>
           <GroupMembers groupId={group} />
-          <button>Create new week</button>
+          <button onClick={()=>{createWeek(userInfo.group, setTasks, setErrorMessage, API_URL) }}>Create new week</button>
         </>
       )}
 
