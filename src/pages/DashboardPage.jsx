@@ -107,7 +107,7 @@ function DashboardPage() {
           <div className="DashboardPage__section">
             <h1 className="DashboardPage__title">Welcome on board!</h1>
             <GroupMembers groupId={group} />
-            <h2 className="DashboardPage-no-tasks">Your group's tasks</h2>
+            <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
             <p className="DashboardPage-no-tasks">
               Tasks for the week will be created based on the recurring tasks that you have set up on your{" "}
               <Link to={`/settings/groups/${group}`}>Group Settings</Link> page.{" "}
@@ -133,7 +133,7 @@ function DashboardPage() {
           <div className="DashboardPage__section">
             <h1 className="DashboardPage__title">Welcome on board!</h1>
             <GroupMembers groupId={group} />
-            <h2 className="DashboardPage-no-tasks">Your group's tasks</h2>
+            <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
             <p className="DashboardPage-no-recurring-tasks">
               {" "}
               Your group has no template to generate your tasks for the week.{" "}
