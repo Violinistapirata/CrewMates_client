@@ -1,7 +1,20 @@
-import "./updateGroupForm.css";
+// --------------- IMPORTS ---------------
+
+// STYLES
+import "./UpdateGroupForm.css";
+
+// HOOKS
 import { useState } from "react";
 
+// COMPONENTS
+import Button from "./Button";
+
+// VARIABLES
 const API_URL = import.meta.env.VITE_API_URL;
+const storedToken = localStorage.getItem("authToken");
+
+
+// --------------- COMPONENT ---------------
 
 function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     const {_id: groupId, members, recurringTasks } = userGroupInfo;
@@ -12,21 +25,23 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     recurringTasks: [...recurringTasks],
   };
 
+  // STATE VARIABLES
   const [formData, setFormData] = useState(userGroupInfoCopy);
   console.log("THIS IS FORM DATA: ", formData);
-  const [deletedMembers, setDeletedMembers] = useState([]);
-  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembers);
-  const [deletedRecurringTasks, setDeletedRecurringTasks] = useState([]);
-  console.log(
-    "THIS IS THE DELETED RECURRING TASKS ARRAY: ",
-    deletedRecurringTasks
-  );
+
+  const [deletedMembersArray, setDeletedMembersArray] = useState([]);
+  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembersArray);
+
+  const [deletedRecurringTasksArray, setDeletedRecurringTasksArray] = useState([]);
+  console.log("THIS IS THE DELETED RECURRING TASKS ARRAY: ", deletedRecurringTasksArray);
+
   const [newRecurringTask, setNewRecurringTask] = useState("");
-  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", newRecurringTask);
+  console.log("THIS IS THE NEW RECURRING TASK: ", newRecurringTask);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
+  // HANDLE FUNCTIONS
   function handleOnChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -35,8 +50,6 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     formData.recurringTasks.splice(index, 1, e.target.value);
     setFormData({ ...formData, recurringTasks: formData.recurringTasks });
   }
-
-  const storedToken = localStorage.getItem("authToken");
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -62,8 +75,20 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
         console.error(errorMessage, err)
     })
 
-    setDeletedMembers([])
+    setDeletedMembersArray([])
     setIsEditing(false);
+  }
+
+  function handleReset() {
+    console.log(
+        "SET FORM DATA -->",
+        formData,
+        "USER GROUP INFO -->",
+        userGroupInfo
+      );
+      setFormData(userGroupInfoCopy);
+      setDeletedMembersArray([]);
+      setIsEditing(false);
   }
 
   function handleDeleteMember(index) {
@@ -72,7 +97,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     const deletedMember = formData.members.splice(index, 1);
     // console.log("THIS IS deletedMember: ", deletedMember[0]);
     // The splice() method returns an array with one object
-    setDeletedMembers([...deletedMembers, deletedMember[0]]);
+    setDeletedMembersArray([...deletedMembersArray, deletedMember[0]]);
   }
 
   function handleDeleteRecurringTask(index) {
@@ -81,13 +106,13 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     const deletedRecurringTask = formData.recurringTasks.splice(index, 1);
     // console.log("THIS IS deletedRecurringTask: ", deletedRecurringTask[0]);
     // The splice() method returns an array with one object
-    setDeletedRecurringTasks([
-      ...deletedRecurringTasks,
+    setDeletedRecurringTasksArray([
+      ...deletedRecurringTasksArray,
       deletedRecurringTask[0],
     ]);
   }
 
-  function addNewTask() {
+  function handleAddNewTask() {
     setFormData({
       ...formData,
       recurringTasks: [...formData.recurringTasks, newRecurringTask],
@@ -97,12 +122,12 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onReset={handleReset}>
         <h3 className="section__title">My Ship</h3>
         <label htmlFor="name"></label>
         <input
           type="text"
-          name="name"
+          id="name"
           onChange={handleOnChange}
           value={formData.name}
         />
@@ -112,8 +137,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
           <ul className="section__list">
             {formData.members.length > 0 ? (
               formData.members.map((member, index) => {
-                return (
-                  <>
+                return (                 
                     <li key={member._id} className="list-item">
                       <div className="list-item__container">
                         <div className="list-item__user-image">
@@ -129,7 +153,6 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
                         X
                       </button>
                     </li>
-                  </>
                 );
               })
             ) : (
@@ -153,7 +176,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
                       className="list-item__name"
                       type="text"
                       autoFocus
-                      name="recurringTasks"
+                      id="recurringTasks"
                       onChange={(e) => handleOnChangeForTasks(e, index)}
                       value={task}
                     ></input>
@@ -171,41 +194,21 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
               <p>No recurring tasks in this group</p>
             )}
           </ul>
-        </section>
         <label htmlFor="recurringTasks"></label>
         <input
           type="text"
-          name="recurringTasks"
+          id="recurringTasks"
           onChange={(e) => setNewRecurringTask(e.target.value)}
           value={newRecurringTask}
         />
-        <button
-          type="button"
-          className="form__button"
-          onClick={() => addNewTask()}
-        >
-          Add New Recurring Task
-        </button>
-        <button
-          type="button"
-          className="form__button--cancel"
-          onClick={() => {
-            console.log(
-              "SET FORM DATA -->",
-              formData,
-              "USER GROUP INFO -->",
-              userGroupInfo
-            );
-            setFormData(userGroupInfoCopy);
-            setDeletedMembers([]);
-            setIsEditing(false);
-          }}
-        >
-          Cancel changes
-        </button>
-        <button className="form__button" type="submit">
-          Update Group
-        </button>
+        <Button onClick={() => handleAddNewTask()} content="Add New Recurring Task"/>
+        </section>
+
+        <div>
+        <Button type="reset" className="Button--cancel" content="Cancel Changes"/>
+        <Button type="submit" className="Button--submit" content="Update Group"/>
+        </div>
+
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
         {successMessage && <p className="success">✅ {successMessage}</p>}
       </form>

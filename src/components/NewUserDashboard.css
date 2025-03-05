@@ -22,7 +22,10 @@
     }
 
     .NewUserDashboard__parrot {
-        font-size: 5rem;
+        position: relative;
+        top: 11px;
+        max-width: 200px;
+        font-size: 1rem;
         align-self: flex-end;
     }
 }
@@ -50,6 +53,7 @@
 
         .NewUserDashboard__parrot {
             font-size: 10rem;
+            top: 4px;
         }
     }
 }

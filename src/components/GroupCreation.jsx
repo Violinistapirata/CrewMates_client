@@ -1,10 +1,9 @@
 import "./GroupCreation.css";
 import { useState, useContext } from "react";
 
-import Button from "./Button.jsx"
+import Button from "./Button.jsx";
 import { AuthContext } from "../context/auth.context.jsx";
 const API_URL = import.meta.env.VITE_API_URL;
-
 
 function GroupCreation() {
   const { userInfo, setUserInfo } = useContext(AuthContext);
@@ -19,11 +18,15 @@ function GroupCreation() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${storedToken}`,
-      },
+        Authorization: `Bearer ${storedToken}`},
+        body: JSON.stringify({
+          firstMemberId: userInfo._id,
+          firstMemberName: userInfo.name,
+        }),
     })
       .then((response) => {
         if (response.status === 200) {
+          setErrorMessage(null);
           return response.json();
         }
         if (response.status === 500) {
@@ -51,7 +54,7 @@ function GroupCreation() {
         that you give them.
       </p>
       {!requestIsSent ? (
-        <Button onClick={createGroup}>Create group</Button>
+        <Button type="submit" onClick={createGroup} content={"Create a group"}/>
       ) : (
         <Button disabled>Create group</Button>
       )}
