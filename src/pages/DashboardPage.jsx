@@ -114,7 +114,7 @@ function DashboardPage() {
             </p>
             <Button
               type="submit"
-              onClick={createWeek(
+              onClick={() => createWeek(
                 userInfo.group,
                 setTasks,
                 setErrorMessage,
