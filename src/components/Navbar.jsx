@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import SettingsTab from "./SettingsTab";
 import homeIcon from "../assets/home-icon.png";
 import loginIcon from "../assets/login-icon.png";
-import logoutIcon from "../assets/logout-icon.png";
+import logoutIcon from "../assets/logout-icon2.png";
 import dashboardIcon from "../assets/dashboard-icon.png";
 
 function Navbar() {
