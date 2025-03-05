@@ -30,6 +30,7 @@
     .active {
         color: var(--almost-white);
         text-decoration: underline;
+        text-decoration-style: wavy;
         font-weight: bold;
     }
 }
