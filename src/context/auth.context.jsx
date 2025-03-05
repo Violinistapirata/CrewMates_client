@@ -19,18 +19,31 @@ function AuthProviderWrapper(props) {
     //If the token exists in the localStorage we send a request to the API
     if (storedToken) {
       let responseStatus;
-
+      // This fetch is to verify the token and get the token payload (the user info)
       fetch(`${API_URL}/auth/verify`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${storedToken}`,
-        },
+        }
       })
         .then((response) => {
           responseStatus = response.status;
           return response.json()
         })
-        .then((data) => {
+        // This fetch is to get the user info from the database to get the users group if it has been created
+        .then((data) => fetch(`/users/${data._id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          }
+        }))
+        .then((response) => {
+          responseStatus = response.status;
+          return response.json()
+        })
+        .then(user =>
+          // data es user. contiene un id
+          // return 
           //Handling the response from the API
           if (responseStatus === 200){
             setIsLoggedIn(true);
@@ -38,7 +51,14 @@ function AuthProviderWrapper(props) {
             setUserInfo(data);
             setIsLoading(false);
           }
-        })
+        )
+        /*
+        .then(response el usuario incluyendo el group){
+        // cont user = {_id: respose.id, groupId: response.groupID}
+        // si la response ya incluye el objeto que queremos la ponemos directamente en setUserInfo
+        // setUserInfo())
+        }
+        */
         .catch((error) => {
           //Handling the error
           console.error("Error:", error);
