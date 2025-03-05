@@ -1,7 +1,7 @@
 // --------------- IMPORTS ---------------
 
 // STYLES
-import "./updateGroupForm.css";
+import "./UpdateGroupForm.css";
 
 // HOOKS
 import { useState } from "react";
