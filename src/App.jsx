@@ -20,10 +20,10 @@ function App() {
       <main>
       <div className="main-container">
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/about-us" element={<AboutUsPage />} />
+          <Route exact path="/sign-up" element={<SignUpPage />} />
+          <Route exact path="/dashboard" element={<DashboardPage />} />
           <Route
             path="/settings/users/:userId"
             element={<UserSettingsPage />}
