@@ -1,5 +1,7 @@
 //CSS
 import "./GroupMembers.css";
+import "../pages/GroupSettingsPage.css";
+import "./UpdateGroupForm.css";
 
 //React
 import { useEffect, useState } from "react";
@@ -39,17 +41,32 @@ function GroupMembers({ groupId, setFilter }) {
             className="GroupMembers-icon" 
             onClick={()=>setFilter({label: "the whole crew", id: "all"})}
         >Crew</div>
-        {members.map((member) => {
+
+            <ul className="section__list section__list--row">
+              {members.length > 0 ? (
+                members.map((member) => {
+                  return <li key={member._id} className="list-item ">
+                  <div className="list-item__container list-item__container--column">
+                        <div className="list-item__user-image">
+                          {member.name[0]}
+                        </div>
+                        <p className="list-item__name">{member.name}</p>
+                      </div>
+                  </li>;
+                })
+              ) : (
+                <p>No members in this group</p>
+              )}
+            </ul>
+{/*         {members.map((member) => {
           return (
-            <>
               <li key={member._id}>
                 <div onClick={() => setFilter({label: member.name, id: member._id})}>
                   {member.name.slice(0, 3).toUpperCase()}
                 </div>
               </li>
-            </>
           );
-        })}
+        })} */}
       </>
     )
   );

@@ -82,7 +82,7 @@ function DashboardPage() {
 
   return (
     <>
-      {!isLoggedIn && <NotLoggedIn />}
+ {/*      {!isLoggedIn && <NotLoggedIn />} */}
       {isLoading && <Loading />}
       {isLoggedIn && !isLoading && !group && (
         <NewUserDashboard/>
@@ -109,12 +109,11 @@ function DashboardPage() {
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <p>
-            {" "}
-            Your group has no template to generate your tasks for the week.{" "}
+            Your group has no template to generate your tasks for the week.
             <br />
-            Go to your{" "}
+            Go to your
             <Link to={`/settings/groups/${group}`}>Group Settings</Link> to add
-            tasks.{" "}
+            tasks.
           </p>
         </div>
       )}
