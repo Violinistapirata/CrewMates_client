@@ -27,7 +27,7 @@ function DashboardPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
-  const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
+  const [hasRecurringTasks, setHasRecurringTasks] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [filter, setFilter] = useState({
     label: "the whole crew",
@@ -72,7 +72,7 @@ function DashboardPage() {
                 setHasRecurringTasks(weekStatus.hasRecurringTasks);
                 //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
                 setTasks(weekStatus.tasks);
-                console.log("data", weekStatus.tasks);
+                console.log("weekStatus", weekStatus);
             });
           }).then(() => {
           setIsLoading(false);
@@ -85,7 +85,7 @@ function DashboardPage() {
   return (
     <>
       {errorMessage && <p>{errorMessage}</p>}
-      {!isLoggedIn && <NotLoggedIn />}
+      {(isLoggedIn === undefined) && <NotLoggedIn />}
       {isLoading && <Loading />}
       {isLoggedIn && !isLoading && (group===undefined) && (
         <NewUserDashboard/>
@@ -100,7 +100,7 @@ function DashboardPage() {
         </div>
       )}
 
-      {isLoggedIn && !isLoading && group && !tasks && hasRecurringTasks && (
+      {isLoggedIn && !isLoading && group && (tasks===undefined) && hasRecurringTasks && (
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
@@ -108,7 +108,7 @@ function DashboardPage() {
         </div>
       )}
 
-      {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
+      {isLoggedIn && !isLoading && group && (tasks===undefined) && !hasRecurringTasks && (
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
