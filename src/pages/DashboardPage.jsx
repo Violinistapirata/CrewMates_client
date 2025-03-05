@@ -30,7 +30,7 @@ function DashboardPage() {
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(null);
   const [tasks, setTasks] = useState(null);
-  const [filter, setFilter] = useState({
+  const [assigneeFilter, setAssigneeFilter] = useState({
     label: "the whole crew",
     id: "all",
   });
@@ -94,8 +94,8 @@ function DashboardPage() {
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board</h1>
-          <GroupMembers groupId={group} setFilter={setFilter} />
-          <WeekTasks tasks={tasks} filter={filter} />
+          <GroupMembers groupId={group} setAssigneeFilter={setAssigneeFilter} />
+          <WeekTasks tasks={tasks} assigneeFilter={assigneeFilter} />
         </div>
       )}
 
