@@ -128,6 +128,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
         <input
           type="text"
           id="name"
+          name="name"
           onChange={handleOnChange}
           value={formData.name}
         />
@@ -177,6 +178,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
                       type="text"
                       autoFocus
                       id="recurringTasks"
+                      name="recurringTasks"
                       onChange={(e) => handleOnChangeForTasks(e, index)}
                       value={task}
                     ></input>
@@ -194,10 +196,11 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
               <p>No recurring tasks in this group</p>
             )}
           </ul>
-        <label htmlFor="recurringTasks"></label>
+        <label htmlFor="newRecurringTask"></label>
         <input
           type="text"
-          id="recurringTasks"
+          id="newRecurringTask"
+          name="newRecurringTask"
           onChange={(e) => setNewRecurringTask(e.target.value)}
           value={newRecurringTask}
         />

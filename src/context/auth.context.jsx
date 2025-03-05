@@ -33,7 +33,7 @@ function AuthProviderWrapper(props) {
         // This fetch is to get the user info from the database to get the users group if it has been created
         .then((firstFetchData) => {
           console.log("firstFetchData line 34", firstFetchData);
-          console.log("!firstFetchData.group", !firstFetchData.group);
+          console.log("firstFetchData.group", firstFetchData.group);
           
             if (!firstFetchData.group){
               fetch(`${API_URL}/api/users/${firstFetchData._id}`, {
@@ -51,8 +51,13 @@ function AuthProviderWrapper(props) {
           console.log(user);
           setUserInfo(user);
           setIsLoading(false);
+          return
               })
             }
+          setIsLoggedIn(true);
+          console.log("firstFetchData", firstFetchData);
+          setUserInfo(firstFetchData);
+          setIsLoading(false);
         })
         .catch((error) => {
           console.log(error);
