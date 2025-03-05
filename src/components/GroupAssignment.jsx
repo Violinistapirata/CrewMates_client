@@ -56,6 +56,7 @@ function GroupAssignment() {
         <div className="GroupAssignment_form-input-and-button">
           <input
             type="text"
+            id="group-code"
             name="group-code"
             onChange={handleOnChange}
             value={groupCode}
