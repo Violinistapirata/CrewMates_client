@@ -86,7 +86,7 @@ function DashboardPage() {
   return (
     <>
       {errorMessage && <p>{errorMessage}</p>}
-      {isLoggedIn === undefined && <NotLoggedIn />}
+      {isLoggedIn === false && <NotLoggedIn />} {/* TODO? Change to undefined */}
       {isLoading && <Loading />}
       {isLoggedIn && !isLoading && group === undefined && <NewUserDashboard />}
       {/*The initial value (null), once it's undefined it means we know that the user has no group*/}
