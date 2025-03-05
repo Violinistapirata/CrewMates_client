@@ -66,6 +66,7 @@ if(formData.password !== formData.confirmPassword) {
         <label htmlFor="name">User Name</label>
         <input
           type="text"
+          id="name"
           name="name"
           onChange={handleOnChange}
           value={formData.name}
@@ -74,6 +75,7 @@ if(formData.password !== formData.confirmPassword) {
         <label htmlFor="email">Email</label>
         <input
           type="email"
+          id="email"
           name="email"
           onChange={handleOnChange}
           value={formData.email}
@@ -82,6 +84,7 @@ if(formData.password !== formData.confirmPassword) {
         <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           name="password"
           onChange={handleOnChange}
           value={formData.password}
@@ -90,6 +93,7 @@ if(formData.password !== formData.confirmPassword) {
         <label htmlFor="confirmPassword">Confirm password</label>
         <input
           type="password"
+          id="confirmPassword"
           name="confirmPassword"
           onChange={handleOnChange}
           value= {formData.confirmPassword}
