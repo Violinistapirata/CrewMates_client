@@ -57,6 +57,7 @@ function LoginForm() {
         <label htmlFor="email">Email</label>
         <input
           type="email"
+          id="email"
           name="email"
           onChange={handleOnChange}
           value={formData.email}
@@ -65,6 +66,7 @@ function LoginForm() {
         <label htmlFor="password">Password</label>
         <input
           type="password"
+          id="password"
           name="password"
           onChange={handleOnChange}
           value={formData.password}
