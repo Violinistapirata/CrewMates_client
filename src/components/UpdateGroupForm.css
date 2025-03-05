@@ -12,6 +12,12 @@
     gap: 1em;
 }
 
+.list-item__container--column {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+}
+
 .list-item__user-image {
     padding: .3em .5em;
     background-color: var(--primary-color);
@@ -24,4 +30,13 @@
     height: min-content;
     padding: .2em .3em;
     border-radius: 20px;
+}
+
+.section__list{
+    list-style: none;
+}
+
+.section__list--row{
+    display: flex;
+    justify-content: space-around;
 }

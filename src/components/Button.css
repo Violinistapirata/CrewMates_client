@@ -10,3 +10,11 @@
     margin-bottom: 1rem;
     min-width: 10rem
 }
+
+.Button--submit{
+    background-color: rgb(53, 205, 66);
+}
+
+.Button--cancel{
+    background-color: rgb(235, 50, 50);
+}

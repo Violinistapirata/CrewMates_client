@@ -69,7 +69,7 @@ function LoginForm() {
           onChange={handleOnChange}
           value={formData.password}
         />
-        <Button>Log in</Button>
+        <Button type="submit" content="Log in"/>
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>
     </>
