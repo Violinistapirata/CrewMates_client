@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,6 +25,7 @@ function DashboardPage() {
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
@@ -101,7 +103,7 @@ function DashboardPage() {
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <button>Create new week</button>
-        </div>
+        </>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
