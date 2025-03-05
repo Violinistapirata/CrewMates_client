@@ -9,6 +9,11 @@
     background-color: var(--almost-white);
 }
 
+h1.DashboardPage__title{
+    font-size: 3rem;
+    margin: 2rem 0 ;
+}
+
 .section__title {
 
 margin-bottom: .5em;
@@ -24,6 +29,12 @@ margin-bottom: .5em;
 
 }
 
-.DashboardPage-no-tasks{
+h2.DashboardPage-no-tasks{
     margin-top: 3rem;
+}
+
+p.DashboardPage-no-tasks{
+    margin: 1rem 0;
+    font-size: 1.25rem;
+    max-width: 65ch;
 }
