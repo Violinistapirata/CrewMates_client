@@ -16,7 +16,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <ul className="navbar__links">
-        <li>
+        <li className= "nav-item">
           <NavLink
             to="/"
             activeClassName="active"
@@ -26,20 +26,20 @@ function Navbar() {
             }}
           >
             <img src={homeIcon} alt="Home" className="nav-icon" />
-            Home
+            <span className="nav-text">Start Session</span>
           </NavLink>
         </li>
         {
           !isLoggedIn ? (
-            <li>
+            <li className= "nav-item">
               <NavLink to="/sign-up" activeClassName="active">
                 <img src={loginIcon} alt="Start Session" className="nav-icon" />
-                Start Session
+                <span className="nav-text">Start Session</span>
               </NavLink>
             </li>
           ) : (
             <>
-              <li>
+              <li className= "nav-item">
                 <NavLink
                   to="/dashboard"
                   activeClassName="active"
@@ -53,10 +53,10 @@ function Navbar() {
                     alt="Dashboard"
                     className="nav-icon"
                   />
-                  Dashboard
+                  <span className="nav-text">Dashboard</span>
                 </NavLink>
               </li>
-              <li>
+              <li className= "nav-item">
                 <NavLink
                   to="/sign-up"
                   activeClassName="active"
@@ -67,7 +67,7 @@ function Navbar() {
                   }}
                 >
                   <img src={logoutIcon} alt="Log Out" className="nav-icon" />
-                  Log Out
+                  <span className="nav-text">Logout</span>
                 </NavLink>
               </li>
                 <SettingsTab 
