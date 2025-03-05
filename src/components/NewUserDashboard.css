@@ -53,6 +53,7 @@
 
         .NewUserDashboard__parrot {
             font-size: 10rem;
+            top: 4px;
         }
     }
 }
