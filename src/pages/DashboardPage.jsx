@@ -7,6 +7,7 @@ import NotLoggedIn from "../components/NotLoggedIn.jsx"
 import NewUserDashboard from '../components/NewUserDashboard.jsx';
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
+import Button from "../components/Button.jsx";
 
 //React
 import { useState, useContext, useEffect } from "react";
@@ -15,6 +16,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,8 +26,9 @@ function DashboardPage() {
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
-  const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
+  const [hasRecurringTasks, setHasRecurringTasks] = useState(null);
   const [tasks, setTasks] = useState(null);
   const [filter, setFilter] = useState({
     label: "the whole crew",
@@ -70,7 +73,7 @@ function DashboardPage() {
                 setHasRecurringTasks(weekStatus.hasRecurringTasks);
                 //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
                 setTasks(weekStatus.tasks);
-                console.log("data", weekStatus.tasks);
+                console.log("weekStatus", weekStatus);
             });
           }).then(() => {
           setIsLoading(false);
@@ -82,11 +85,11 @@ function DashboardPage() {
 
   return (
     <>
- {/*      {!isLoggedIn && <NotLoggedIn />} */}
+      {errorMessage && <p>{errorMessage}</p>}
+      {isLoggedIn === false && <NotLoggedIn />} {/* TODO? Change to undefined */}
       {isLoading && <Loading />}
-      {isLoggedIn && !isLoading && !group && (
-        <NewUserDashboard/>
-      )}
+      {isLoggedIn && !isLoading && group === undefined && <NewUserDashboard />}
+      {/*The initial value (null), once it's undefined it means we know that the user has no group*/}
 
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
@@ -96,27 +99,51 @@ function DashboardPage() {
         </div>
       )}
 
-      {isLoggedIn && !isLoading && group && !tasks && hasRecurringTasks && (
-        <div className="DashboardPage__section">
-          <h1 className="DashboardPage__title">Welcome on board!</h1>
-          <GroupMembers groupId={group} />
-          <button>Create new week</button>
-        </div>
-      )}
+      {isLoggedIn &&
+        !isLoading &&
+        group &&
+        tasks === undefined &&
+        hasRecurringTasks && (
+          <div className="DashboardPage__section">
+            <h1 className="DashboardPage__title">Welcome on board!</h1>
+            <GroupMembers groupId={group} />
+            <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
+            <p className="DashboardPage-no-tasks">
+              Tasks for the week will be created based on the recurring tasks that you have set up on your{" "}
+              <Link to={`/settings/groups/${group}`}>Group Settings</Link> page.{" "}
+            </p>
+            <Button
+              type="submit"
+              onClick={() => createWeek(
+                userInfo.group,
+                setTasks,
+                setErrorMessage,
+                API_URL
+              )}
+              content={"Create new week"}
+            />
+          </div>
+        )}
 
-      {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
-        <div className="DashboardPage__section">
-          <h1 className="DashboardPage__title">Welcome on board!</h1>
-          <GroupMembers groupId={group} />
-          <p>
-            Your group has no template to generate your tasks for the week.
-            <br />
-            Go to your
-            <Link to={`/settings/groups/${group}`}>Group Settings</Link> to add
-            tasks.
-          </p>
-        </div>
-      )}
+      {isLoggedIn &&
+        !isLoading &&
+        group &&
+        tasks === undefined &&
+        !hasRecurringTasks && (
+          <div className="DashboardPage__section">
+            <h1 className="DashboardPage__title">Welcome on board!</h1>
+            <GroupMembers groupId={group} />
+            <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
+            <p className="DashboardPage-no-recurring-tasks">
+              {" "}
+              Your group has no template to generate your tasks for the week.{" "}
+              <br />
+              Go to your{" "}
+              <Link to={`/settings/groups/${group}`}>Group Settings</Link> to
+              add recurring tasks.{" "}
+            </p>
+          </div>
+        )}
     </>
   );
 }

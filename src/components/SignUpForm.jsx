@@ -96,7 +96,7 @@ if(formData.password !== formData.confirmPassword) {
         />
        
 
-        <Button>Create new user</Button>
+        <Button type={"submit"} content={"Sign up"}/>
         {successMessage && ( <p className="success">✅ Your signup was successful.<br />You can now log in. </p> )}
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
       </form>

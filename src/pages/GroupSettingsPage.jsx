@@ -4,6 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import UpdateGroupForm from "../components/UpdateGroupForm";
 import NotLoggedIn from "../components/NotLoggedIn"
 import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,7 +46,7 @@ function GroupSettingsPage() {
   }
 
   useEffect(() => {
-    userInfo && getUserGroupInfo();
+    userInfo && userInfo.group && getUserGroupInfo();
   }, [userInfo]);
 
   userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
@@ -57,7 +58,7 @@ function GroupSettingsPage() {
   return (
     <>
 
-    {isLoggedIn && (
+    {isLoggedIn && userGroupInfo.members.length > 0 ? (
     <div className="flex-container">
       <h2 className="title"> Group settings</h2>
       {isEditing ? (
@@ -112,6 +113,13 @@ function GroupSettingsPage() {
         </>
       )}
     </div>
+    ) : (
+      <section className="section">
+            <h3 className="section__title">{"You don't have a group!"}</h3>
+            <p className="section__text">
+            Please, go to {<Link to="/dashboard">Dashboard</Link>} to join a group or create one.
+            </p>
+          </section>
     )}  
     {!isLoggedIn && <NotLoggedIn/>} 
     </>
