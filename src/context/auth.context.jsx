@@ -11,7 +11,7 @@ function AuthProviderWrapper(props) {
   const [userInfo, setUserInfo] = useState(null);
 
 
-
+    
   //Get the stored token from the local storage and send a request to the API
   function authenticateUser () {
     const storedToken = localStorage.getItem("authToken");
