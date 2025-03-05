@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
-//import { createWeek } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
