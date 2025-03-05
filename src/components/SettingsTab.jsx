@@ -40,7 +40,7 @@ function SettingsTab({chosenSettingsPage, setChosenSettingsPage, showSettingsDro
                 </NavLink>
 
         }
-                {showSettingsDropDown && (
+                {showSettingsDropDown && userInfo.group && (
                   <div className="drop-down">
                     <NavLink to={`/settings/users/${userInfo._id}`} activeClassName="active">
                       <button
@@ -64,6 +64,7 @@ function SettingsTab({chosenSettingsPage, setChosenSettingsPage, showSettingsDro
                         Group Settings
                       </button>
                     </NavLink>
+                    
                   </div>
                 )}
         </li>
