@@ -13,3 +13,17 @@
 
 margin-bottom: .5em;
 }
+
+.DashboardPage-no-recurring-tasks{
+    padding: 1.5rem;
+    background-color:var(--warning-dull);
+    border-radius: 15px;
+    font-size: 1.25rem;
+    border: 1px solid var(--warning-bright);
+    margin-top: 1rem;
+
+}
+
+.DashboardPage-no-tasks{
+    margin-top: 3rem;
+}
