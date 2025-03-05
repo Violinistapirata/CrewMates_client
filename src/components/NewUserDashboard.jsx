@@ -7,7 +7,7 @@ function NewUserDashboard() {
     <div className="NewUserDashboard">
       <div className="NewUserDashboard__title-with-parrot">
         <h1 className="NewUserDashboard__title">Welcome to crewmates!</h1>
-        <img src="src/assets/parrot-standing.png" alt="parrot-standing" className="NewUserDashboard__parrot"/>
+        <img src="../src/assets/parrot-standing.png" alt="parrot-standing" className="NewUserDashboard__parrot"/>
       </div>
       <div className="NewUserDashboard__create-or-join">
         <GroupAssignment />
