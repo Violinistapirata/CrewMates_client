@@ -54,7 +54,7 @@ function GroupCreation() {
         that you give them.
       </p>
       {!requestIsSent ? (
-        <Button onClick={createGroup}>Create group</Button>
+        <Button type="submit" onClick={createGroup} content={"Create a group"}/>
       ) : (
         <Button disabled>Create group</Button>
       )}

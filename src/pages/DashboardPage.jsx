@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,6 +25,7 @@ function DashboardPage() {
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
@@ -82,11 +84,13 @@ function DashboardPage() {
 
   return (
     <>
+      {errorMessage && <p>{errorMessage}</p>}
       {!isLoggedIn && <NotLoggedIn />}
       {isLoading && <Loading />}
-      {isLoggedIn && !isLoading && !group && (
+      {isLoggedIn && !isLoading && (group===undefined) && (
         <NewUserDashboard/>
-      )}
+      )}{/*The initial value (null), once it's undefined it means we know that the user has no group*/}
+      
 
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
@@ -100,7 +104,7 @@ function DashboardPage() {
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
-          <button>Create new week</button>
+          <button onClick={()=>{createWeek(userInfo.group, setTasks, setErrorMessage, API_URL) }}>Create new week</button>
         </div>
       )}
 
