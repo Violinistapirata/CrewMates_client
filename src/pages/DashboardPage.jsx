@@ -2,11 +2,11 @@
 import "./DashboardPage.css";
 
 //Components
-import GroupAssignment from "../components/GroupAssignment.jsx";
-import GroupCreation from "../components/GroupCreation.jsx";
+import Loading from "../components/Loading.jsx"
+import NotLoggedIn from "../components/NotLoggedIn.jsx"
+import NewUserDashboard from '../components/NewUserDashboard.jsx';
 import GroupMembers from "../components/GroupMembers.jsx";
 import WeekTasks from "../components/WeekTasks.jsx";
-import NotLoggedIn from "../components/NotLoggedIn.jsx"
 
 //React
 import { useState, useContext, useEffect } from "react";
@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 //Functions
 import { getCurrentDate } from "../utils/helperFunctions.js";
+import { createWeek } from "../utils/helperFunctions.js";
 
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,6 +25,7 @@ function DashboardPage() {
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [group, setGroup] = useState(null);
   const [hasRecurringTasks, setHasRecurringTasks] = useState(false);
   const [tasks, setTasks] = useState(null);
@@ -83,46 +85,30 @@ function DashboardPage() {
   return (
     <>
       {!isLoggedIn && <NotLoggedIn />}
-      {isLoading && (
-        <>
-          <p>
-            🦜🦜🦜
-            <br />
-            LOADING....
-            <br />
-            🦜🦜🦜
-          </p>
-        </>
-      )}
-
+      {isLoading && <Loading />}
       {isLoggedIn && !isLoading && !group && (
-        <>
-          <h1>Welcome to crewmates!</h1>
-          <p>Let&apos;s get started</p>
-          <GroupAssignment />
-          <GroupCreation />
-        </>
+        <NewUserDashboard/>
       )}
 
       {isLoggedIn && !isLoading && group && tasks && (
-        <>
-          <h1>Welcome on board</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board</h1>
           <GroupMembers groupId={group} setFilter={setFilter} />
           <WeekTasks tasks={tasks} filter={filter} />
-        </>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && hasRecurringTasks && (
-        <>
-          <h1>Welcome on board!</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
-          <button>Create new week</button>
-        </>
+          <button onClick={()=>{createWeek(userInfo.group, setTasks, setErrorMessage, API_URL) }}>Create new week</button>
+        </div>
       )}
 
       {isLoggedIn && !isLoading && group && !tasks && !hasRecurringTasks && (
-        <>
-          <h1>Welcome on board!</h1>
+        <div className="DashboardPage__section">
+          <h1 className="DashboardPage__title">Welcome on board!</h1>
           <GroupMembers groupId={group} />
           <p>
             {" "}
@@ -132,7 +118,7 @@ function DashboardPage() {
             <Link to={`/settings/groups/${group}`}>Group Settings</Link> to add
             tasks.{" "}
           </p>
-        </>
+        </div>
       )}
     </>
   );
