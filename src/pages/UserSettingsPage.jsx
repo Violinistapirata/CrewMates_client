@@ -43,7 +43,7 @@ function UserSettingsPage() {
 
   //useEffect to get the group name
   useEffect(() => {
-    userInfo && getUserGroupName();
+    userInfo && userInfo.group && getUserGroupName();
   }, [userInfo]);
 
   return (
