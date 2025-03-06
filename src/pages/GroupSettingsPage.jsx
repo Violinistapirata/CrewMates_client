@@ -146,7 +146,7 @@ function GroupSettingsPage() {
             </>
           )}
         </div>
-      ) : (
+      ) : isLoggedIn && !userGroupInfo.members.length && (
         <section className="section">
           <h3 className="section__title">{"You don't have a group!"}</h3>
           <p className="section__text">

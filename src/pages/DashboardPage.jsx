@@ -21,7 +21,7 @@ import { createWeek } from "../utils/helperFunctions.js";
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
 
-function DashboardPage() { 
+function DashboardPage({setChosenSettingsPage}) { 
   const storedToken = localStorage.getItem("authToken");
   const { userInfo } = useContext(AuthContext);
   const { isLoggedIn } = useContext(AuthContext);
@@ -139,7 +139,7 @@ function DashboardPage() {
               Your group has no template to generate your tasks for the week.{" "}
               <br />
               Go to your{" "}
-              <Link to={`/settings/groups/${group}`}>Group Settings</Link> to
+              <Link to={`/settings/groups/${group}`} onClick={() => setChosenSettingsPage("groups")}>Group Settings</Link> to
               add recurring tasks.{" "}
             </p>
           </div>
