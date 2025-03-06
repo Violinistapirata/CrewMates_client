@@ -77,6 +77,24 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
         console.error(errorMessage, err)
     })
 
+    deletedMembersArray.forEach((member) => {
+      fetch(`${API_URL}/api/users/${member._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
+        },
+        body: JSON.stringify({ group: undefined, removedFromGroup: true }),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          console.log("Group ID removed from user -->", member._id);
+        })
+        .catch((err) => {
+          console.error(errorMessage, err);
+        });
+    });
+
     setDeletedMembersArray([])
     setIsEditing(false);
   }
