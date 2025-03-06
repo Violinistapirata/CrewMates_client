@@ -54,6 +54,25 @@ main {
 
 @media screen and (max-width: 600px) {
   main {
-    padding: 3rem 1rem 0;
+    padding: 3rem 1.5rem 0;
   }
+}
+
+p,
+a,
+label,
+li,
+input {
+  font-size: 1.25rem;
+}
+
+.joint-button-input {
+  border: 1px solid var(--dark-grey);
+  border-radius: 10px 0px 0px 10px;
+  height: 2.1rem;
+  max-width: 25rem;
+  color: var(--almost-black);
+  font-size: 1rem;
+  padding-left: 0.25rem;
+  background-color: white;
 }
