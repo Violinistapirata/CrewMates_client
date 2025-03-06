@@ -16,7 +16,7 @@ function AuthProviderWrapper(props) {
 
     //If the token exists in the localStorage we send a request to the API
     if (storedToken) {
-      // let responseStatus;
+      let responseStatus;
       // This fetch is to verify the token and get the token payload (the user info)
       fetch(`${API_URL}/auth/verify`, {
         method: "GET",
@@ -25,7 +25,7 @@ function AuthProviderWrapper(props) {
         },
       })
         .then((response) => {
-          // responseStatus = response.status;
+          responseStatus = response.status;
           return response.json();
         })
         // This fetch is to get the user info from the database to get the users group if it has been created
@@ -33,7 +33,7 @@ function AuthProviderWrapper(props) {
           console.log("firstFetchData line 34", firstFetchData);
           console.log("firstFetchData.group", firstFetchData.group);
 
-          if (!firstFetchData.group) {
+          if (responseStatus === 200 && !firstFetchData.group) {
             fetch(`${API_URL}/api/users/${firstFetchData._id}`, {
               method: "GET",
               headers: {
@@ -52,10 +52,12 @@ function AuthProviderWrapper(props) {
                 return;
               });
           }
-          setIsLoggedIn(true);
-          console.log("firstFetchData", firstFetchData);
-          setUserInfo(firstFetchData);
-          setIsLoading(false);
+          if (responseStatus === 200){
+            setIsLoggedIn(true);
+            console.log("firstFetchData", firstFetchData);
+            setUserInfo(firstFetchData);
+            setIsLoading(false);
+          }
         })
         .catch((error) => {
           console.log(error);
