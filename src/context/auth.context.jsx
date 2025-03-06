@@ -28,12 +28,12 @@ function AuthProviderWrapper(props) {
           responseStatus = response.status;
           return response.json();
         })
-        // This fetch is to get the user info from the database to get the users group if it has been created
         .then((firstFetchData) => {
           console.log("firstFetchData line 34", firstFetchData);
           console.log("firstFetchData.group", firstFetchData.group);
-
+          
           if (responseStatus === 200 && !firstFetchData.group) {
+            // This fetch is to get the user info from the database to get the user's group if it has one in the database but not in the token (the user has just joined a group or created one)
             fetch(`${API_URL}/api/users/${firstFetchData._id}`, {
               method: "GET",
               headers: {
@@ -50,9 +50,18 @@ function AuthProviderWrapper(props) {
                 setUserInfo(user);
                 setIsLoading(false);
                 return;
+              })
+              .catch((error) => {
+                console.log(error);
+                //Handling the error
+                console.error("Error:", error);
+                setIsLoggedIn(false);
+                setUserInfo(null);
+                setIsLoading(false);
               });
           }
-          if (responseStatus === 200){
+          
+          if (responseStatus === 200 && firstFetchData.group){
             setIsLoggedIn(true);
             console.log("firstFetchData", firstFetchData);
             setUserInfo(firstFetchData);
