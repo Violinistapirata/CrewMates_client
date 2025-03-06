@@ -11,11 +11,13 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import AboutUsPage from "./pages/AboutUsPage";
+import { useState } from "react";
 
 function App() {
+  const [chosenSettingsPage, setChosenSettingsPage] = useState(null);
   return (
     <>
-      <Navbar />
+      <Navbar chosenSettingsPage={chosenSettingsPage} setChosenSettingsPage={setChosenSettingsPage} />
 
       <main>
       <div className="main-container">
@@ -23,7 +25,7 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/about-us" element={<AboutUsPage />} />
           <Route exact path="/sign-up" element={<SignUpPage />} />
-          <Route exact path="/dashboard" element={<DashboardPage />} />
+          <Route exact path="/dashboard" element={<DashboardPage setChosenSettingsPage={setChosenSettingsPage}/>} />
           <Route
             path="/settings/users/:userId"
             element={<UserSettingsPage />}

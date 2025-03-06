@@ -8,10 +8,9 @@ import loginIcon from "../assets/login-icon.png";
 import logoutIcon from "../assets/logout-icon2.png";
 import dashboardIcon from "../assets/dashboard-icon.png";
 
-function Navbar() {
+function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
   const { isLoggedIn, logOutUser, userInfo } = useContext(AuthContext);
   const [showSettingsDropDown, setShowSettingsDropDown] = useState(false);
-  const [chosenSettingsPage, setChosenSettingsPage] = useState(null);
 
   return (
     <nav className="navbar">
