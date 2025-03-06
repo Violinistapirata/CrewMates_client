@@ -2,6 +2,8 @@
 
 // STYLES
 import "./UpdateGroupForm.css";
+import binIcon from "../assets/delete.svg"
+import removeIcon from "../assets/person_remove.svg"
 
 // HOOKS
 import { useState } from "react";
@@ -122,37 +124,41 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} onReset={handleReset}>
-        <h3 className="section__title">My Ship</h3>
-        <label htmlFor="name"></label>
-        <input
-          type="text"
-          id="name"
-          onChange={handleOnChange}
-          value={formData.name}
-        />
+      <form
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+        className="GroupSettings__form"
+      >
+        <div className="GroupSettings__name">
+          <label htmlFor="name">My ship&apos;s name</label>
+          <input
+            type="text"
+            id="name"
+            onChange={handleOnChange}
+            value={formData.name}
+          />
+        </div>
 
         <section className="section">
-          <h3 className="section__title">My crewmates</h3>
-          <ul className="section__list">
+          <h2 className="section__title">My crewmates</h2>
+          <ul className="GroupSettings__members-list">
             {formData.members.length > 0 ? (
               formData.members.map((member, index) => {
-                return (                 
-                    <li key={member._id} className="list-item">
-                      <div className="list-item__container">
-                        <div className="list-item__user-image">
-                          {member.name[0]}
-                        </div>
-                        <p className="list-item__name">{member.name}</p>
-                      </div>
-                      <button
-                        className="list-item__delete-btn"
-                        type="button"
-                        onClick={() => handleDeleteMember(index)}
-                      >
-                        X
-                      </button>
-                    </li>
+                return (
+                  <li key={member._id} className="list-item">
+                    <div className="list-item__user-image">
+                      {member.name[0]}
+                    </div>
+                    <p className="list-item__name">{member.name}</p>
+
+                    <button
+                      className="icon-button"
+                      type="button"
+                      onClick={() => handleDeleteMember(index)}
+                    >
+                      <img src={removeIcon} alt="delete" />
+                    </button>
+                  </li>
                 );
               })
             ) : (
@@ -162,8 +168,8 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
         </section>
 
         <section className="section">
-          <h3 className="section__title">Recurring tasks</h3>
-          <ul className="section__list">
+          <h2 className="section__title">Recurring tasks</h2>
+          <ul className="GroupSettings__task-list">
             {formData.recurringTasks.length > 0 ? (
               formData.recurringTasks.map((task, index) => {
                 return (
@@ -171,22 +177,26 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
                     key={formData.recurringTasks[index]}
                     className="list-item"
                   >
-                    <label htmlFor="recurringTasks"></label>
-                    <input
-                      className="list-item__name"
-                      type="text"
-                      autoFocus
-                      id="recurringTasks"
-                      onChange={(e) => handleOnChangeForTasks(e, index)}
-                      value={task}
-                    ></input>
-                    <button
-                      className="list-item__delete-btn"
-                      type="button"
-                      onClick={() => handleDeleteRecurringTask(index)}
-                    >
-                      X
-                    </button>
+                    <label htmlFor="recurringTasks">{`Task ${
+                      index + 1
+                    }:`}</label>
+                    <div className="field-with-delete">
+                      <input
+                        className="list-item__name GroupSettings-input"
+                        type="text"
+                        autoFocus
+                        id="recurringTasks"
+                        onChange={(e) => handleOnChangeForTasks(e, index)}
+                        value={task}
+                      ></input>
+                      <button
+                        className="icon-button"
+                        type="button"
+                        onClick={() => handleDeleteRecurringTask(index)}
+                      >
+                        <img src={binIcon} alt="delete" />
+                      </button>
+                    </div>
                   </li>
                 );
               })
@@ -194,19 +204,30 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
               <p>No recurring tasks in this group</p>
             )}
           </ul>
-        <label htmlFor="recurringTasks"></label>
-        <input
-          type="text"
-          id="recurringTasks"
-          onChange={(e) => setNewRecurringTask(e.target.value)}
-          value={newRecurringTask}
-        />
-        <Button onClick={() => handleAddNewTask()} content="Add New Recurring Task"/>
+          <div className="list-item">
+            <label htmlFor="recurringTasks new-task">New task:</label>
+            <div className="GroupAssignment_form-input-and-button">
+              <input
+                type="text"
+                id="recurringTasks"
+                onChange={(e) => setNewRecurringTask(e.target.value)}
+                value={newRecurringTask}
+                className="joint-button-input"
+              />
+              <button
+                type="button"
+                className="joint-button"
+                onClick={() => handleAddNewTask()}
+              >
+                Add new task
+              </button>
+            </div>
+          </div>
         </section>
 
         <div>
-        <Button type="reset" className="Button--cancel" content="Cancel Changes"/>
-        <Button type="submit" className="Button--submit" content="Update Group"/>
+          <Button type="reset" className="Button--secondary" content="Cancel" />
+          <Button type="submit" className="Button--submit" content="Save" />
         </div>
 
         {errorMessage && <p className="error">❌ {errorMessage}</p>}
@@ -217,3 +238,6 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 }
 
 export default UpdateGroupForm;
+
+
+

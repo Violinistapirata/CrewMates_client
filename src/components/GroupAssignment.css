@@ -54,12 +54,14 @@
     }
 
 }
+
 .joint-button{
     background-color: var(--primary-color);
     border: none;
     color: var(--almost-white);
-    padding: 0.5rem 2.5rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 0 15px 15px 0;
     font-size: 1rem;
     /**TODO: Fix for devices below 400px**/
 }
+
