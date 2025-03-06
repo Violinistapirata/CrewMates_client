@@ -1,13 +1,4 @@
-/* Paleta de colores tomada de app.css */
-:root {
-    --primary-color: #3498db; /* Azul */
-    --secondary-color: #2ecc71; /* Verde */
-    --background-color: #ecf0f1; /* Gris claro */
-    --text-color: #2c3e50; /* Gris oscuro */
-    --error-color: #e74c3c; /* Rojo */
-    --success-color: #2ecc71; /* Verde */
-  }
-  
+
   .update-user-form {
     background-color: var(--background-color);
     padding: 20px;

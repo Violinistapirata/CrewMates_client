@@ -22,7 +22,7 @@
   --error-dull: #FCBCB0;
 
   --warning-bright: #FF8239;
-  --warning-dull: #FFD1B6;
+  --warning-dull: #f6d9c8;
 
   --success-bright: #04F167;
   --success-dull: #A8FECC;
@@ -49,11 +49,30 @@ main {
   justify-content: center;
   flex-grow: 1;
   background-color: var(--almost-white);
-  padding: 3rem 2rem 0;
+  padding: 1.5rem 1.5rem 1.5rem;
 }
 
 @media screen and (max-width: 600px) {
   main {
-    padding: 3rem 1rem 0;
+    padding: 3rem 1.5rem 0;
   }
+}
+
+p,
+a,
+label,
+li,
+input {
+  font-size: 1.25rem;
+}
+
+.joint-button-input {
+  border: 1px solid var(--dark-grey);
+  border-radius: 10px 0px 0px 10px;
+  height: 2.1rem;
+  max-width: 25rem;
+  color: var(--almost-black);
+  font-size: 1rem;
+  padding-left: 0.25rem;
+  background-color: white;
 }

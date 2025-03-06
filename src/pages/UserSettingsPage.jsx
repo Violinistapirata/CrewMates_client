@@ -49,6 +49,7 @@ function UserSettingsPage() {
   return (
     <>
       {isLoggedIn && (
+        <div className="user-settings-page-container">
         <div className="user-settings-container">
           <h2 className="user-settings-title">User Info</h2>
           {isEditing ? (
@@ -79,6 +80,7 @@ function UserSettingsPage() {
               {/* <button className="user-settings-button" onClick={() => setIsEditing(true)}>Edit User Info</button> */}
             </>
           )}
+        </div>
         </div>
       )}
       {!isLoggedIn && <NotLoggedIn />}

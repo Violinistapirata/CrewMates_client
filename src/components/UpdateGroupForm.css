@@ -1,8 +1,10 @@
 .list-item {
-    max-width: 200px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    column-gap: 0.7rem;
+    row-gap: 0.25rem;
+    padding-bottom: 0.5rem;
 }
 
 .list-item__container {
@@ -26,17 +28,44 @@
     border-radius: 20px;
 }
 
-.list-item__delete-btn {
-    height: min-content;
-    padding: .2em .3em;
-    border-radius: 20px;
+
+.icon-button {
+    all: unset;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: pointer;
 }
+
 
 .section__list{
     list-style: none;
+    padding-top: 1rem
 }
 
 .section__list--row{
     display: flex;
-    justify-content: space-around;
+}
+
+.field-with-delete {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.7rem;
+}
+
+.GroupSettings-input {
+    margin-bottom: 0.3rem;
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px;
+    height: 1.6rem;
+    width: 20rem;
+    color: var(--almost-black);
+    font-size: 1rem;
+    padding-left: 0.25rem;
+    background-color: white;
+}
+
+.GroupSettings__task-list{
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
 }
