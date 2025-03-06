@@ -1,0 +1,31 @@
+.landing-page__pirate-ship{
+    overflow: hidden;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 150%;
+    z-index: 4;
+}
+
+.landing-page__sea {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 150%;
+    z-index: 3;
+}
+
+.landing-page__ship-container{
+    max-width: 100dvw;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.landing-page__text{
+    margin: 1em;
+    z-index: 5;
+}

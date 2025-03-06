@@ -1,8 +1,0 @@
-.group-members__pirate-ship{
-    position: absolute;
-    top: -6%;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 150%;
-    z-index: 0;
-}
