@@ -43,6 +43,7 @@ function GroupMembers({ groupId, setFilter }) {
         >Crew</div>
 
             <ul className="section__list section__list--row">
+      <img className="group-members__pirate-ship" src="src/assets/pirate-ship-and-sea.png" alt="pirate-ship-on-the-sea" />
               {members.length > 0 ? (
                 members.map((member) => {
                   return <li key={member._id} className="list-item ">
