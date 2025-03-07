@@ -1,0 +1,90 @@
+.AboutUs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-image: url("../assets/wooden-panel.png");
+  width: 100vw;
+}
+
+
+.AboutUs-title {
+  text-align: center;
+  font-size: 5rem;
+  margin-bottom: 30px;
+  color: #f4f0f0;
+  margin-bottom: 50px;
+}
+
+.AboutUs-Eric,.AboutUs-Eleni,.AboutUs-Mónica {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 10px;
+  margin-right: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+
+}
+
+.AboutUs-Andrea, .AboutUs-Airam {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  margin: 10px;
+  margin-left: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  
+}
+
+
+.AboutUs-Eric img, .AboutUs-Andrea img, .AboutUs-Eleni img, .AboutUs-Airam img, .AboutUs-Mónica img{
+  width: 200px;
+  height: 200px;
+  border-radius: 200%;
+  margin-right: 30px;
+  object-fit: cover;
+  
+}
+
+
+.AboutUs-Name {
+  font-size: 1.5rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 5px 0;
+  text-align: justify;
+  font-size: 1rem;
+  color: #555;
+}
+
+.AboutUs-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .AboutUs-Eric, .AboutUs-Andrea, .AboutUs-Eleni, .AboutUs-Airam {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .AboutUs-Eric img, .AboutUs-Andrea img, .AboutUs-Eleni img, .AboutUs-Airam img, .AboutUs-Mónica img {
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+}
