@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .section {
@@ -37,7 +38,9 @@ h1.DashboardPage__title {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 0.25rem;
+    min-height: 2rem;
+    align-items: center;
+    margin-bottom: 0.3rem;
 
 }
 
@@ -69,29 +72,43 @@ p.DashboardPage-no-tasks {
 }
 
 
-.section__title{
+.section__title {
     margin-top: 2rem;
     margin-bottom: 0.75rem;
-    
+
 }
 
-.GroupSettings__members-list{
+.GroupSettings__members-list {
     list-style: none;
 }
 
-.code__title{
+.code__title {
     font-weight: bold;
 }
 
-.code__text{
+.code__text {
     font-size: 1.125rem;
     border: 1px solid var(--warning-bright);
-    background-color: var(--warning-dull);;
+    background-color: var(--warning-dull);
+    ;
     padding: 0.5rem 0.75rem;
     border-radius: 10px;
     max-width: 55ch;
+    margin-top: 0.5rem;
 }
 
 .code__copy:hover {
     cursor: pointer;
+}
+
+.clipboard-toast {
+    border: 1px solid var(--success-bright);
+    background-color: var(--success-dull);
+    padding: 0.14rem 0.5rem;
+    border-radius: 5px;
+    position: relative;
+    font-size: 1.125rem;
+    animation: fade-away 4s;
+
+
 }
