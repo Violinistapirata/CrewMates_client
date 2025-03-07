@@ -29,9 +29,6 @@ function AuthProviderWrapper(props) {
           return response.json();
         })
         .then((firstFetchData) => {
-          console.log("firstFetchData line 34", firstFetchData);
-          console.log("firstFetchData.group", firstFetchData.group);
-          
           if (responseStatus === 200 && !firstFetchData.group) {
             // This fetch is to get the user info from the database to get the user's group if it has one in the database but not in the token (the user has just joined a group or created one)
             fetch(`${API_URL}/api/users/${firstFetchData._id}`, {
@@ -41,12 +38,11 @@ function AuthProviderWrapper(props) {
               },
             })
               .then((response) => {
-                console.log("response from line 43", response);
                 return response.json();
               })
               .then((user) => {
                 setIsLoggedIn(true);
-                console.log(user);
+
                 setUserInfo(user);
                 setIsLoading(false);
                 return;
@@ -60,61 +56,22 @@ function AuthProviderWrapper(props) {
                 setIsLoading(false);
               });
           }
-          
-          if (responseStatus === 200 && firstFetchData.group){
+
+          if (responseStatus === 200 && firstFetchData.group) {
             setIsLoggedIn(true);
-            console.log("firstFetchData", firstFetchData);
+
             setUserInfo(firstFetchData);
             setIsLoading(false);
           }
         })
         .catch((error) => {
           console.log(error);
-          //Handling the error
+
           console.error("Error:", error);
           setIsLoggedIn(false);
           setUserInfo(null);
           setIsLoading(false);
         });
-
-      /* .then((response) => {
-          console.log("response line 47", response);
-
-          responseStatus = response.status;          
-          return response
-        })
-        .then(user =>{
-          console.log("user line 53", user);
-          
-          // data es user. contiene un id
-          // return 
-          //Handling the response from the API
-          
-          setIsLoggedIn(true);
-          console.log(user);
-          setUserInfo(user);
-          setIsLoading(false);
-          // if (responseStatus === 304){
-          // }
-          // return
-        }
-        ) */
-      /*
-        .then(response el usuario incluyendo el group){
-        // cont user = {_id: respose.id, groupId: response.groupID}
-        // si la response ya incluye el objeto que queremos la ponemos directamente en setUserInfo
-        // setUserInfo())
-        }
-        */
-      /*  .catch((error) => {
-          console.log(error);
-          
-          //Handling the error
-          console.error("Error:", error);
-          setIsLoggedIn(false);
-          setUserInfo(null);
-          setIsLoading(false);
-        }); */
     } else {
       setIsLoggedIn(false);
       setUserInfo(null);

@@ -13,7 +13,6 @@ import Button from "./Button";
 
 // VARIABLES
 const API_URL = import.meta.env.VITE_API_URL;
-const storedToken = localStorage.getItem("authToken");
 
 // --------------- COMPONENT ---------------
 
@@ -24,6 +23,7 @@ function UpdateGroupForm({
   userGroupInfo,
   setUserGroupInfo,
 }) {
+  const storedToken = localStorage.getItem("authToken");
   const { _id: groupId, members, recurringTasks } = userGroupInfo;
   // In the formData state the initial value is set to be a copy of userGroupInfo and the arrays inside of it are set to be also copies of the original arrays to avoid modifying the userGroupInfo object and be able to recover it's content when discarding changes
   const userGroupInfoCopy = {
@@ -34,21 +34,14 @@ function UpdateGroupForm({
 
   // STATE VARIABLES
   const [formData, setFormData] = useState(userGroupInfoCopy);
-  console.log("THIS IS FORM DATA: ", formData);
 
   const [deletedMembersArray, setDeletedMembersArray] = useState([]);
-  console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembersArray);
 
   const [deletedRecurringTasksArray, setDeletedRecurringTasksArray] = useState(
     []
   );
-  console.log(
-    "THIS IS THE DELETED RECURRING TASKS ARRAY: ",
-    deletedRecurringTasksArray
-  );
 
   const [newRecurringTask, setNewRecurringTask] = useState("");
-  console.log("THIS IS THE NEW RECURRING TASK: ", newRecurringTask);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -76,7 +69,6 @@ function UpdateGroupForm({
     })
       .then((response) => response.json())
       .then((updatedGroup) => {
-        console.log("THIS IS THE UPDATED GROUP -->", updatedGroup);
         setUserGroupInfo(updatedGroup);
         setSuccessMessage("Group Updated successfully!");
         setErrorMessage(null);
@@ -98,10 +90,9 @@ function UpdateGroupForm({
       })
         .then((response) => response.json())
         .then((updatedMember) => {
-          
           if (userId === member._id) {
             //If the user removes themselves from the group
-            console.log("hola hola")
+
             setUserGroupInfo({ name: "", members: [], recurringTasks: [] });
             setUserInfo(updatedMember);
           }
@@ -116,32 +107,21 @@ function UpdateGroupForm({
   }
 
   function handleReset() {
-    console.log(
-      "SET FORM DATA -->",
-      formData,
-      "USER GROUP INFO -->",
-      userGroupInfo
-    );
     setFormData(userGroupInfoCopy);
     setDeletedMembersArray([]);
     setIsEditing(false);
   }
 
   function handleDeleteMember(index) {
-    // console.log("THIS IS THE DELETED MEMBER: ", formData.members[index]);
-
-    const deletedMember = formData.members.splice(index, 1);
-    // console.log("THIS IS deletedMember: ", deletedMember[0]);
     // The splice() method returns an array with one object
+    const deletedMember = formData.members.splice(index, 1);
+
     setDeletedMembersArray([...deletedMembersArray, deletedMember[0]]);
   }
 
   function handleDeleteRecurringTask(index) {
-    // console.log("THIS IS THE DELETED MEMBER: ", formData.members[index]);
-
     const deletedRecurringTask = formData.recurringTasks.splice(index, 1);
-    // console.log("THIS IS deletedRecurringTask: ", deletedRecurringTask[0]);
-    // The splice() method returns an array with one object
+
     setDeletedRecurringTasksArray([
       ...deletedRecurringTasksArray,
       deletedRecurringTask[0],
@@ -167,6 +147,8 @@ function UpdateGroupForm({
           <label htmlFor="name">My ship&apos;s name</label>
           <input
             type="text"
+            autoFocus
+            name="name"
             id="name"
             onChange={handleOnChange}
             value={formData.name}
@@ -220,6 +202,7 @@ function UpdateGroupForm({
                         type="text"
                         autoFocus
                         id="recurringTasks"
+                        name="recurringTasks"
                         onChange={(e) => handleOnChangeForTasks(e, index)}
                         value={task}
                       ></input>
