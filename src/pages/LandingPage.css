@@ -1,44 +1,108 @@
 
 .landing-page__container{
-    width: 100vw; 
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    max-width: 100vw; 
+    background: url("../assets/pirate-ship-and-sea.png");
+    background-size: 900px;
+    background-position:top;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    gap: 1em;
     padding: 1em;
-}
-
-.landing-page__title {
-    text-align: center;
-    margin: 1em 0;
-}
-
-.landing-page__text{
-    text-align: center;
-    width: 70%;
-    max-width: 250px;
+    position: relative;
 }
 
 .landing-page__pirate-ship{
-    overflow: hidden;
     position: absolute;
     bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
     max-width: 150%;
-    z-index: 4;
+    z-index: 0;
 }
 
-.landing-page__sea {
-    overflow: hidden;
+.landing-page__sea--1 {
+    overflow-x: hidden;
     position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: -10%;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
     max-width: 150%;
-    z-index: 3;
+    z-index: 0;
+}
+
+.landing-page__sea--background{
+    /* margin-top: 10em; */
+    width: 100vw;
+    background: url("../assets/sea-background.png");
+    background-size: 1500px ;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 1em;
+    position: relative;
+}
+
+.landing-page__sea--background--2{
+    /* margin-top: 15em; */
+    width: 100vw;
+    background: url("../assets/sea-background.png");
+    background-size: 2000px ;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 1em;
+    position: relative;
+    z-index: 10;
+    
+}
+
+.landing-page__sea--2 {
+    overflow-x: hidden;
+    position: absolute;
+    top: 10%;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    max-width: 150%;
+    z-index: 2;
+}
+
+.landing-page__title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.landing-page__text-container{
+    width: 85dvw;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    
+}
+
+.landing-page__text{
+    font-size: 1.25rem;
+    text-align: center;
+    width: 80%;
+    border: 2px solid var(--almost-black);
+    background-color: #f1f3f4e3;
+    /* opacity: 70%; */
+    border-radius: 15px;
+    padding: 1em 1.7em;
+    margin-bottom: 15rem;
+    z-index: 5;
+}
+
+.landing-page__parrot-flying{
+    width: 40%;
+    z-index: 6;
 }
 
 .landing-page__ship-container{
