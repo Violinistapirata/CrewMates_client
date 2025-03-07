@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function GroupSettingsPage() {
-  const { userInfo, isLoggedIn } = useContext(AuthContext);
+  const { userInfo, setUserInfo, isLoggedIn } = useContext(AuthContext);
   const [userGroupInfo, setUserGroupInfo] = useState({
     name: "",
     members: [],
@@ -63,6 +63,8 @@ function GroupSettingsPage() {
           <h1> Group settings</h1>
           {isEditing ? (
             <UpdateGroupForm
+              userId={userInfo._id}
+              setUserInfo={setUserInfo}
               setIsEditing={setIsEditing}
               userGroupInfo={userGroupInfo}
               setUserGroupInfo={setUserGroupInfo}
@@ -97,33 +99,31 @@ function GroupSettingsPage() {
                     )}
                   </ul>
                   <div className="GroupSettings__code">
-                    
-                      <p className="code__title">Embarkation code:</p>
-                      
-                      <div className="code-button-wrapper">
-                        <p
-                          className="code__code"
-                          onClick={() => {
-                            navigator.clipboard.writeText(groupId);
-                          }}
-                        >
-                          {groupId}
-                        </p>
-                        <img
-                          src={copyIcon}
-                          alt="copy to clipboard"
-                          className=""
-                          onClick={() => {
-                            navigator.clipboard.writeText(groupId);
-                          }}
-                        />
-                      </div>
+                    <p className="code__title">Embarkation code:</p>
+
+                    <div className="code-button-wrapper">
+                      <p
+                        className="code__code"
+                        onClick={() => {
+                          navigator.clipboard.writeText(groupId);
+                        }}
+                      >
+                        {groupId}
+                      </p>
+                      <img
+                        src={copyIcon}
+                        alt="copy to clipboard"
+                        className=""
+                        onClick={() => {
+                          navigator.clipboard.writeText(groupId);
+                        }}
+                      />
                     </div>
-                    <p className="code__text">
-                      Send this code to your flatmates to invite them to join
-                      your crew. They need to sign up first!
-                    </p>
-                 
+                  </div>
+                  <p className="code__text">
+                    Send this code to your flatmates to invite them to join your
+                    crew. They need to sign up first!
+                  </p>
                 </section>
                 <section className="section">
                   <h2 className="section__title">Recurring tasks</h2>
@@ -146,14 +146,17 @@ function GroupSettingsPage() {
             </>
           )}
         </div>
-      ) : isLoggedIn && !userGroupInfo.members.length && (
-        <section className="section">
-          <h3 className="section__title">{"You don't have a group!"}</h3>
-          <p className="section__text">
-            Please, go to {<Link to="/dashboard">Dashboard</Link>} to join a
-            group or create one.
-          </p>
-        </section>
+      ) : (
+        isLoggedIn &&
+        !userGroupInfo.members.length && (
+          <section className="section">
+            <h3 className="section__title">{"You don't have a group!"}</h3>
+            <p className="section__text">
+              Please, go to {<Link to="/dashboard">Dashboard</Link>} to join a
+              group or create one.
+            </p>
+          </section>
+        )
       )}
       {!isLoggedIn && <NotLoggedIn />}
     </>

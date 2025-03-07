@@ -2,8 +2,8 @@
 
 // STYLES
 import "./UpdateGroupForm.css";
-import binIcon from "../assets/delete.svg"
-import removeIcon from "../assets/person_remove.svg"
+import binIcon from "../assets/delete.svg";
+import removeIcon from "../assets/person_remove.svg";
 
 // HOOKS
 import { useState } from "react";
@@ -15,11 +15,16 @@ import Button from "./Button";
 const API_URL = import.meta.env.VITE_API_URL;
 const storedToken = localStorage.getItem("authToken");
 
-
 // --------------- COMPONENT ---------------
 
-function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
-    const {_id: groupId, members, recurringTasks } = userGroupInfo;
+function UpdateGroupForm({
+  userId,
+  setUserInfo,
+  setIsEditing,
+  userGroupInfo,
+  setUserGroupInfo,
+}) {
+  const { _id: groupId, members, recurringTasks } = userGroupInfo;
   // In the formData state the initial value is set to be a copy of userGroupInfo and the arrays inside of it are set to be also copies of the original arrays to avoid modifying the userGroupInfo object and be able to recover it's content when discarding changes
   const userGroupInfoCopy = {
     ...userGroupInfo,
@@ -34,8 +39,13 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
   const [deletedMembersArray, setDeletedMembersArray] = useState([]);
   console.log("THIS IS THE DELETED MEMBERS ARRAY: ", deletedMembersArray);
 
-  const [deletedRecurringTasksArray, setDeletedRecurringTasksArray] = useState([]);
-  console.log("THIS IS THE DELETED RECURRING TASKS ARRAY: ", deletedRecurringTasksArray);
+  const [deletedRecurringTasksArray, setDeletedRecurringTasksArray] = useState(
+    []
+  );
+  console.log(
+    "THIS IS THE DELETED RECURRING TASKS ARRAY: ",
+    deletedRecurringTasksArray
+  );
 
   const [newRecurringTask, setNewRecurringTask] = useState("");
   console.log("THIS IS THE NEW RECURRING TASK: ", newRecurringTask);
@@ -52,7 +62,7 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
     formData.recurringTasks.splice(index, 1, e.target.value);
     setFormData({ ...formData, recurringTasks: formData.recurringTasks });
   }
-  
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -60,37 +70,61 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${storedToken}`
-    },
+        Authorization: `Bearer ${storedToken}`,
+      },
       body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(updatedGroup => {
+      .then((response) => response.json())
+      .then((updatedGroup) => {
         console.log("THIS IS THE UPDATED GROUP -->", updatedGroup);
-        setUserGroupInfo(updatedGroup);  
+        setUserGroupInfo(updatedGroup);
         setSuccessMessage("Group Updated successfully!");
         setErrorMessage(null);
-    })
-    .catch(err =>{
+      })
+      .catch((err) => {
         setErrorMessage("Failed to update group");
         setSuccessMessage(null);
-        console.error(errorMessage, err)
-    })
+        console.error(errorMessage, err);
+      });
 
-    setDeletedMembersArray([])
+    deletedMembersArray.forEach((member) => {
+      fetch(`${API_URL}/api/users/remove-group/${member._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
+        },
+        body: JSON.stringify({ removedFromGroup: true }),
+      })
+        .then((response) => response.json())
+        .then((updatedMember) => {
+          
+          if (userId === member._id) {
+            //If the user removes themselves from the group
+            console.log("hola hola")
+            setUserGroupInfo({ name: "", members: [], recurringTasks: [] });
+            setUserInfo(updatedMember);
+          }
+        })
+        .catch((err) => {
+          console.error(errorMessage, err);
+        });
+    });
+
+    setDeletedMembersArray([]);
     setIsEditing(false);
   }
 
   function handleReset() {
     console.log(
-        "SET FORM DATA -->",
-        formData,
-        "USER GROUP INFO -->",
-        userGroupInfo
-      );
-      setFormData(userGroupInfoCopy);
-      setDeletedMembersArray([]);
-      setIsEditing(false);
+      "SET FORM DATA -->",
+      formData,
+      "USER GROUP INFO -->",
+      userGroupInfo
+    );
+    setFormData(userGroupInfoCopy);
+    setDeletedMembersArray([]);
+    setIsEditing(false);
   }
 
   function handleDeleteMember(index) {
@@ -238,6 +272,3 @@ function UpdateGroupForm({ setIsEditing, userGroupInfo, setUserGroupInfo }) {
 }
 
 export default UpdateGroupForm;
-
-
-

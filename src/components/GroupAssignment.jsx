@@ -17,6 +17,13 @@ function GroupAssignment() {
   function handleSubmit(e) {
     e.preventDefault();
     setRequestIsSent(true);
+    console.log(groupCode.length !== 0);
+
+    if(groupCode.length===0){
+      setErrorMessage("You need to provide a valid group code");
+      setRequestIsSent(false);
+    } else {
+
     fetch(`${API_URL}/api/groups/join/${groupCode}`, {
       method: "PUT",
       headers: {
@@ -36,12 +43,18 @@ function GroupAssignment() {
           setErrorMessage("Something went wrong. Please try again later.");
           setRequestIsSent(false);
         }
+         if (response.status === 400) {
+           console.error("Not a valid group code");
+           setErrorMessage("Not a valid group code");
+           setRequestIsSent(false);
+         }
       })
       .catch((error) => {
         console.error("Error while updating the group ->", error);
         setErrorMessage("Something went wrong! Please try again later.");
         setRequestIsSent(false);
       });
+    }
   }
 
   return (
