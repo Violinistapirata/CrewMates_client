@@ -1,22 +1,38 @@
-.LandingPage__container{
+.LandingPage__container {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 2rem;
+    padding-top: 2rem;
 }
 
-.LandingPage_hero{
+.LandingPage___title {
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.LandingPage___subtitle {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    max-width: 55ch;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.LandingPage_hero {
     max-height: 50rem;
     align-self: center;
     max-width: 100%;
     height: auto;
 }
 
-.LandingPage__text{
+.LandingPage__text {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 85ch;
+
     p {
         margin-top: 1rem;
         margin-bottom: 2rem;
@@ -24,15 +40,40 @@
     }
 }
 
-.LandingPage___title{
-    font-size: 3.5rem;
-}
-
-.LandingPage__h2-title{
+.LandingPage__h2-title {
     font-size: 2rem;
 }
 
-.LandingPage___subtitle{
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
+
+/* TABLET */
+@media screen and (min-width:561px) and (max-width: 1200px) {
+    .LandingPage___title {
+        font-size: 3rem;
+    }
+    
+    .LandingPage___subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .LandingPage__h2-title {
+        font-size: 2rem;
+    }
+    
+    
+}
+
+/* MOBILE */
+@media screen and (max-width: 560px) {
+    .LandingPage___title {
+        font-size: 2.5rem;
+    }
+
+    .LandingPage___subtitle {
+        font-size: 1.25rem;
+    }
+
+    .LandingPage__h2-title {
+        font-size: 1.75rem;
+    }
+
 }
