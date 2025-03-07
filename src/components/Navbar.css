@@ -1,5 +1,5 @@
 .navbar {
-    height: 3rem;
+    padding: 1rem;
     background-color: var(--primary-color);
     display: flex;
     justify-content: center;

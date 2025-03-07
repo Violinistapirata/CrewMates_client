@@ -43,6 +43,7 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
         >Crew</div>
 
             <ul className="section__list section__list--row">
+      
               {members.length > 0 ? (
                 members.map((member) => {
                   return <li key={member._id} className="list-item" onClick={()=>setAssigneeFilter({label: member.name, id: member._id})}>
