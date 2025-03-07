@@ -52,9 +52,12 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
         <ul>
         {groupedTasks.map((group) => (
           <li key={group.assigneeName}>
+
+          {assigneeFilter.id ==="all" && ( 
           <div className="assignee-name">
              {group.assigneeName.toUpperCase()} 
             </div>
+          )}
             <TaskList tasks={group.tasks} updateTaskStatus={updateTaskStatus}/>
           </li>
       ))}
