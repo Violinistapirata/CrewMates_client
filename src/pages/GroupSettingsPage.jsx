@@ -2,9 +2,9 @@ import "./GroupSettingsPage.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import UpdateGroupForm from "../components/UpdateGroupForm";
-import NotLoggedIn from "../components/NotLoggedIn"
+import NotLoggedIn from "../components/NotLoggedIn";
 import Button from "../components/Button";
-import copyIcon from "../assets/content_copy.svg"
+import copyIcon from "../assets/content_copy.svg";
 import { Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -16,28 +16,22 @@ function GroupSettingsPage() {
     members: [],
     recurringTasks: [],
   });
-
-  const {_id: groupId, name, members, recurringTasks } = userGroupInfo;
-
+  const { _id: groupId, name, members, recurringTasks } = userGroupInfo;
   const [isEditing, setIsEditing] = useState(false);
-  
-  console.log("USER INFO:", userInfo);
-  if (userInfo) {
-    console.log("THIS IS userInfo.group: ", userInfo.group);
-  }
+  const [showToast, setShowToast] = useState(false);
+
   function getUserGroupInfo() {
     const storedToken = localStorage.getItem("authToken");
     if (storedToken) {
       fetch(`${API_URL}/api/groups/${userInfo.group}`, {
         method: "GET",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${storedToken}`
+          Authorization: `Bearer ${storedToken}`,
         },
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("THIS IS THE GROUP INFO: ", data);
           setUserGroupInfo(data);
         })
         .catch((err) => {
@@ -49,12 +43,6 @@ function GroupSettingsPage() {
   useEffect(() => {
     userInfo && userInfo.group && getUserGroupInfo();
   }, [userInfo]);
-
-  userGroupInfo && console.log("THIS IS userGroupInfo: ", userGroupInfo);
-  
-
-  userGroupInfo &&  
-    console.log("data from userGroupInfo: ", name, members, recurringTasks);
 
   return (
     <>
@@ -113,11 +101,15 @@ function GroupSettingsPage() {
                       <img
                         src={copyIcon}
                         alt="copy to clipboard"
-                        className=""
                         onClick={() => {
                           navigator.clipboard.writeText(groupId);
+                          setShowToast(true);
+                          setTimeout(() => {
+                            setShowToast(false);
+                          }, 1500);
                         }}
                       />
+                      {showToast && <p className="clipboard-toast">✅ Copied!</p>}
                     </div>
                   </div>
                   <p className="code__text">
@@ -161,7 +153,6 @@ function GroupSettingsPage() {
       {!isLoggedIn && <NotLoggedIn />}
     </>
   );
-  
 }
 
 export default GroupSettingsPage;
