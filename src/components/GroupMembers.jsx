@@ -53,7 +53,7 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
                         <div className="list-item__user-image">
                           {member.name[0]}
                         </div>
-                        <p className="list-item__name">{member.name}</p>
+                        <p className="list-item__name">{member.name.slice(0,3).toUpperCase()}</p>
                       </div>
                   </li>;
                 })

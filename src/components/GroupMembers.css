@@ -1,0 +1,16 @@
+.GroupMembers-icon {
+  padding: 0.5em 1em; 
+  background-color: var(--primary-color); 
+  color: var(--almost-white); 
+  border: 3px solid var(--primary-color-lighter); 
+  border-radius: 50px; 
+  display: inline-block; 
+  font-size: 1.2em; 
+  text-align: center;
+  cursor: pointer;
+}
+
+.GroupMembers-icon:hover {
+    background-color: var(--primary-color-lighter); 
+    border-color: var(--primary-color); 
+  }

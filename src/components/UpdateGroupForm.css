@@ -1,10 +1,9 @@
-.list-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: 0.7rem;
-    row-gap: 0.25rem;
-    padding-bottom: 0.5rem;
+.list-item__container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Allinea centralmente il contenuto */
+  text-align: center;
+  margin-bottom: 1em; /* Distanza tra le righe */
 }
 
 .list-item__container {
@@ -28,7 +27,13 @@
     border: 3px solid var(--primary-color-lighter);
     border-radius: 20px;
     z-index: 2;
+    cursor: pointer;
 }
+
+.list-item__user-image:hover {
+    background-color: var(--primary-color-lighter); 
+    border-color: var(--primary-color); 
+  }
 
 
 .icon-button {
@@ -45,8 +50,10 @@
     padding-top: 1rem
 }
 
-.section__list--row{
+.section__list--row {
     display: flex;
+    flex-wrap: wrap; 
+  gap: 2em; 
 }
 
 .field-with-delete {
@@ -71,3 +78,8 @@
     margin-bottom: 2rem;
     margin-top: 1.5rem;
 }
+
+.list-item__name {
+    font-size: 1em;
+    margin-top: 0.2em;
+  }
