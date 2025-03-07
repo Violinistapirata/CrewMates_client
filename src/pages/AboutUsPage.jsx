@@ -11,7 +11,7 @@ function AboutUsPage() {
         <h2 className="AboutUs-title"> Meet the Team </h2>
 
         <div className="AboutUs-Eric">
-          <p>
+          <p className="About-text-Eric">
             <h3 className="AboutUs-Name">Èric</h3>
             I’ve been playing the violin for over 20 years, which has taught me
             discipline, teamwork skills, and an eye for detail. Today, my
@@ -26,7 +26,7 @@ function AboutUsPage() {
 
         <div className="AboutUs-Andrea">
           <img src={Andrea} alt="Andrea" />
-          <p>
+          <p className="About-text-Andrea">
             <h3 className="AboutUs-Name">Andrea</h3>
             I’ve always loved technology. As a teenager, I learned languages,
             which led me to travel and, 7 years ago, to move from Italy to
@@ -38,7 +38,7 @@ function AboutUsPage() {
         </div>
 
         <div className="AboutUs-Eleni">
-          <p>
+          <p className="About-text-Eleni">
             <h3 className="AboutUs-Name">Eleni</h3>
             Eleni, a linguist by training, has built her IT career around
             incident management and technical product support, specializing in
@@ -54,7 +54,7 @@ function AboutUsPage() {
 
         <div className="AboutUs-Airam">
           <img src={Airam} alt="Airam" />
-          <p>
+          <p className="About-text-Airam">
             <h3 className="AboutUs-Name">Airam</h3>
             Technology, and especially the world of video games, has always been
             a part of my life. Years ago, I studied massage therapy, but later
@@ -68,7 +68,7 @@ function AboutUsPage() {
         </div>
 
         <div className="AboutUs-Mónica">
-          <p>
+          <p className="About-text-Mónica">
             <h3 className="AboutUs-Name">Mónica</h3>I am a Concept Artist,
             passionate about creating captivating visual worlds and
             conceptualizing characters and products that tell unique stories.
