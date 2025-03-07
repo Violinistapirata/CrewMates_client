@@ -66,7 +66,7 @@ function GroupAssignment() {
       </p>
       <form onSubmit={handleSubmit} className="GroupAssignment__form">
       <label htmlFor="group-code">Enter group code:</label>
-        <div className="GroupAssignment_form-input-and-button">
+        <div className="GroupAssignment__form-input-and-button">
           <input
             type="text"
             id="group-code"

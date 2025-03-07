@@ -25,11 +25,16 @@
     font-size: 1.25rem;
 }
 
+.GroupAssignment__form-input-and-button{
+    display: flex;
+}
+
 .GroupAssignment__form input {
     border: 1px solid var(--dark-grey);
     border-radius: 15px 0px 0px 15px;
     height: 2.1rem;
-    max-width: 20rem;
+    width: 20rem;
+    max-width: 60vw;
     color: var(--almost-black);
     font-size: 1rem;
     padding-left: 0.25rem;
