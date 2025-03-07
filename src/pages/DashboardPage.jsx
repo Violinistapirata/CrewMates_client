@@ -36,7 +36,12 @@ function DashboardPage({setChosenSettingsPage}) {
   });
   /* const [hasActiveWeek, setHasActiveWeek] = useState(false); */
   //Remove from here and from backend response?
-
+function updateTaskStatus(taskId, isDone) {
+  const updatedTasks = tasks.map((task)=> {
+    return task._id === taskId? {...task, isDone} : task;
+  });
+  setTasks(updatedTasks);
+}
   useEffect(() => {
     //Get user info to check which is their group, if any
     //The Context is lost as soon as the page is refreshed.
@@ -95,7 +100,7 @@ function DashboardPage({setChosenSettingsPage}) {
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board</h1>
           <GroupMembers groupId={group} setAssigneeFilter={setAssigneeFilter} />
-          <WeekTasks tasks={tasks} assigneeFilter={assigneeFilter} />
+          <WeekTasks tasks={tasks} assigneeFilter={assigneeFilter} updateTaskStatus={updateTaskStatus}/>
         </div>
       )}
 

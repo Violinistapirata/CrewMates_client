@@ -1,7 +1,8 @@
 //CSS
 import "./WeekTasks.css";
+import TaskList from "./TaskList";
 
-function WeekTasks({ tasks, assigneeFilter }) {
+function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
   console.log(tasks);
   console.log(assigneeFilter);
 
@@ -54,14 +55,7 @@ function WeekTasks({ tasks, assigneeFilter }) {
           <div className="assignee-name">
              {group.assigneeName.toUpperCase()} 
             </div>
-            <ul>
-              {group.tasks.map((task) => (
-              <li key={task._id}>
-              <p>{task.name}</p>
-              <p>{task.isDone ? "✅ Done" : "❌ Not Done"}</p>
-              </li>
-             ))}
-           </ul>
+            <TaskList tasks={group.tasks} updateTaskStatus={updateTaskStatus}/>
           </li>
       ))}
         </ul>

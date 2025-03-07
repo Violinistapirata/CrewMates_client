@@ -25,7 +25,7 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
             }}
           >
             <img src={homeIcon} alt="Home" className="nav-icon" />
-            <span className="nav-text">Start Session</span>
+            <span className="nav-text">Home</span>
           </NavLink>
         </li>
         {
