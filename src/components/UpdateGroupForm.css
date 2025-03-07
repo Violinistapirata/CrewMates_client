@@ -1,0 +1,73 @@
+.list-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.7rem;
+    row-gap: 0.25rem;
+    padding-bottom: 0.5rem;
+}
+
+.list-item__container {
+    display: flex;
+    align-items: center;
+    margin: .2em 0;
+    gap: 1em;
+}
+
+.list-item__container--column {
+    margin-top: 8em;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+}
+
+.list-item__user-image {
+    padding: .3em .5em;
+    background-color: var(--primary-color);
+    color: var(--almost-white);
+    border: 3px solid var(--primary-color-lighter);
+    border-radius: 20px;
+    z-index: 2;
+}
+
+
+.icon-button {
+    all: unset;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.section__list{
+    list-style: none;
+    padding-top: 1rem
+}
+
+.section__list--row{
+    display: flex;
+}
+
+.field-with-delete {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 0.7rem;
+}
+
+.GroupSettings-input {
+    margin-bottom: 0.3rem;
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px;
+    height: 1.6rem;
+    width: 20rem;
+    color: var(--almost-black);
+    font-size: 1rem;
+    padding-left: 0.25rem;
+    background-color: white;
+}
+
+.GroupSettings__task-list{
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+}

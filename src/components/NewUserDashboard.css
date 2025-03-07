@@ -1,0 +1,93 @@
+@media screen and (min-width:601px) and (max-width: 1200px) {
+    .NewUserDashboard {
+        padding-top: 3rem;
+    }
+}
+
+@media screen and (min-width:1201px) {
+    .NewUserDashboard {
+        padding-top: 5rem;
+    }
+}
+
+/** TITLE WITH PARROT **/
+
+.NewUserDashboard__title-with-parrot {
+    display: flex;
+    flex-direction: column;
+
+    .NewUserDashboard__title {
+        font-size: 3rem;
+        text-align: center;
+    }
+
+    .NewUserDashboard__parrot {
+        position: relative;
+        top: 11px;
+        max-width: 200px;
+        font-size: 1rem;
+        align-self: flex-end;
+    }
+}
+
+/* TABLET */
+@media screen and (min-width:601px) and (max-width: 1200px) {
+    .NewUserDashboard__title-with-parrot {
+        .NewUserDashboard__parrot {
+            font-size: 7rem;
+        }
+    }
+
+}
+
+/* LAPTOP AND UP */
+@media screen and (min-width:1201px) {
+    .NewUserDashboard__title-with-parrot {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .NewUserDashboard__title {
+            font-size: 4.5rem;
+            text-align: left;
+        }
+
+        .NewUserDashboard__parrot {
+            font-size: 10rem;
+            top: 4px;
+        }
+    }
+}
+
+/*** CREATE OR JOIN ***/
+
+.NewUserDashboard__create-or-join {
+    margin-top: -0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NewUserDashboard p {
+    font-size: 1.25rem;
+}
+
+.NewUserDashboard__or {
+    padding: 2rem 0;
+}
+
+
+
+@media screen and (min-width:1201px) {
+
+    .NewUserDashboard__create-or-join {
+        margin-top: -1rem;
+        flex-direction: row;
+        align-items: stretch;
+        column-gap: 1.5rem;
+    }
+
+    .NewUserDashboard__or {
+        padding: 2rem 0;
+        align-self: center;
+    }
+}

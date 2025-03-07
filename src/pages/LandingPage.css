@@ -1,0 +1,38 @@
+.LandingPage__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2rem;
+}
+
+.LandingPage_hero{
+    max-height: 50rem;
+    align-self: center;
+    max-width: 100%;
+    height: auto;
+}
+
+.LandingPage__text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 85ch;
+    p {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+}
+
+.LandingPage___title{
+    font-size: 3.5rem;
+}
+
+.LandingPage__h2-title{
+    font-size: 2rem;
+}
+
+.LandingPage___subtitle{
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}

@@ -1,0 +1,92 @@
+.SignUpPage__options {
+    display: flex;
+    justify-content: center;
+    border-radius: 15px 15px 0px 0px;
+    color: var(--primary-color);
+
+    a {
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem;
+        font-size: 1.25rem;
+    }
+
+    a.active-option {
+        font-weight: bold;
+        color: var(--primary-color);
+        border-bottom: 0.5rem solid var(--primary-color);
+    }
+
+    a:hover {
+        color: var(--accent-color);
+        border-bottom: 0.5rem solid var(--accent-color);
+        cursor: pointer;
+    }
+
+}
+
+.SignUpPage__title {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 2rem;
+}
+
+.SignUpPage__form {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 20rem;
+    }
+    padding: 2rem 4rem;
+}
+
+@media screen and (max-width: 600px) {
+    .SignUpPage__form {
+        margin: 2rem auto;
+        padding: 0;
+    }
+
+    .SignUpPage__form input {
+        max-width: 80vw;
+    }
+}
+
+.SignUpPage__form label {
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    align-self: flex-start;
+}
+
+.SignUpPage__form input {
+    margin-bottom: 1rem;
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px;
+    height: 1.6rem;
+    width: 20rem;
+    color: var(--almost-black);
+    font-size: 1rem;
+    padding-left: 0.25rem;
+    background-color: white;
+}
+
+
+
+
+.SignUpPage__form button:hover {
+    background-color: var(--primary-color-lighter);
+}
+
+.SignUpPage__form button:active {
+    background-color: var(--primary-color-darker);
+}
+
+.SignUpPage__form p.success {
+    color: var(--success-color-bright);
+}
+
+.SignUpPage__form p.error {
+    color: var(--error-bright);
+}
+

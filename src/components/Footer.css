@@ -1,6 +1,18 @@
-.footer {
-    height: 4em;
-    background-color: rgb(255, 0, 0);
+.Footer {
+    height: 3rem;
+    padding: 1vh;
+    background-color: var(--accent-color-lighter);
     display: flex;
+    justify-content: space-around;
     align-items: center;
+    font-size: 1.125 rem;
+    
+    .active {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    img {
+    vertical-align:sub
+    }
 }
