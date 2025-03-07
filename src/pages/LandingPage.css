@@ -1,3 +1,26 @@
+
+.landing-page__container{
+    width: 100vw; 
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1em;
+    padding: 1em;
+}
+
+.landing-page__title {
+    text-align: center;
+    margin: 1em 0;
+}
+
+.landing-page__text{
+    text-align: center;
+    width: 70%;
+    max-width: 250px;
+}
+
 .landing-page__pirate-ship{
     overflow: hidden;
     position: absolute;
@@ -25,7 +48,3 @@
     flex-direction: column-reverse;
 }
 
-.landing-page__text{
-    margin: 1em;
-    z-index: 5;
-}
