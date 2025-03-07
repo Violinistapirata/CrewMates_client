@@ -12,6 +12,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 function GroupMembers({ groupId, setAssigneeFilter }) {
   const storedToken = localStorage.getItem("authToken");
   const [members, setMembers] = useState(null);
+  const [groupName, setGroupName] = useState(null);
 
   useEffect(() => {
     fetch(`${API_URL}/api/groups/${groupId}`, {
@@ -27,6 +28,7 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
       .then((groupInfo) => {
         console.log(groupInfo.members);
         setMembers(groupInfo.members);
+        setGroupName(groupInfo.name);
       })
       .catch((error) => {
         console.error("Error while getting group info ->", error);
@@ -40,7 +42,7 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
         <div 
             className="GroupMembers-icon" 
             onClick={()=>setAssigneeFilter({label: "the whole crew", id: "all"})}
-        >Crew</div>
+        >{groupName ? `Crew of ${groupName}` : "Crew"}</div>
 
             <ul className="section__list section__list--row">
       
