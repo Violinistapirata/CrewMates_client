@@ -1,12 +1,4 @@
 
-:root {
-    --primary-color: #3498db; 
-    --secondary-color: #2ecc71; 
-    --background-color: #ecf0f1; 
-    --text-color: #2c3e50; 
-    --accent-color: #f39c12; 
-  }
-  
   body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: var(--background-color);
@@ -18,15 +10,18 @@
   .landing-page-container {
     display:flex;
     width: 97vw;
-    height: 90vh;
+    height: 100vh;
+    background-size:cover;
     flex-direction: column;
     justify-content: center;
     padding: 20px;
+    background-color: #266893;
     background-image: url('../assets/cueva.png');
+    
   }
   
   .landing-page-title {
-    color: var(--primary-color);
+    color:#e1e5e9;
     font-size: 4.5rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -36,7 +31,7 @@
   
   .landing-page-text {
     color: white;
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;

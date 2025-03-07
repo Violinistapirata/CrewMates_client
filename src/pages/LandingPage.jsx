@@ -3,7 +3,7 @@ import "./LandingPage.css";
 function LandingPage() {
   return (
     <div className="landing-page-container">
-      <h2 className="landing-page-title">Bienvenidos a Crewmates!</h2>
+      <h2 className="landing-page-title">Welcome to Crewmates!</h2>
       <p className="landing-page-text">
         "Ahoy, matey! Ready to join CrewMates, the ultimate treasure for taming
         household chores? Arrr, no need to walk the plank here! With CrewMates,
