@@ -1,6 +1,17 @@
-# Client Routes / Endpoints
+# Welcome to CrewMates !! ![](src/assets/parrot-flying-small.png)
 
-## Pages
+## Introduction
+
+Crew Mates is an application
+## Contributing
+
+## Contributors / Team
+
+## Documentation
+
+## Client Routes / Endpoints
+
+### Pages
 
 | Page              | URL                         | Content                                                  |
 | ----------------- | --------------------------- | -------------------------------------------------------- |
