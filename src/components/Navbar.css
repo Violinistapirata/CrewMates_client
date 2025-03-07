@@ -1,5 +1,5 @@
 .navbar {
-    padding: 1rem;
+    padding: 1rem 0;
     background-color: var(--primary-color);
     display: flex;
     justify-content: center;
@@ -47,11 +47,14 @@
 }
 
 .drop-down{
+    width: 25%;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     background-color: var(--almost-white);
     border: 1px solid var(--almost-black);
     position: absolute;
+    right: 0;
 }
 
 .drop-down__button{
