@@ -41,6 +41,27 @@ function updateTaskStatus(taskId, isDone) {
     return task._id === taskId? {...task, isDone} : task;
   });
   setTasks(updatedTasks);
+
+  fetch(`${API_URL}/api/tasks/${taskId}`, {
+    method:"PUT", 
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${storedToken}`,
+    },
+    body: JSON.stringify({isDone})
+  })
+  .then((res)=>{
+    if (!res.ok){
+      throw new Error ("Failed to update task status");
+    }
+    return res.json();
+  })
+  .then((updatedTask)=>{
+    console.log("Task status updated", updatedTask);
+  })
+  .catch((error)=> {
+    console.error("Error updating task status", error);
+  })
 }
   useEffect(() => {
     //Get user info to check which is their group, if any
