@@ -47,7 +47,7 @@ function LandingPage() {
           </p>
           <p>
             You can start a week any day of the week, but weeks always end on a
-            Friday. Also, you cannot create a new week before the current week
+            Sunday. Also, you cannot create a new week before the current week
             is over.
           </p>
         </div>
