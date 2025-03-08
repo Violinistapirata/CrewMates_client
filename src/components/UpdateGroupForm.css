@@ -72,10 +72,11 @@
     border-radius: 4px;
     height: 1.6rem;
     width: 20rem;
+    max-width: 70vw;
     color: var(--almost-black);
     font-size: 1rem;
     padding-left: 0.25rem;
-    background-color: white;
+    background-color: white;    
 }
 
 .GroupSettings__task-list{
