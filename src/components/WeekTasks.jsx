@@ -45,7 +45,7 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
   return (
     tasks && (
       <>
-        <h2>
+        <h2 className="task-list-title">
           Showing the tasks for{" "}
           <b className="DashboardPage__filter-active">{assigneeFilter.label}</b>
         </h2>

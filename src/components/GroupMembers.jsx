@@ -2,6 +2,7 @@
 import "./GroupMembers.css";
 import "../pages/GroupSettingsPage.css";
 import "./UpdateGroupForm.css";
+import flagIcon from "../assets/crew-mates-logo-cropped.png"
 
 //React
 import { useEffect, useState } from "react";
@@ -39,10 +40,16 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
     members && (
       <>
         <h2>Your crewmates</h2>
+      
+      <div className="group-header">
+        <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>
         <div 
-            className="GroupMembers-icon" 
-            onClick={()=>setAssigneeFilter({label: "the whole crew", id: "all"})}
-        >{groupName ? `Crew of ${groupName}` : "Crew"}</div>
+          className="GroupMembers-icon"
+          onClick={() => setAssigneeFilter({ label: "the whole crew", id: "all" })}
+        >
+          <img src={flagIcon} alt="Filter tasks by group" className="GroupMembers-filter-icon" />
+        </div>
+      </div>
 
             <ul className="section__list section__list--row">
       

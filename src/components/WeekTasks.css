@@ -16,3 +16,7 @@
   li {
     margin-bottom: 20px; 
   }
+  
+  .task-list-title {
+    margin-bottom: 1.5rem; /* Aggiunge più spazio sotto il titolo */
+  }
