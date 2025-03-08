@@ -42,7 +42,6 @@ function AuthProviderWrapper(props) {
               })
               .then((user) => {
                 setIsLoggedIn(true);
-
                 setUserInfo(user);
                 setIsLoading(false);
                 return;
@@ -55,11 +54,8 @@ function AuthProviderWrapper(props) {
                 setUserInfo(null);
                 setIsLoading(false);
               });
-          }
-
-          if (responseStatus === 200 && firstFetchData.group) {
+          } else if (responseStatus === 200 && firstFetchData.group) {
             setIsLoggedIn(true);
-
             setUserInfo(firstFetchData);
             setIsLoading(false);
           }

@@ -67,7 +67,9 @@ function updateTaskStatus(taskId, isDone) {
     //Get user info to check which is their group, if any
     //The Context is lost as soon as the page is refreshed.
     //With this we can recover the Context information through the token.
+    
     if (userInfo) {
+     
       setIsLoading(true);
       fetch(`${API_URL}/api/users/${userInfo._id}`, {
         method: "GET",
@@ -99,7 +101,6 @@ function updateTaskStatus(taskId, isDone) {
                 setHasRecurringTasks(weekStatus.hasRecurringTasks);
                 //setHasActiveWeek(weekStatus.hasActiveWeek); //REMOVE
                 setTasks(weekStatus.tasks);
-                console.log("weekStatus", weekStatus);
             });
           }).then(() => {
           setIsLoading(false);
