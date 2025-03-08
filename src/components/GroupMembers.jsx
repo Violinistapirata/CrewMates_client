@@ -28,7 +28,6 @@ function GroupMembers({ groupId, setAssigneeFilter, numberOfTasks }) {
         return response.json();
       })
       .then((groupInfo) => {
-        console.log(groupInfo.members);
         setMembers(groupInfo.members);
         setGroupName(groupInfo.name);
       })

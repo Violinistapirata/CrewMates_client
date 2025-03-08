@@ -56,9 +56,6 @@ function updateTaskStatus(taskId, isDone) {
     }
     return res.json();
   })
-  .then((updatedTask)=>{
-    console.log("Task status updated", updatedTask);
-  })
   .catch((error)=> {
     console.error("Error updating task status", error);
   })

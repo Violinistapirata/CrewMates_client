@@ -17,7 +17,6 @@ function GroupAssignment() {
   function handleSubmit(e) {
     e.preventDefault();
     setRequestIsSent(true);
-    console.log(groupCode.length !== 0);
 
     if(groupCode.length===0){
       setErrorMessage("You need to provide a valid group code");

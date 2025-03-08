@@ -16,8 +16,6 @@ function UserSettingsPage() {
     name: "",
   });
 
-  console.log(userInfo);
-
   // function to get the group info from database
   function getUserGroupName() {
     const storedToken = localStorage.getItem("authToken");

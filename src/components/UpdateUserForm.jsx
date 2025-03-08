@@ -27,9 +27,7 @@ function UpdateUserForm({setIsEditing}) {
     e.preventDefault();
     const storedToken = localStorage.getItem("authToken");
     setIsEditing(false);
-    console.log(userInfo._id);
-    // fetch to update the user info
-    console.log(formData);
+    // fetch to update the user info 
     
       fetch(`${API_URL}/api/users/${userInfo._id}`, {
         method: "PUT",

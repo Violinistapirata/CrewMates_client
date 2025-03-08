@@ -3,8 +3,6 @@ import "./WeekTasks.css";
 import TaskList from "./TaskList";
 
 function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
-  console.log(tasks);
-  console.log(assigneeFilter);
 
   function filterByAssignee(assigneeFilter, tasks) {
     if (assigneeFilter.id === "all") {
@@ -13,7 +11,6 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
       const filteredTasks = tasks.filter(
         (task) => task.assigneeId === assigneeFilter.id
       );
-      console.log("filteredTasks", filteredTasks)
       return filteredTasks;
     }
   }
