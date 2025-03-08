@@ -80,6 +80,9 @@ p.DashboardPage-no-tasks {
 
 .GroupSettings__members-list {
     list-style: none;
+    li {
+        margin-bottom: 1rem;
+    }
 }
 
 .code__title {
