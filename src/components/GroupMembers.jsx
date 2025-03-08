@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 //Variables
 const API_URL = import.meta.env.VITE_API_URL;
 
-function GroupMembers({ groupId, setAssigneeFilter }) {
+function GroupMembers({ groupId, setAssigneeFilter, numberOfTasks }) {
   const storedToken = localStorage.getItem("authToken");
   const [members, setMembers] = useState(null);
   const [groupName, setGroupName] = useState(null);
@@ -59,9 +59,10 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
           onClick={handleGroupClick}>
           <img src={flagIcon} alt="Filter tasks by group" className="GroupMembers-filter-icon" />
         </div>
-        <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>
-
-        
+          <div>
+            <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>
+            <p> Number of tasks: {`${numberOfTasks}`}</p>
+          </div>
       </div>
       <h2 className="crewmates-header">Your crewmates</h2>
             <ul className="section__list section__list--row">
