@@ -1,10 +1,9 @@
-.list-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: 0.7rem;
-    row-gap: 0.25rem;
-    padding-bottom: 0.5rem;
+.list-item__container {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  text-align: center;
+  margin-bottom: 1em; 
 }
 
 .list-item__container {
@@ -15,20 +14,30 @@
 }
 
 .list-item__container--column {
-    margin-top: 8em;
     flex-direction: column;
     justify-content: flex-start;
     gap: 0;
 }
 
 .list-item__user-image {
-    padding: .3em .5em;
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--primary-color);
     color: var(--almost-white);
-    border: 3px solid var(--primary-color-lighter);
-    border-radius: 20px;
     z-index: 2;
-}
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s;
+  }
+
+.list-item__user-image:hover {
+    background-color: var(--primary-color-lighter); 
+    border-color: var(--primary-color); 
+    transform: scale(1.1);
+  }
 
 
 .icon-button {
@@ -45,8 +54,10 @@
     padding-top: 1rem
 }
 
-.section__list--row{
+.section__list--row {
     display: flex;
+    flex-wrap: wrap; 
+  gap: 2em; 
 }
 
 .field-with-delete {
@@ -71,3 +82,8 @@
     margin-bottom: 2rem;
     margin-top: 1.5rem;
 }
+
+.list-item__name {
+    font-size: 1em;
+    margin-top: 0.2em;
+  }

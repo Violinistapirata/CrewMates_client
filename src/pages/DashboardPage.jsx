@@ -121,7 +121,7 @@ function updateTaskStatus(taskId, isDone) {
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board</h1>
-          <GroupMembers groupId={group} setAssigneeFilter={setAssigneeFilter} />
+          <GroupMembers groupId={group} setAssigneeFilter={setAssigneeFilter} numberOfTasks={tasks.length} />
           <WeekTasks tasks={tasks} assigneeFilter={assigneeFilter} updateTaskStatus={updateTaskStatus}/>
         </div>
       )}

@@ -1,0 +1,61 @@
+/* .GroupMembers-icon {
+  padding: 0.5em 1em; 
+  background-color: var(--primary-color); 
+  color: var(--almost-white); 
+  border: 3px solid var(--primary-color-lighter); 
+  border-radius: 50px; 
+  display: inline-block; 
+  font-size: 1.2em; 
+  text-align: center;
+  cursor: pointer;
+} */
+
+.GroupMembers-icon {
+  width: 55px; 
+  height: 55px;
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.GroupMembers-filter-icon {
+  width: 50px; 
+  height: 50px;
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; 
+}
+
+.GroupMembers-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.GroupMembers-icon:hover {
+  background-color: var(--primary-color-lighter);
+  transform: scale(1.1);
+  border: 3px solid var(--primary-color-lighter);
+}
+
+
+
+.GroupMembers-icon.active,
+.list-item__user-image.active {
+  background-color: var(--primary-color-lighter); 
+  transform: scale(1.1); 
+  border: 3px solid var(--primary-color-lighter); 
+}
+
+.crewmates-header {
+  margin-top: 2rem; 
+}

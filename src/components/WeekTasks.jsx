@@ -44,22 +44,25 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
 
   return (
     tasks && (
-      <>
-        <h2>
+      <div className = "tasks-section-container">
+        <h2 className="task-list-title tasks-section">
           Showing the tasks for{" "}
           <b className="DashboardPage__filter-active">{assigneeFilter.label}</b>
         </h2>
         <ul>
         {groupedTasks.map((group) => (
           <li key={group.assigneeName}>
+
+          {assigneeFilter.id ==="all" && ( 
           <div className="assignee-name">
              {group.assigneeName.toUpperCase()} 
             </div>
+          )}
             <TaskList tasks={group.tasks} updateTaskStatus={updateTaskStatus}/>
           </li>
       ))}
         </ul>
-      </>
+      </div>
     )
   );
 }
