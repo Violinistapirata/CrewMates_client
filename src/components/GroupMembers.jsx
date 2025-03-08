@@ -50,17 +50,20 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
   return (
     members && (
       <>
-        <h2 className="crewmates-header">Your crewmates</h2>
+      
       
       <div className="group-header">
-        <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>
+        
         <div 
           className={`GroupMembers-icon ${selectedFilter === "group" ? "active" : ""}`}
           onClick={handleGroupClick}>
           <img src={flagIcon} alt="Filter tasks by group" className="GroupMembers-filter-icon" />
         </div>
-      </div>
+        <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>
 
+        
+      </div>
+      <h2 className="crewmates-header">Your crewmates</h2>
             <ul className="section__list section__list--row">
       
               {members.length > 0 ? (
