@@ -18,9 +18,17 @@
   }
   
   .task-list-title {
-    margin-bottom: 1.5rem; /* Aggiunge più spazio sotto il titolo */
+    margin-bottom: 1.5rem; 
+
+ }
+
+  .tasks-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .tasks-section {
     margin-top: 2rem; 
+    justify-content: center;
   }

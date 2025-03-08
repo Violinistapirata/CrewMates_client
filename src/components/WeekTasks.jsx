@@ -44,7 +44,7 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
 
   return (
     tasks && (
-      <>
+      <div className = "tasks-section-container">
         <h2 className="task-list-title tasks-section">
           Showing the tasks for{" "}
           <b className="DashboardPage__filter-active">{assigneeFilter.label}</b>
@@ -62,7 +62,7 @@ function WeekTasks({ tasks, assigneeFilter, updateTaskStatus }) {
           </li>
       ))}
         </ul>
-      </>
+      </div>
     )
   );
 }
