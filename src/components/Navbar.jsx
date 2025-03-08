@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import SettingsTab from "./SettingsTab";
 import wheel from "../assets/pirate-ship-wheel.png"
 import loginIcon from "../assets/login-icon-dark.png";
-import logoutIcon from "../assets/logout-icon2-dark.png";
+import logoutIcon from "../assets/logout-icon-dark.png";
 import dashboardIcon from "../assets/dashboard-icon-dark.png";
 
 function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
