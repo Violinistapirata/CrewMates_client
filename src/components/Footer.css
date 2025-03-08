@@ -6,17 +6,21 @@
     justify-content: space-around;
     align-items: center;
     font-size: 1.125 rem;
-    
+
     .active {
         text-decoration: underline;
         font-weight: bold;
     }
 
     img {
-    vertical-align:sub
+        vertical-align: sub
     }
 
-    a:visited{
-        color: var(--almost-white)
+    a {
+        color: var(--almost-white);
+    }
+
+    a:visited {
+        color: var(--almost-white);
     }
 }
