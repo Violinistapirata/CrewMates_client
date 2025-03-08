@@ -1,114 +1,120 @@
 .GroupSettings {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1.5rem;
-    margin-top: 2rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 .section {
-    background-color: var(--almost-white);
+  background-color: var(--almost-white);
 }
 
 h1.DashboardPage__title {
-    font-size: 3rem;
-    margin: 2rem 0;
+  font-size: 3rem;
+  margin: 2rem 0;
 }
 
-
+@media screen and (max-width: 440px) {
+  h1.DashboardPage__title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    margin-top: 0;
+  }
+}
 
 .GroupSettings__crewmates {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
 }
 
 .DashboardPage-no-recurring-tasks {
-    padding: 1.5rem;
-    background-color: var(--warning-dull);
-    border-radius: 15px;
-    font-size: 1.25rem;
-    border: 1px solid var(--warning-bright);
-    margin-top: 1rem;
+  padding: 1.5rem;
+  background-color: var(--warning-dull);
+  border-radius: 15px;
+  font-size: 1.25rem;
+  border: 1px solid var(--warning-bright);
+  margin-top: 1rem;
 }
 
 .code-button-wrapper {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    min-height: 2rem;
-    align-items: center;
-    margin-bottom: 0.3rem;
-
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  min-height: 2rem;
+  align-items: center;
+  margin-bottom: 0.3rem;
 }
 
 h2.DashboardPage-no-tasks {
-    margin-top: 3rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 p.DashboardPage-no-tasks {
-    margin: 1rem 0;
-    font-size: 1.25rem;
-    max-width: 65ch;
+  font-size: 1.25rem;
+  max-width: 65ch;
+  padding: 1rem 2rem;
+  border: 1px solid var(--warning-bright);
+  background-color: var(--warning-dull);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  max-width: 55ch;
 }
 
 .GroupSettings__name {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 0.5rem;
 }
 
 .GroupSettings__tasks {
-    list-style: none;
-    margin-bottom: 2rem;
-    margin-top: 1rem;
+  list-style: none;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
 
-    li {
-        margin-bottom: 1rem;
-    }
+  li {
+    margin-bottom: 1rem;
+  }
 }
 
-
 .section__title {
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
 }
 
 .GroupSettings__members-list {
-    list-style: none;
+  list-style: none;
 }
 
 .code__title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .code__text {
-    font-size: 1.125rem;
-    border: 1px solid var(--warning-bright);
-    background-color: var(--warning-dull);
-    ;
-    padding: 0.5rem 0.75rem;
-    border-radius: 10px;
-    max-width: 55ch;
-    margin-top: 0.5rem;
+  font-size: 1.125rem;
+  border: 1px solid var(--warning-bright);
+  background-color: var(--warning-dull);
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  max-width: 55ch;
+  margin-top: 0.5rem;
 }
 
 .code__copy:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .clipboard-toast {
-    border: 1px solid var(--success-bright);
-    background-color: var(--success-dull);
-    padding: 0.14rem 0.5rem;
-    border-radius: 5px;
-    position: relative;
-    font-size: 1.125rem;
-    animation: fade-away 4s;
-
-
+  border: 1px solid var(--success-bright);
+  background-color: var(--success-dull);
+  padding: 0.14rem 0.5rem;
+  border-radius: 5px;
+  position: relative;
+  font-size: 1.125rem;
+  animation: fade-away 4s;
 }
