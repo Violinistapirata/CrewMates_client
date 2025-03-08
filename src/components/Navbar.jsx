@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import SettingsTab from "./SettingsTab";
-import homeIcon from "../assets/home-icon.png";
-import loginIcon from "../assets/login-icon.png";
-import logoutIcon from "../assets/logout-icon2.png";
-import dashboardIcon from "../assets/dashboard-icon.png";
+import wheel from "../assets/pirate-ship-wheel.png"
+import loginIcon from "../assets/login-icon-dark.png";
+import logoutIcon from "../assets/logout-icon2-dark.png";
+import dashboardIcon from "../assets/dashboard-icon-dark.png";
 
 function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
   const { isLoggedIn, logOutUser, userInfo } = useContext(AuthContext);
@@ -24,8 +24,8 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
               setChosenSettingsPage("users");
             }}
           >
-            <img src={homeIcon} alt="Home" className="nav-icon" />
-            <span className="nav-text">Home</span>
+            <img src={wheel} alt="Home" className="nav-icon" />
+            <span className="nav-text">Crewmates</span>
           </NavLink>
         </li>
         {

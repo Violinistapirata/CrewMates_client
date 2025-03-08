@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { NavLink } from "react-router-dom";
-import settingsIcon from "../assets/settings-icon.png";
+import settingsIcon from "../assets/settings-icon-dark.png";
 
 function SettingsTab({chosenSettingsPage, setChosenSettingsPage, showSettingsDropDown, setShowSettingsDropDown, userInfo}) {
     const dinamicId = chosenSettingsPage === "users" ? userInfo._id : userInfo.group;

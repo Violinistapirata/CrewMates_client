@@ -1,6 +1,6 @@
 .navbar {
     padding: 1rem 0;
-    background-color: var(--primary-color);
+    background-color: #94CFDB;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,15 +23,16 @@
     justify-content: space-around;
 
     a {
-        color: var(--almost-white);
+        color: var(--almost-black);
         text-decoration: none;
     }
 
     .active {
-        color: var(--almost-white);
+        color: var(--almost-black);
         text-decoration: underline;
         text-decoration-style: wavy;
         font-weight: bold;
+        text-underline-offset: 5px;
     }
 }
 
