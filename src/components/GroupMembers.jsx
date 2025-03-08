@@ -50,7 +50,7 @@ function GroupMembers({ groupId, setAssigneeFilter }) {
   return (
     members && (
       <>
-        <h2>Your crewmates</h2>
+        <h2 className="crewmates-header">Your crewmates</h2>
       
       <div className="group-header">
         <h2 className="GroupMembers-name">{groupName ? `Crew of ${groupName}` : "Crew"}</h2>

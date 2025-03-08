@@ -20,3 +20,7 @@
   .task-list-title {
     margin-bottom: 1.5rem; /* Aggiunge più spazio sotto il titolo */
   }
+
+  .tasks-section {
+    margin-top: 2rem; 
+  }
