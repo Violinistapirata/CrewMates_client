@@ -1,0 +1,7 @@
+.DashboardPage__week-empty{
+    display: block;
+    max-width: 20rem;
+    opacity: 50%;
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+}
