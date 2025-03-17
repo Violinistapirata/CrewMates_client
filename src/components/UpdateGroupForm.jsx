@@ -236,7 +236,7 @@ function UpdateGroupForm({
                 className="joint-button"
                 onClick={() => handleAddNewTask()}
               >
-                Add new task
+                Add
               </button>
             </div>
           </div>

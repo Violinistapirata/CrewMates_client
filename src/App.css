@@ -75,7 +75,8 @@ input {
   border: 1px solid var(--dark-grey);
   border-radius: 10px 0px 0px 10px;
   height: 2.1rem;
-  max-width: 25rem;
+  width: 25rem;
+  max-width: 60vw;
   color: var(--almost-black);
   font-size: 1rem;
   padding-left: 0.25rem;

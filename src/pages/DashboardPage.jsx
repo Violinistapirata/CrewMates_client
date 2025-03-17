@@ -1,5 +1,6 @@
-//CSS
+//CSS and images
 import "./DashboardPage.css";
+import crewMatesLogo from "../assets/crew-mates-logo-cropped.png"
 
 //Components
 import Loading from "../components/Loading.jsx"
@@ -110,19 +111,26 @@ function updateTaskStatus(taskId, isDone) {
   return (
     <>
       {errorMessage && <p>{errorMessage}</p>}
-      {isLoggedIn === false && <NotLoggedIn />} {/* TODO? Change to undefined */}
+      {isLoggedIn === false && <NotLoggedIn />}{" "}
+      {/* TODO? Change to undefined */}
       {isLoading && <Loading />}
       {isLoggedIn && !isLoading && group === undefined && <NewUserDashboard />}
       {/*The initial value (null), once it's undefined it means we know that the user has no group*/}
-
       {isLoggedIn && !isLoading && group && tasks && (
         <div className="DashboardPage__section">
           <h1 className="DashboardPage__title">Welcome on board</h1>
-          <GroupMembers groupId={group} setAssigneeFilter={setAssigneeFilter} numberOfTasks={tasks.length} />
-          <WeekTasks tasks={tasks} assigneeFilter={assigneeFilter} updateTaskStatus={updateTaskStatus}/>
+          <GroupMembers
+            groupId={group}
+            setAssigneeFilter={setAssigneeFilter}
+            numberOfTasks={tasks.length}
+          />
+          <WeekTasks
+            tasks={tasks}
+            assigneeFilter={assigneeFilter}
+            updateTaskStatus={updateTaskStatus}
+          />
         </div>
       )}
-
       {isLoggedIn &&
         !isLoading &&
         group &&
@@ -132,23 +140,26 @@ function updateTaskStatus(taskId, isDone) {
             <h1 className="DashboardPage__title">Welcome on board!</h1>
             <GroupMembers groupId={group} />
             <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
+            <p>No tasks yet for this week!</p>
             <p className="DashboardPage-no-tasks">
-              Tasks for the week will be created based on the recurring tasks that you have set up on your{" "}
+              Tasks for the week will be created based on the recurring tasks
+              you&apos;ve set up on your{" "}
               <Link to={`/settings/groups/${group}`}>Group Settings</Link> page.{" "}
             </p>
+            <img
+              className="DashboardPage__week-empty"
+              src={crewMatesLogo}
+              alt=""
+            />
             <Button
               type="submit"
-              onClick={() => createWeek(
-                userInfo.group,
-                setTasks,
-                setErrorMessage,
-                API_URL
-              )}
+              onClick={() =>
+                createWeek(userInfo.group, setTasks, setErrorMessage, API_URL)
+              }
               content={"Create new week"}
             />
           </div>
         )}
-
       {isLoggedIn &&
         !isLoading &&
         group &&
@@ -163,8 +174,13 @@ function updateTaskStatus(taskId, isDone) {
               Your group has no template to generate your tasks for the week.{" "}
               <br />
               Go to your{" "}
-              <Link to={`/settings/groups/${group}`} onClick={() => setChosenSettingsPage("groups")}>Group Settings</Link> to
-              add recurring tasks.{" "}
+              <Link
+                to={`/settings/groups/${group}`}
+                onClick={() => setChosenSettingsPage("groups")}
+              >
+                Group Settings
+              </Link>{" "}
+              to add recurring tasks.{" "}
             </p>
           </div>
         )}
