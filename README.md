@@ -28,11 +28,13 @@ Finally, during the week just mark your tasks as done and that's it!
 | Back-End   | Front-End |
 | ---------- | --------- |
 | Express.Js | Vite      |
-| MongoDB    | React.Js  |
+| MongoDB    | React     |
 | Mongoose   | CSS       |
 | Nodemon    |           |
 | JWT        |           |
 | Bcrypt     |           |
+
+[Backend repository](https://github.com/nthTimeIsTheCharm/CrewMates_server)
 
 ## Methodologies
 
@@ -90,14 +92,9 @@ Check my [LinkedIn](https://www.linkedin.com/in/andrea-b-b9918715a/) / [GitHub](
 
 ### Eleni Kriezia
 
-Eleni, a linguist by training, has built her IT career around
-incident management and technical product support, specializing in
-problem-solving and analyzing complex systems. She bridges
-linguistics and tech through pattern recognition. Passionate about
-teaching and learning, she currently instructs professionals in UX
-Research while studying web development to enhance her technical
-skills. Outside of work, she explores programming topics, reads,
-binge-watches series, travels, and hikes.
+It was a lucky coincidence that I ended up in IT—turns out, I thrive on problem-solving and making sense of complex systems. 
+After working in incident management, product support, and now teaching UX Research, Web Development felt like the natural next step.
+When I'm not lost in a programming rabbit hole, you’ll find me reading 📖, watching series 📺, traveling ✈️, or hiking ⛰️.
 
 Check my [LinkedIn](www.linkedin.com/in/eleni-kr) / [GitHub](https://github.com/nthTimeIsTheCharm)
 
