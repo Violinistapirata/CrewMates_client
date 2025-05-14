@@ -6,7 +6,7 @@ import SettingsTab from "./SettingsTab";
 import wheel from "../assets/pirate-ship-wheel.png"
 import loginIcon from "../assets/login-icon-dark.png";
 import logoutIcon from "../assets/logout-icon-dark.png";
-import dashboardIcon from "../assets/dashboard-icon-dark.png";
+// import dashboardIcon from "../assets/dashboard-icon-dark.png";
 
 function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
   const { isLoggedIn, logOutUser, userInfo } = useContext(AuthContext);
@@ -15,27 +15,29 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
   return (
     <nav className="navbar">
       <ul className="navbar__links">
-        <li className= "nav-item">
-          <NavLink
-            to="/"
-            activeClassName="active"
-            onClick={() => {
-              setShowSettingsDropDown(false);
-              setChosenSettingsPage("users");
-            }}
-          >
-            <img src={wheel} alt="Home" className="nav-icon" />
-            <span className="nav-text">Crewmates</span>
-          </NavLink>
-        </li>
         {
           !isLoggedIn ? (
-            <li className= "nav-item">
-              <NavLink to="/sign-up" activeClassName="active">
-                <img src={loginIcon} alt="Start Session" className="nav-icon" />
-                <span className="nav-text">Start Session</span>
-              </NavLink>
-            </li>
+            <>
+              <li className= "nav-item">
+                <NavLink
+                  to="/"
+                  activeClassName="active"
+                  onClick={() => {
+                    setShowSettingsDropDown(false);
+                    setChosenSettingsPage("users");
+                  }}
+                >
+                  <img src={wheel} alt="Home" className="nav-icon" />
+                  <span className="nav-text">Crewmates</span>
+                </NavLink>
+              </li>
+              <li className= "nav-item">
+                <NavLink to="/sign-up" activeClassName="active">
+                  <img src={loginIcon} alt="Start Session" className="nav-icon" />
+                  <span className="nav-text">Start Session</span>
+                </NavLink>
+              </li>
+            </>
           ) : (
             <>
               <li className= "nav-item">
@@ -48,7 +50,7 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
                   }}
                 >
                   <img
-                    src={dashboardIcon}
+                    src={wheel}
                     alt="Dashboard"
                     className="nav-icon"
                   />
@@ -69,6 +71,7 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
                   <span className="nav-text">Logout</span>
                 </NavLink>
               </li>
+              <li>
                 <SettingsTab 
                 chosenSettingsPage={chosenSettingsPage} 
                 setChosenSettingsPage={setChosenSettingsPage} 
@@ -76,6 +79,7 @@ function Navbar({chosenSettingsPage, setChosenSettingsPage}) {
                 setShowSettingsDropDown={setShowSettingsDropDown}
                 userInfo={userInfo}
                 />
+              </li>
             </>
           )
         }
