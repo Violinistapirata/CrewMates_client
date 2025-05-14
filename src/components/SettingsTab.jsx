@@ -22,7 +22,7 @@ function SettingsTab({chosenSettingsPage, setChosenSettingsPage, showSettingsDro
                     alt="settings-icon"
                     className="nav-icon nav-icon__drop-down"
                   />
-                  <span className="nav-text">Settings</span>
+                  <span className="nav-text">{userInfo.name ? userInfo.name : "No name available"}</span>
                 </NavLink>
                 :
                 <NavLink
@@ -36,7 +36,7 @@ function SettingsTab({chosenSettingsPage, setChosenSettingsPage, showSettingsDro
                     alt="settings-icon"
                     className="nav-icon nav-icon__drop-down"
                   />
-                  <span className="nav-text">Settings</span>
+                  <span className="nav-text">{userInfo.name ? userInfo.name : "No name available"}</span>
                 </NavLink>
 
         }
