@@ -138,7 +138,10 @@ function updateTaskStatus(taskId, isDone) {
         hasRecurringTasks && (
           <div className="DashboardPage__section">
             <h1 className="DashboardPage__title">Welcome on board!</h1>
-            <GroupMembers groupId={group} />
+            <GroupMembers groupId={group} 
+            numberOfTasks={0} 
+              
+            />
             <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
             <p>No tasks yet for this week!</p>
             <p className="DashboardPage-no-tasks">
@@ -167,7 +170,10 @@ function updateTaskStatus(taskId, isDone) {
         !hasRecurringTasks && (
           <div className="DashboardPage__section">
             <h1 className="DashboardPage__title">Welcome on board!</h1>
-            <GroupMembers groupId={group} />
+            <GroupMembers groupId={group} 
+            numberOfTasks={0} 
+
+            />
             <h2 className="DashboardPage-no-tasks">{"Your group's tasks"}</h2>
             <p className="DashboardPage-no-recurring-tasks">
               {" "}
